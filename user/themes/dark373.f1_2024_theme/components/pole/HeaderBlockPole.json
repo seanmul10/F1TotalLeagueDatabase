@@ -1,0 +1,67 @@
+{
+    "ComponentName": "HeaderBlockPole",
+    "BlockType": "dock",
+    "Orientation": "Horizontal",
+    "HorizontalAlignment": "Center",
+    "Margin": "50, 0, 50, 0",
+    "Items": [
+        {
+            "BlockType": "itemstack",
+            "HorizontalAlignment": "Center",
+            "Orientation": "Horizontal",
+            "ItemStackOptions": {
+                "ItemSource": "{Session.Drivers}",
+                "Limit": 1,
+                "ItemTemplate": {
+                    "BlockType": "dock",
+                    "Width": 2050,
+                    "Items": [
+                        {
+                            //headerLeft
+                            "Name": "headerLeftPart",
+                            "Width": "*",
+                            "BlockType": "stack",
+                            "HorizontalAlignment": "Left",
+                            "Orientation": "Horizontal",
+                            "Spacing": 20,
+                            "Items": [
+                                {
+                                    "BlockType": "component",
+                                    "Component": "/DriverLine",
+                                    "ComponentOptions": {
+                                        "Vars": {
+                                            "Halign": "Left",
+                                            "flagstyle": "DriverFlags",
+                                            "fg1": "{{g1}}",
+                                            "fg2": "{{g1}}",
+                                            "style1": "NameBlack1",
+                                            "style2": "NameBlack2"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            //headerright
+                            "Width": "*",
+                            "BlockType": "stack",
+                            "HorizontalAlignment": "Right",
+                            "Orientation": "Horizontal",
+                            "Items": [
+                                {
+                                    "BlockType": "text",
+                                    "HorizontalAlignment": "Right",
+                                    "VerticalAlignment": "Center",
+                                    "Source": "{Item.Time}",
+                                    "FontName": "{FontNameBlack}",
+                                    "FontSize": 70,
+                                    "Foreground": "{{g1}}"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

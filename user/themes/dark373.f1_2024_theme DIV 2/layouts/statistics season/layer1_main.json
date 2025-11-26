@@ -1,0 +1,70 @@
+{
+    "BlockRoot": {
+        "BlockType": "stack",
+        "Margin": "20,30,20,30",
+        "Orientation": "Horizontal",
+        "Items": [
+            {
+                "BlockType": "dock",
+                "Orientation": "Vertical",
+                "Items": [
+                    //header block
+                    {
+                        "MarginBottom": 10,
+                        "BlockType": "component",
+                        "Component": "headerBlockSession",
+                        "ComponentOptions": {
+                            "Vars": {
+                                "source0": "{Season.LeagueInfo.LeagueShortName, Converter=StringToUpperString} {Season.Name, Converter=StringToUpperString} [{Statistics.Header, Converter=StringToUpperString}]",
+                                "source1": "[STATISTICS]"
+                            }
+                        },
+                        "Triggers": [
+                            {
+                                "Condition": "{g5, Converter=StringEquals, Parameter=Category Name}",
+                                "ComponentVar": "source0",
+                                "Value": "{Season.LeagueInfo.LeagueShortName, Converter=StringToUpperString} {Season.MainLeagueCategory.Name, Converter=StringToUpperString} [{Statistics.Header, Converter=StringToUpperString}]"
+                            },
+                            {
+                                "Condition": "{g5, Converter=StringEquals, Parameter=Category Short Name}",
+                                "ComponentVar": "source0",
+                                "Value": "{Season.LeagueInfo.LeagueShortName, Converter=StringToUpperString} {Season.MainLeagueCategory.ShortName, Converter=StringToUpperString} [{Statistics.Header, Converter=StringToUpperString}]"
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Background": "{P1BarSecondColor}",
+                        "Margin": "0, 15, 0, 0",
+                        "Items": [
+                            {
+                                "BlockType": "component",
+                                "Component": "P1SeasonStatTable",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "itemsource": "{Statistics.Drivers}"
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Margin": "0, -108, 0, 0",
+                        "Items": [
+                            {
+                                "BlockType": "component",
+                                "Component": "SeasonStatMainTable",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "itemsource": "{Statistics.Drivers}"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

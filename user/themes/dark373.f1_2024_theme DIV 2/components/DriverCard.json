@@ -1,0 +1,224 @@
+{
+    "ComponentName": "DriverCard",
+    "BlockType": "stack",
+    "Orientation": "Vertical",
+    "HorizontalAlignment": "Center",
+    "Items": [
+        {
+            "BlockType": "dock",
+            "Width": "<w>",
+            "Height": "<h>",
+            "BackgroundImage": "<bgsource>",
+            "ColorizeBackground": {
+                "Enabled": true,
+                "Color": "{Item.Team.Color}"
+            },
+            "Items": [
+                {
+                    "BlockType": "dock",
+                    "BackgroundImage": "components/bg.podium.gradient.png",
+                    "HeightPercent": 100,
+                    "ColorizeBackground": {
+                        "Enabled": true,
+                        "Color": "{Item.Team.SecondaryColor}"
+                    },
+                    "Items": [
+                        {
+                            "BlockType": "text",
+                            "Margin": "58,33,0,0",
+                            "Source": "<pos>",
+                            "FontSize": 378,
+                            "FontName": "{FontNameBlack}",
+                            "Foreground": "{White}",
+                            "HorizontalAlignment": "Left",
+                            "VerticalAlignment": "Top"
+                        },
+                        {
+                            "BlockType": "image",
+                            "Margin": "<margin>",
+                            "HorizontalAlignment": "Center",
+                            "VerticalAlignment": "Center",
+                            "Height": 1460,
+                            "ImageOptions": {
+                                "Path": "avatars/{Item.{{{Type}}}.Name}_{Item.SeatPosition}.png"
+                            },
+                            "Triggers": [
+                                {
+                                    "Trigger": "CustomAvatars"
+                                },
+                                {
+                                    "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                                    "ConditionAnd": "{g3, Converter=StringEquals, Parameter=No Avatars}",
+                                    "Setters": [
+                                        {
+                                            "Property": "ImageOptions.Path",
+                                            "Value": "logotypes/reserve.png"
+                                        },
+                                        {
+                                            "Property": "Height",
+                                            "Value": "{PodiumDriverCardLogoSize}"
+                                        },
+                                        {
+                                            "Property": "Margin",
+                                            "Value": "{PodiumDriverCardLogoMargin}"
+                                        },
+                                        {
+                                            "Property": "PaddingBottom",
+                                            "Value": 300
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Condition": "{g3, Converter=StringEquals, Parameter=No Avatars}",
+                                    "Setters": [
+                                        {
+                                            "Property": "ImageOptions.Path",
+                                            "Value": "{Item.Team.LightLogotypePath}"
+                                        },
+                                        {
+                                            "Property": "Height",
+                                            "Value": "{PodiumDriverCardLogoSize}"
+                                        },
+                                        {
+                                            "Property": "Margin",
+                                            "Value": "{PodiumDriverCardLogoMargin}"
+                                        },
+                                        {
+                                            "Property": "PaddingBottom",
+                                            "Value": 300
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                    "ConditionAnd": "{Livery}",
+                                    "Setters": [
+                                        {
+                                            "Property": "ImageOptions.Path",
+                                            "Value": "{Item.{{{Type}}}.LiveryPath}"
+                                        },
+                                        {
+                                            "Property": "Height",
+                                            "Value": "{PodiumDriverCardLiverySize}"
+                                        },
+                                        {
+                                            "Property": "Margin",
+                                            "Value": "{PodiumDriverCardLiveryMargin}"
+                                        },
+                                        {
+                                            "Property": "PaddingBottom",
+                                            "Value": 300
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                    "ConditionOr": "{Livery}",
+                                    "ConditionAnd": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                                    "Setters": [
+                                        {
+                                            "Property": "ImageOptions.Path",
+                                            "Value": "logotypes/liveries/Reserve.png"
+                                        },
+                                        {
+                                            "Property": "Height",
+                                            "Value": "{PodiumDriverCardLiverySize}"
+                                        },
+                                        {
+                                            "Property": "Margin",
+                                            "Value": "{PodiumDriverCardLiveryMargin}"
+                                        },
+                                        {
+                                            "Property": "PaddingBottom",
+                                            "Value": 300
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                    "ConditionAnd": "{Livery, Converter=BoolReverse}",
+                                    "Setters": [
+                                        {
+                                            "Property": "ImageOptions.Path",
+                                            "Value": "{Item.{{{Type}}}.Vendor.LogotypePath}"
+                                        },
+                                        {
+                                            "Property": "Height",
+                                            "Value": "{PodiumDriverCardLogoSize}"
+                                        },
+                                        {
+                                            "Property": "Margin",
+                                            "Value": "{PodiumDriverCardLogoMargin}"
+                                        },
+                                        {
+                                            "Property": "PaddingBottom",
+                                            "Value": 300
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "Triggers": [
+                        {
+                            "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                            "Property": "ColorizeBackground.Color",
+                            "Value": "{{CarChampSecondaryPodiumBG}}"
+                        }
+                    ]
+                }
+            ],
+            "Triggers": [
+                {
+                    "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                    "Property": "ColorizeBackground.Color",
+                    "Value": "{{CarChampPrimaryPodiumBG}}"
+                },
+                {
+                    "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                    "Property": "ColorizeBackground.Color",
+                    "Value": "{{DriverCardReserveBG}}"
+                }
+            ]
+        },
+        {
+            "BlockType": "dock",
+            "Width": "*",
+            "Height": 123,
+            "BackgroundImage": "components/bg.podium.name.png",
+            "ColorizeBackground": {
+                "Enabled": true,
+                "Color": "{Item.Team.Color}"
+            },
+            "Items": [
+                {
+                    "BlockType": "component",
+                    "Component": "DriverLinePodium",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "render": "true",
+                            "flagstyle": "PodiumFlags",
+                            "Halign": "Center",
+                            "style1": "NameBlackPodium",
+                            "fg1": "{{Item.{{{Type}}}.Name}DefaultFG}",
+                            "style2": "NameBlackPodium",
+                            "fg2": "{{Item.{{{Type}}}.Name}DefaultFG}"
+                        }
+                    }
+                }
+            ],
+            "Triggers": [
+                {
+                    "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                    "Property": "ColorizeBackground.Color",
+                    "Value": "{{CarChampPrimaryPodiumBG}}"
+                },
+                {
+                    "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                    "Property": "ColorizeBackground.Color",
+                    "Value": "{{DriverCardReserveBG}}"
+                }
+            ]
+        }
+    ]
+}

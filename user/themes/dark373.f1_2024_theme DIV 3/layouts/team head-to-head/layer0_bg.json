@@ -1,0 +1,25 @@
+{
+    "BlockRoot": {
+        "BlockType": "stack",
+        "Background": "{Season.MainLeagueCategory.Color}",
+        "Items": [
+            {
+                "BlockType": "image",
+                "Source": "bg/bg.{g1}.png",
+                "Triggers": [
+                    {
+                        "Condition": "{g2}",
+                        "Property": "Source",
+                        "Value": "bg/bg.{g1}.plain.png"
+                    },
+                    {
+                        "Condition": "{g1, Converter=StringEquals, Parameter=Custom Colour}",
+                        "ConditionAnd": "{g2}",
+                        "Property": "Opacity",
+                        "Value": 60
+                    }
+                ]
+            }
+        ]
+    }
+}

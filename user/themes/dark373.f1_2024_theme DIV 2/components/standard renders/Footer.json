@@ -1,0 +1,244 @@
+{
+    "ComponentName": "Footer",
+    "BlockType": "stack",
+    "Padding": "24,8,24,8",
+    "VerticalAlignment": "Center",
+    "Spacing": 50,
+    "Items": [
+        {
+            "Name": "Fastest Lap",
+            "BlockType": "stack",
+            "Margin": "0,8,0,0",
+            "Spacing": 50,
+            "Items": [
+                {
+                    "Name": "txt1",
+                    "BlockType": "text",
+                    "Source": "[FASTEST LAP]",
+                    "VerticalAlignment": "Center",
+                    "Foreground": "{SessionFastestLapFooterFG}",
+                    "FontSize": 28
+                },
+                {
+                    "BlockType": "text",
+                    "Source": "{Session.FastestLapDriver.{name1}}",
+                    "VerticalAlignment": "Center",
+                    "FontName": "{FontNameItalic}",
+                    "Foreground": "{FooterFG}",
+                    "FontSize": 28,
+                    "Triggers": [
+                        {
+                            "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                            "Property": "Source",
+                            "Value": "{Session.FastestLapDriver.Name}"
+                        },
+                        {
+                            "Condition": "{name2}",
+                            "ConditionAnd": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                            "Property": "Source",
+                            "Value": "{Session.FastestLapDriver.RealName}"
+                        },
+                        {
+                            "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                            "ConditionAnd": "{Session.FastestLapDriver.RealName, Converter=EmptyObjectToTrue}",
+                            "Property": "Source",
+                            "Value": "{Session.FastestLapDriver.Name}"
+                        }
+                    ]
+                },
+                {
+                    "RenderIf": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                    "Padding": "1,5",
+                    "BlockType": "text",
+                    "Margin": "-40,7,0,0",
+                    "Source": "{Session.FastestLapDriver.RealName, Converter=StringToUpperString}",
+                    "Style": "P1SecondNameDefault",
+                    "Foreground": "{FooterFG}",
+                    "FontSize": 36,
+                    "Triggers": [
+                        {
+                            "Condition": "{name2}",
+                            "Property": "Source",
+                            "Value": "{Session.FastestLapDriver.Name, Converter=StringToUpperString}"
+                        },
+                        {
+                            "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                            "ConditionAnd": "{Session.FastestLapDriver.RealName, Converter=EmptyObjectToTrue}",
+                            "Property": "RenderIf",
+                            "Value": false
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "text",
+                    "Source": "[{Item.{{{Type}}}.Name, Converter=StringToUpperString}]",
+                    "VerticalAlignment": "Center",
+                    "FontName": "{FontNameDefault}",
+                    "Foreground": "{FooterFG}",
+                    "FontSize": 28,
+                    "Triggers": [
+                        {
+                            "Condition": "{TeamColourFG}",
+                            "Property": "Foreground",
+                            "Value": "{{Item.{{{Type}}}.Name}StandardRendersFG}"
+                        },
+                        {
+                            "Condition": "{{Item.{{{Type}}}.Name}StandardRendersFG, Converter=EmptyObjectToTrue}",
+                            "ConditionAnd": "{TeamColourFG}",
+                            "Property": "Foreground",
+                            "Value": "{Item.Team.Color}"
+                        },
+                        {
+                            "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                            "ConditionAnd": "{TeamColourFG}",
+                            "Property": "Foreground",
+                            "Value": "{{ReserveStandardRendersColouredFG}}"
+                        },
+                        {
+                            "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                            "Property": "Source",
+                            "Value": "[RESERVE]"
+                        }
+                    ]
+                },
+                {
+                    "Name": "txt1",
+                    "BlockType": "text",
+                    "Source": "{Session.FastestLapTime}",
+                    "VerticalAlignment": "Center",
+                    "FontName": "{FontNameItalic}",
+                    "Foreground": "{FooterFG}",
+                    "FontSize": 28
+                },
+                {
+                    "Name": "txt1",
+                    "BlockType": "text",
+                    "RenderIf": "{Session.IsLiveData}",
+                    "Source": "[LAP] {Session.FastestLapNumLap}",
+                    "VerticalAlignment": "Center",
+                    "FontName": "{FontNameItalic}",
+                    "Foreground": "{FooterFG}",
+                    "FontSize": 28
+                },
+                {
+                    "BlockType": "text",
+                    "Source": "(+{Session.RaceFastestLapAwardedDriverPoints.StringValue} [point])",
+                    "VerticalAlignment": "Center",
+                    "FontName": "{FontNameItalic}",
+                    "Foreground": "{FooterFG}",
+                    "FontSize": 28,
+                    "Triggers": [
+                        {
+                            "Condition": "{Session.IsRaceFastestLapCanBeAwardedPoints, Converter=BoolReverse}",
+                            "ConditionOr": "{Session.RaceFastestLapAwardedDriverPoints.IntValue, Converter=NumberEquals, Parameter=0}",
+                            "Property": "RenderIf",
+                            "Value": false
+                        },
+                        {
+                            "Condition": "{Session.RaceFastestLapAwardedDriverPoints.IntValue, Converter=NumberGreater, Parameter=1}",
+                            "Property": "Source",
+                            "Value": "(+{Session.RaceFastestLapAwardedDriverPoints.StringValue} [points])"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "BlockType": "itemstack",
+            "HorizontalAlignment": "Left",
+            "Orientation": "Horizontal",
+            "ItemStackOptions": {
+                "ItemSource": "{Session.Drivers}",
+                "FilterMember": "IsRaceDriverOfDay",
+                "FilterMemberValue": "True",
+                "ItemTemplate": {
+                    "Name": "DOTD",
+                    "RenderIf": "{RaceDOTD}",
+                    "BlockType": "stack",
+                    "Margin": "0,8,0,0",
+                    "Spacing": 50,
+                    "Items": [
+                        {
+                            "Name": "txt1",
+                            "BlockType": "text",
+                            "Source": "[DOTD]",
+                            "VerticalAlignment": "Center",
+                            "Foreground": "{SessionFastestLapFooterFG}",
+                            "FontSize": 28,
+                            "Triggers": [
+                                {
+                                    "Condition": "{TeamColourFG}",
+                                    "Property": "Foreground",
+                                    "Value": "{{Item.{{{Type}}}.Name}StandardRendersFG}"
+                                },
+                                {
+                                    "Condition": "{{Item.{{{Type}}}.Name}StandardRendersFG, Converter=EmptyObjectToTrue}",
+                                    "ConditionAnd": "{TeamColourFG}",
+                                    "Property": "Foreground",
+                                    "Value": "{Item.Team.Color}"
+                                }
+                            ]
+                        },
+                        {
+                            "BlockType": "text",
+                            "Source": "{Session.DriverDayDriver.{name1}}",
+                            "VerticalAlignment": "Center",
+                            "FontName": "{FontNameItalic}",
+                            "Foreground": "{FooterFG}",
+                            "FontSize": 28,
+                            "Triggers": [
+                                {
+                                    "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                    "Property": "Source",
+                                    "Value": "{Session.DriverDayDriver.Name}"
+                                },
+                                {
+                                    "Condition": "{name2}",
+                                    "ConditionAnd": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                    "Property": "Source",
+                                    "Value": "{Session.DriverDayDriver.RealName}"
+                                },
+                                {
+                                    "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                    "ConditionAnd": "{Session.DriverDayDriver.RealName, Converter=EmptyObjectToTrue}",
+                                    "Property": "Source",
+                                    "Value": "{Session.DriverDayDriver.Name}"
+                                }
+                            ]
+                        },
+                        {
+                            "RenderIf": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                            "Padding": "1,5",
+                            "BlockType": "text",
+                            "Margin": "-40,7,0,0",
+                            "Source": "{Session.DriverDayDriver.RealName, Converter=StringToUpperString}",
+                            "Style": "P1SecondNameDefault",
+                            "Foreground": "{FooterFG}",
+                            "FontSize": 36,
+                            "Triggers": [
+                                {
+                                    "Condition": "{name2}",
+                                    "Property": "Source",
+                                    "Value": "{Session.DriverDayDriver.Name, Converter=StringToUpperString}"
+                                },
+                                {
+                                    "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                    "ConditionAnd": "{Session.DriverDayDriver.RealName, Converter=EmptyObjectToTrue}",
+                                    "Property": "RenderIf",
+                                    "Value": false
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        }
+    ],
+    "Triggers": [
+        {
+            "Condition": "{name1, Converter=StringNotEquals, Parameter=Full Name}",
+            "Property": "Padding",
+            "Value": "24,21,24,20"
+        }
+    ]
+}

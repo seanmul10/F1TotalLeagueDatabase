@@ -1,0 +1,229 @@
+{
+    "BlockRoot": {
+        "BlockType": "stack",
+        "Margin": "20,40,20,0",
+        "Orientation": "Horizontal",
+        "Items": [
+            {
+                "BlockType": "stack",
+                "RenderIf": "{RaceDriverCard}",
+                "Orientation": "Vertical",
+                "Items": [
+                    {
+                        "BlockType": "itemstack",
+                        "HorizontalAlignment": "Center",
+                        "Orientation": "Horizontal",
+                        "ItemStackOptions": {
+                            "ItemSource": "{Session.Drivers}",
+                            "Limit": 1,
+                            "ItemTemplate": {
+                                "BlockType": "component",
+                                "Component": "V1DriverCard",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source0": "1",
+                                        "source1": "[ST]",
+                                        "ftsize": "{1STCardFS}",
+                                        "bg": "{Item.Team.Color}",
+                                        "teamname": "false",
+                                        "teamlogo": "false",
+                                        "h": "{SingleSessionDriverCardLength}"
+                                    }
+                                },
+                                "Triggers": [
+                                    {
+                                        "Condition": "{SessisonStartPos, Converter=NumberEquals, Parameter=11}",
+                                        "ComponentVar": "h",
+                                        "Value": 1086
+                                    },
+                                    {
+                                        "Condition": "{RaceSecondDriverCard, Converter=StringNotEquals, Parameter=Do Not Render}",
+                                        "ComponentVar": "h",
+                                        "Value": "{DoubleSessionDriverCardLength}"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "BlockType": "itemstack",
+                        "HorizontalAlignment": "Center",
+                        "Orientation": "Horizontal",
+                        "ItemStackOptions": {
+                            "ItemSource": "{Session.Drivers}",
+                            "FilterMember": "IsRace{{RaceSecondDriverCard}}",
+                            "FilterMemberValue": "True",
+                            "ItemTemplate": {
+                                "BlockType": "component",
+                                "Component": "V1DriverCard",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source0": "{{RaceSecondDriverCard}source0}",
+                                        "source1": "{{RaceSecondDriverCard}source1}",
+                                        "ftsize": "{{RaceSecondDriverCard}FS}",
+                                        "bg": "{Item.Team.Color}",
+                                        "teamname": "false",
+                                        "teamlogo": "false",
+                                        "h": "{SingleSessionDriverCardLength}"
+                                    }
+                                },
+                                "Triggers": [
+                                    {
+                                        "Condition": "{RaceSecondDriverCard, Converter=StringEquals, Parameter=Fastest Lap}",
+                                        "ComponentVar": "bg",
+                                        "Value": "{SessionFastestLapFG}"
+                                    },
+                                    {
+                                        "Condition": "{SessisonStartPos, Converter=NumberEquals, Parameter=11}",
+                                        "ComponentVar": "h",
+                                        "Value": 1086
+                                    },
+                                    {
+                                        "Condition": "{RaceSecondDriverCard, Converter=StringNotEquals, Parameter=Do Not Render}",
+                                        "ComponentVar": "h",
+                                        "Value": "{DoubleSessionDriverCardLength}"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "BlockType": "itemstack",
+                        "RenderIf": "{RaceSecondDriverCard, Converter=StringEquals, Parameter=Pole}",
+                        "HorizontalAlignment": "Center",
+                        "Orientation": "Horizontal",
+                        "ItemStackOptions": {
+                            "ItemSource": "{Session.Drivers}",
+                            "Limit": 1,
+                            "OrderBy": "GridPosition",
+                            "ItemTemplate": {
+                                "BlockType": "component",
+                                "Component": "V1DriverCard",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source0": "[POLE]",
+                                        "source1": "",
+                                        "ftsize": "{PoleFS}",
+                                        "bg": "{Item.Team.Color}",
+                                        "teamname": "false",
+                                        "teamlogo": "false",
+                                        "h": "{SingleSessionDriverCardLength}"
+                                    }
+                                },
+                                "Triggers": [
+                                    {
+                                        "Condition": "{SessisonStartPos, Converter=NumberEquals, Parameter=11}",
+                                        "ComponentVar": "h",
+                                        "Value": 1086
+                                    },
+                                    {
+                                        "Condition": "{RaceSecondDriverCard, Converter=StringNotEquals, Parameter=Do Not Render}",
+                                        "ComponentVar": "h",
+                                        "Value": "{DoubleSessionDriverCardLength}"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "BlockType": "dock",
+                "Orientation": "Vertical",
+                "Items": [
+                    //header block
+                    {
+                        "MarginBottom": 10,
+                        "BlockType": "component",
+                        "Component": "headerBlockSession",
+                        "ComponentOptions": {
+                            "Vars": {
+                                "source0": "{Season.LeagueInfo.LeagueShortName, Converter=StringToUpperString} {Season.Name, Converter=StringToUpperString} [{Session.Track.CircuitName, Converter=StringToUpperString} GRAND PRIX] 2024",
+                                "source1": "[{Session.SessionType, Converter=StringToUpperString} CLASSIFICATION]"
+                            }
+                        },
+                        "Triggers": [
+                            {
+                                "Condition": "{g5, Converter=StringEquals, Parameter=Category Name}",
+                                "ComponentVar": "source0",
+                                "Value": "{Season.LeagueInfo.LeagueShortName, Converter=StringToUpperString} {Season.MainLeagueCategory.Name, Converter=StringToUpperString} [{Session.Track.CircuitName, Converter=StringToUpperString} GRAND PRIX] 2024"
+                            },
+                            {
+                                "Condition": "{g5, Converter=StringEquals, Parameter=Category Short Name}",
+                                "ComponentVar": "source0",
+                                "Value": "{Season.LeagueInfo.LeagueShortName, Converter=StringToUpperString} {Season.MainLeagueCategory.ShortName, Converter=StringToUpperString} [{Session.Track.CircuitName, Converter=StringToUpperString} GRAND PRIX] 2024"
+                            },
+                            {
+                                "Condition": "{Session.SessionType, Converter=StringEquals, Parameter=race}",
+                                "ComponentVar": "source1",
+                                "Value": "[{Session.RaceType, Converter=StringToUpperString} CLASSIFICATION]"
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Background": "{P1BarSecondColor}",
+                        "Margin": "0, 15, 0, 0",
+                        "Items": [
+                            {
+                                "BlockType": "component",
+                                "Component": "P1Table",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "itemsource": "{Session.Drivers}"
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Margin": "0, -108, 0, 0",
+                        "Items": [
+                            {
+                                "BlockType": "component",
+                                "Component": "MainTable",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "itemsource": "{Session.Drivers}"
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "stack",
+                        "MarginTop": 20,
+                        "WidthPercent": 100,
+                        "Width": "*",
+                        "Background": "{FLFooterBG}",
+                        "VerticalAlignment": "Bottom",
+                        "Items": [
+                            {
+                                "BlockType": "itemstack",
+                                "HorizontalAlignment": "Left",
+                                "Orientation": "Horizontal",
+                                "ItemStackOptions": {
+                                    "ItemSource": "{Session.Drivers}",
+                                    "FilterMember": "IsRaceFastestLap",
+                                    "FilterMemberValue": "True",
+                                    "ItemTemplate": {
+                                        "BlockType": "component",
+                                        "Component": "Footer"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "Triggers": [
+            {
+                "Condition": "{RaceDriverCard}",
+                "Property": "Margin",
+                "Value": "0,40,20,0"
+            }
+        ]
+    }
+}

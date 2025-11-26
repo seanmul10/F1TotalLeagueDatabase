@@ -1,0 +1,287 @@
+{
+    "ComponentName": "P1SeasonStatTable",
+    "BlockType": "table",
+    "BackgroundImage": "bg/bg.p1.bar.png",
+    "ColorizeBackground": {
+        "Enabled": true,
+        "Color": "{Season.MainLeagueCategory.SecondaryColor}"
+    },
+    "TableOptions": {
+        "ItemsSource": "<itemsource>",
+        "ColSpacing": -60,
+        "Limit": 1,
+        "HeaderTemplate": {
+            "BlockType": "text",
+            "Style": "TableSessionHeader"
+        },
+        "Columns": [
+            {
+                "Header": "",
+                "Template": {
+                    "MarginRight": 60,
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionP1FG}",
+                            "font": "{FontNameItalic}",
+                            "w": "45",
+                            "pad": "12,0",
+                            "source": "{Item.Position}"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.Status, Converter=StringEquals, Parameter=DSQ}",
+                            "Property": "Opacity",
+                            "Value": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "Header": "",
+                "Template": {
+                    "MarginRight": 60,
+                    "BlockType": "component",
+                    "Component": "V1DriverLine",
+                    "WidthStretch": true,
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style1": "P1FirstNameDefault",
+                            "style2": "P1SecondNameDefault",
+                            "width": "{DriverWidth}"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Statistics.Header, Converter=StringEquals, Parameter=Top Battles}",
+                            "ComponentVar": "width",
+                            "Value": "*"
+                        }
+                    ]
+                }
+            },
+            {
+                "Header": "",
+                "Template": {
+                    "RenderIf": "{Statistics.Header, Converter=StringNotEquals, Parameter=Top Battles}",
+                    "BlockType": "component",
+                    "Component": "V1TeamLine",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "bg": "{Item.Team.Color}",
+                            "teamstyle": "P1TeamDefault"
+                        }
+                    }
+                }
+            },
+            //column 0
+            {
+                "Header": "",
+                "IsSeparator": "{Statistics.Column0.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column0.GroupId}",
+                "WidthStretch": true,
+                "MarginLeft": 8,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value0",
+                            "fg": "{SessionP1FG}"
+                        }
+                    }
+                }
+            },
+            //column 1
+            {
+                "Header": "",
+                "IsSeparator": "{Statistics.Column1.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column1.GroupId}",
+                "WidthStretch": true,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value1",
+                            "fg": "{SessionP1FG}"
+                        }
+                    }
+                }
+            },
+            //column 2
+            {
+                "Header": "",
+                "WidthStretch": true,
+                "IsSeparator": "{Statistics.Column2.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column2.GroupId}",
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value2",
+                            "fg": "{SessionP1FG}"
+                        }
+                    }
+                }
+            },
+            //column 3
+            {
+                "Header": "",
+                "WidthStretch": true,
+                "IsSeparator": "{Statistics.Column3.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column3.GroupId}",
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value3",
+                            "fg": "{SessionP1FG}"
+                        }
+                    }
+                }
+            },
+            //column 4
+            {
+                "Header": "",
+                "IsSeparator": "{Statistics.Column4.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column4.GroupId}",
+                "WidthStretch": true,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value4",
+                            "fg": "{SessionP1FG}"
+                        }
+                    }
+                }
+            },
+            //column 5
+            {
+                "Header": "",
+                "IsSeparator": "{Statistics.Column5.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column5.GroupId}",
+                "WidthStretch": true,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value5",
+                            "fg": "{SessionP1FG}"
+                        }
+                    }
+                }
+            },
+            //column 6
+            {
+                "Header": "",
+                "IsSeparator": "{Statistics.Column6.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column6.GroupId}",
+                "WidthStretch": true,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value6",
+                            "fg": "{SessionP1FG}"
+                        }
+                    }
+                }
+            },
+            //column 7
+            {
+                "Header": "",
+                "IsSeparator": "{Statistics.Column7.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column7.GroupId}",
+                "WidthStretch": true,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value7",
+                            "fg": "{SessionP1FG}"
+                        }
+                    }
+                }
+            },
+            //column 8
+            {
+                "Header": "",
+                "IsSeparator": "{Statistics.Column8.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column8.GroupId}",
+                "WidthStretch": true,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value8",
+                            "fg": "{SessionP1FG}"
+                        }
+                    }
+                }
+            },
+            //column 9
+            {
+                "Header": "",
+                "IsSeparator": "{Statistics.Column9.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column9.GroupId}",
+                "WidthStretch": true,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value9",
+                            "fg": "{SessionP1FG}"
+                        }
+                    }
+                }
+            },
+            //column 10
+            {
+                "Header": "",
+                "IsSeparator": "{Statistics.Column10.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column10.GroupId}",
+                "WidthStretch": true,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value10",
+                            "fg": "{SessionP1FG}"
+                        }
+                    }
+                }
+            },
+            //column 11
+            {
+                "Header": "",
+                "IsSeparator": "{Statistics.Column11.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column11.GroupId}",
+                "WidthStretch": true,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value11",
+                            "fg": "{SessionP1FG}"
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "BlockRoot": {
+        "BlockType": "itemstack",
+        "HorizontalAlignment": "Center",
+        "Orientation": "Vertical",
+        "ItemStackOptions": {
+            "ItemSource": "{Standings.Teams}",
+            "Limit": 1,
+            "ItemTemplate": {
+                "BlockType": "stack",
+                "Items": [
+                    {
+                        "BlockType": "image",
+                        "Source": "bg/bg.{g1}.png",
+                        "Triggers": [
+                            {
+                                "Condition": "{g2}",
+                                "Property": "Source",
+                                "Value": "bg/bg.{g1}.plain.png"
+                            }
+                        ]
+                    }
+                ],
+                "Triggers": [
+                    {
+                        "Condition": "{cha2, Converter=StringEquals, Parameter=Team}",
+                        "Property": "Background",
+                        "Value": "{Item.Team.Color}"
+                    },
+                    {
+                        "Condition": "{cha2, Converter=StringEquals, Parameter=Category}",
+                        "Property": "Background",
+                        "Value": "{Season.MainLeagueCategory.Color}"
+                    },
+                    {
+                        "Condition": "{cha2, Converter=StringEquals, Parameter=Gold}",
+                        "Property": "Background",
+                        "Value": "{ChampColourFG}"
+                    }
+                ]
+            }
+        }
+    }
+}

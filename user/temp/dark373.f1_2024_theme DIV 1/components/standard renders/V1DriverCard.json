@@ -1,0 +1,350 @@
+{
+    "ComponentName": "V1DriverCard",
+    "BlockType": "stack",
+    "Margin": "0,0,25,0",
+    "VerticalAlignment": "Center",
+    "Background": "<bg>",
+    "Width": 500,
+    "Height": "<h>",
+    "Items": [
+        {
+            "BlockType": "dock",
+            "Orientation": "Horizontal",
+            "HorizontalAlignment": "Center",
+            "BackgroundImage": "bg/bg.p1.avatar.diag.png",
+            "Width": 500,
+            "Height": "auto",
+            "Items": [
+                {
+                    "BlockType": "stack",
+                    "Orientation": "Vertical",
+                    "VerticalAlignment": "Center",
+                    "BackgroundImage": "bg/bg.p1.avatar.png",
+                    "Width": 500,
+                    "Height": "<h>",
+                    "Items": [
+                        {
+                            "BlockType": "stack",
+                            "Orientation": "Vertical",
+                            "HorizontalAlignment": "Center",
+                            "Width": 500,
+                            "Height": 1500,
+                            "Margin": "0,0,0,-1500",
+                            "Items": [
+                                {
+                                    "BlockType": "image",
+                                    "HorizontalAlignment": "Center",
+                                    "VerticalAlignment": "Center",
+                                    "Height": 1500,
+                                    "Width": "auto",
+                                    "ImageOptions": {
+                                        "Path": "avatars/{Item.{{{Type}}}.Name}_{Item.SeatPosition}.png"
+                                    },
+                                    "Triggers": [
+                                        {
+                                            "Trigger": "CustomAvatars"
+                                        },
+                                        {
+                                            "Trigger": "ReserveCustomAvatars"
+                                        },
+                                        {
+                                            "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                                            "ConditionAnd": "{g3, Converter=StringEquals, Parameter=No Avatars}",
+                                            "Setters": [
+                                                {
+                                                    "Property": "ImageOptions.Path",
+                                                    "Value": "logotypes/reserve.png"
+                                                },
+                                                {
+                                                    "Property": "Height",
+                                                    "Value": 380
+                                                },
+                                                {
+                                                    "Property": "Margin",
+                                                    "Value": "0,210,0,0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                            "ConditionOr": "{Livery}",
+                                            "Setters": [
+                                                {
+                                                    "Property": "ImageOptions.Path",
+                                                    "Value": "{Item.{{{Type}}}.LiveryPath}"
+                                                },
+                                                {
+                                                    "Property": "Height",
+                                                    "Value": 160
+                                                },
+                                                {
+                                                    "Property": "Margin",
+                                                    "Value": "0,360,0,0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                            "ConditionOr": "{Livery}",
+                                            "ConditionAnd": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                                            "Setters": [
+                                                {
+                                                    "Property": "ImageOptions.Path",
+                                                    "Value": "logotypes/liveries/Reserve.png"
+                                                },
+                                                {
+                                                    "Property": "Height",
+                                                    "Value": 160
+                                                },
+                                                {
+                                                    "Property": "Margin",
+                                                    "Value": "0,360,0,0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                            "ConditionAnd": "{Livery, Converter=BoolReverse}",
+                                            "Setters": [
+                                                {
+                                                    "Property": "ImageOptions.Path",
+                                                    "Value": "{Item.Car.Vendor.LogotypePath}"
+                                                },
+                                                {
+                                                    "Property": "Height",
+                                                    "Value": 380
+                                                },
+                                                {
+                                                    "Property": "Margin",
+                                                    "Value": "0,210,0,0"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "Condition": "{g3, Converter=StringEquals, Parameter=No Avatars}",
+                                            "Setters": [
+                                                {
+                                                    "Property": "ImageOptions.Path",
+                                                    "Value": "{Item.Team.LightLogotypePath}"
+                                                },
+                                                {
+                                                    "Property": "Height",
+                                                    "Value": 380
+                                                },
+                                                {
+                                                    "Property": "Margin",
+                                                    "Value": "0,210,0,0"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "BlockType": "image",
+                                    "RenderIf": "<teamlogo>",
+                                    "HorizontalAlignment": "Center",
+                                    "VerticalAlignment": "Center",
+                                    "Height": 380,
+                                    "Width": "auto",
+                                    "Margin": "0,210,0,0",
+                                    "ImageOptions": {
+                                        "Path": "{Item.Team.LightLogotypePath}"
+                                    },
+                                    "Triggers": [
+                                        {
+                                            "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                            "ConditionOr": "{Livery}",
+                                            "Property": "ImageOptions.Path",
+                                            "Value": "{Item.{{{Type}}}.LiveryPath}"
+                                        },
+                                        {
+                                            "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                            "ConditionAnd": "{Livery, Converter=BoolReverse}",
+                                            "Property": "ImageOptions.Path",
+                                            "Value": "{Item.{{{Type}}}.Vendor.LogotypePath}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "BlockType": "stack",
+                            "BackgroundImage": "bg/bg.p1.avatar.gradient.png",
+                            "Width": 500,
+                            "Height": 1018,
+                            "Orientation": "Vertical",
+                            "Margin": "0,0,0,0",
+                            "HorizontalAlignment": "Center",
+                            "VerticalAlignment": "Center",
+                            "Items": [
+                                {
+                                    "BlockType": "dock",
+                                    "Orientation": "Vertical",
+                                    "VerticalAlignment": "Bottom",
+                                    "HorizontalAlignment": "Center",
+                                    "Width": 500,
+                                    "Items": [
+                                        {
+                                            "BlockType": "stack",
+                                            "Orientation": "Vertical",
+                                            "VerticalAlignment": "Bottom",
+                                            "HorizontalAlignment": "Center",
+                                            "Width": 500,
+                                            "Items": [
+                                                {
+                                                    "BlockType": "text",
+                                                    "RenderIf": "<teamname>",
+                                                    "HorizontalAlignment": "Center",
+                                                    "FontSize": "{TeamCardFS}",
+                                                    "Foreground": "{White}",
+                                                    "FontName": "{FontNameBoldItalic}",
+                                                    "VerticalAlignment": "Center",
+                                                    "Padding": "0,8",
+                                                    "Width": "*",
+                                                    "Source": "[{Item.{{{Type}}}.Name, Converter=StringToUpperString}]",
+                                                    "Triggers": [
+                                                        {
+                                                            "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                                                            "Property": "Source",
+                                                            "Value": "[RESERVE]"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "BlockType": "stack",
+                                                    "Orientation": "Vertical",
+                                                    "HorizontalAlignment": "Center",
+                                                    "VerticalAlignment": "Bottom",
+                                                    "Width": "*",
+                                                    "Margin": "20,0,0,0",
+                                                    "Items": [
+                                                        {
+                                                            "BlockType": "text",
+                                                            "HorizontalAlignment": "Left",
+                                                            "FontSize": "{DriverCardFS, Converter=NumberSubtract, Parameter=10}",
+                                                            "Foreground": "{White}",
+                                                            "FontName": "{FontNameItalic}",
+                                                            "Source": "{Item.Driver.{name1}}",
+                                                            "VerticalAlignment": "Center",
+                                                            "Width": "*",
+                                                            "Triggers": [
+                                                                {
+                                                                    "Trigger": "DefaultName1"
+                                                                },
+                                                                {
+                                                                    "Trigger": "DefaultName3"
+                                                                },
+                                                                {
+                                                                    "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                                    "ConditionAnd": "{Item.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                                                    "Setters": [
+                                                                        {
+                                                                            "Property": "Source",
+                                                                            "Value": "{Item.Driver.Name}"
+                                                                        },
+                                                                        {
+                                                                            "Property": "HorizontalAlignment",
+                                                                            "Value": "Center"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "Condition": "{name1, Converter=StringNotEquals, Parameter=Full Name}",
+                                                                    "Setters": [
+                                                                        {
+                                                                            "Property": "HorizontalAlignment",
+                                                                            "Value": "Center"
+                                                                        },
+                                                                        {
+                                                                            "Property": "FontName",
+                                                                            "Value": "{FontNameBoldItalic}"
+                                                                        },
+                                                                        {
+                                                                            "Property": "Padding",
+                                                                            "Value": "0,8"
+                                                                        },
+                                                                        {
+                                                                            "Property": "FontSize",
+                                                                            "Value": "{DriverCardFS}"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "BlockType": "text",
+                                                            "RenderIf": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                            "HorizontalAlignment": "Left",
+                                                            "FontSize": "{DriverCardFS}",
+                                                            "Foreground": "{White}",
+                                                            "FontName": "{FontNameBoldItalic}",
+                                                            "VerticalAlignment": "Center",
+                                                            "Padding": "0,8",
+                                                            "Width": "*",
+                                                            "Source": "{Item.Driver.RealName, Converter=StringToUpperString}",
+                                                            "Triggers": [
+                                                                {
+                                                                    "Trigger": "DefaultName4"
+                                                                },
+                                                                {
+                                                                    "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                                    "ConditionAnd": "{Item.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                                                    "Property": "RenderIf",
+                                                                    "Value": false
+                                                                }
+                                                            ]
+                                                        }
+                                                    ],
+                                                    "Triggers": [
+                                                        {
+                                                            "Condition": "{name1, Converter=StringNotEquals, Parameter=Full Name}",
+                                                            "ConditionOr": "{Item.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                                            "Property": "Margin",
+                                                            "Value": "0,0,0,0"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "BlockType": "stack",
+                                                    "VerticalAlignment": "Bottom",
+                                                    "Orientation": "Horizontal",
+                                                    "HorizontalAlignment": "Center",
+                                                    "Items": [
+                                                        {
+                                                            "BlockType": "text",
+                                                            "HorizontalAlignment": "Center",
+                                                            "FontSize": "<ftsize>",
+                                                            "Foreground": "{White}",
+                                                            "Height": "*",
+                                                            "FontName": "{FontNameWide}",
+                                                            "Source": "<source0>"
+                                                        },
+                                                        {
+                                                            "BlockType": "text",
+                                                            "HorizontalAlignment": "Center",
+                                                            "FontSize": 40,
+                                                            "Foreground": "{White}",
+                                                            "FontName": "{FontNameWide}",
+                                                            "Source": "[<source1>]"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "Triggers": [
+        {
+            "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+            "Property": "Background",
+            "Value": "{{DriverCardReserveBG}}"
+        }
+    ]
+}

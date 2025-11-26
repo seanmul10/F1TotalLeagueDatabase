@@ -1,0 +1,30 @@
+[
+    {
+        "TriggerName": "VarName1",
+        "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+        "Property": "Source",
+        "Value": "{Item.Line{ban2, Converter=NumberSubtract, Parameter=1}.Driver.Name, Converter=StringToUpperString}"
+    },
+    {
+        "TriggerName": "VarName2",
+        "Condition": "{name1, Converter=StringEquals, Parameter=Name}",
+        "ConditionOr": "{name1, Converter=StringEquals, Parameter=RealName}",
+        "ConditionOr": "{name1, Converter=StringEquals, Parameter=InGameName}",
+        "ConditionAnd": "{name3, Converter=BoolReverse}",
+        "Property": "Source",
+        "Value": "{Item.Line{ban2, Converter=NumberSubtract, Parameter=1}.Driver.{name1}}"
+    },
+    {
+        "TriggerName": "VarName3",
+        "Condition": "{name2}",
+        "ConditionAnd": "{name1, Converter=StringEquals, Parameter=Full Name}",
+        "Property": "Source",
+        "Value": "{Item.Line{ban2, Converter=NumberSubtract, Parameter=1}.Driver.RealName, Converter=StringToUpperString}"
+    },
+    {
+        "TriggerName": "VarName4",
+        "Condition": "{name2}",
+        "Property": "Source",
+        "Value": "{Item.Line{ban2, Converter=NumberSubtract, Parameter=1}.Driver.Name, Converter=StringToUpperString}"
+    }
+]

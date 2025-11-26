@@ -1,0 +1,79 @@
+{
+    "BlockRoot": {
+        "Width": 5000,
+        "BlockType": "itemstack",
+        "HorizontalAlignment": "Center",
+        "Orientation": "Vertical",
+        "ItemStackOptions": {
+            "ItemSource": "{Session.Drivers}",
+            "Limit": 1,
+            "ItemTemplate": {
+                "BlockType": "stack",
+                "Background": "{Item.Team.Color}",
+                "RenderIf": "{g1, Converter=StringNotEquals, Parameter=No Background}",
+                "Items": [
+                    {
+                        "BlockType": "stack",
+                        "ColorizeBackground": {
+                            "Enabled": false,
+                            "Color": "[{g1}]"
+                        },
+                        "Items": [
+                            {
+                                "BlockType": "image",
+                                "RenderIf": "{pol2, Converter=BoolReverse}",
+                                "Source": "bg/bg.{g1}.png",
+                                "Triggers": [
+                                    {
+                                        "Condition": "{g2}",
+                                        "Property": "Source",
+                                        "Value": "bg/bg.{g1}.plain.png"
+                                    },
+                                    {
+                                        "Condition": "{pol2}",
+                                        "ConditionAnd": "{g1, Converter=StringEquals, Parameter=Custom Colour}",
+                                        "Property": "RenderIf",
+                                        "Value": true
+                                    }
+                                ]
+                            },
+                            {
+                                "BlockType": "image",
+                                "RenderIf": "{pol2}",
+                                "Source": "bg/placeholder.png"
+                            }
+                        ],
+                        "Triggers": [
+                            {
+                                "Condition": "{pol2}",
+                                "ConditionAnd": "{g1, Converter=StringNotEquals, Parameter=Custom Colour}",
+                                "Setters": [
+                                    {
+                                        "Property": "BackgroundImage",
+                                        "Value": "bg/bg.sprint.png"
+                                    },
+                                    {
+                                        "Property": "ColorizeBackground.Enabled",
+                                        "Value": true
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "Triggers": [
+                    {
+                        "Condition": "{pol2}",
+                        "ConditionAnd": "{g1, Converter=StringNotEquals, Parameter=Custom Colour}",
+                        "Setters": [
+                            {
+                                "Property": "Background",
+                                "Value": "[{g1}2]"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}

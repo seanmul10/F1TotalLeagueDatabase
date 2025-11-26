@@ -1,0 +1,301 @@
+{
+    "ComponentName": "StatMainTable",
+    "BlockType": "table",
+    "TableOptions": {
+        "ItemsSource": "<itemsource>",
+        "Limit": "{g6}",
+        "IndexStart": "{SessisonStartPos, Converter=NumberSubtract, Parameter=1}",
+        "RowSpacing": 30,
+        "HeaderTemplate": {
+            "BlockType": "text",
+            "MarginBottom": 108,
+            "Style": "TableSessionHeader"
+        },
+        "Columns": [
+            {
+                "Header": "",
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "45",
+                            "pad": "12,0",
+                            "source": "{Item.Position}"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.Status, Converter=StringEquals, Parameter=DSQ}",
+                            "Property": "Opacity",
+                            "Value": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "Header": "",
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "V1DriverLine",
+                    "WidthStretch": true,
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style1": "FirstNameDefault",
+                            "style2": "SecondNameDefault",
+                            "width": "{DriverWidth}"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Statistics.Header, Converter=StringEquals, Parameter=Top Battles}",
+                            "ComponentVar": "width",
+                            "Value": "*"
+                        }
+                    ]
+                }
+            },
+            {
+                "Header": "",
+                "Template": {
+                    "RenderIf": "{Statistics.Header, Converter=StringNotEquals, Parameter=Top Battles}",
+                    "BlockType": "component",
+                    "Component": "V1TeamLine",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "bg": "00000000",
+                            "teamstyle": "TeamDefault"
+                        }
+                    }
+                }
+            },
+             //column 0
+             {
+                "Header": "[{Statistics.Column0.Header, Converter=StringToUpperString}]",
+                "IsSeparator": "{Statistics.Column0.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column0.GroupId}",
+                "WidthStretch": true,
+                "MarginLeft": 8,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value0",
+                            "fg": "{SessionFG}",
+                            "datalvl": "true"
+                        }
+                    }
+                }
+            },
+            //column 1
+            {
+                "Header": "[{Statistics.Column1.Header, Converter=StringToUpperString}]",
+                "IsSeparator": "{Statistics.Column1.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column1.GroupId}",
+                "WidthStretch": true,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value1",
+                            "fg": "{SessionFG}",
+                            "datalvl": "true"
+                        }
+                    }
+                }
+            },
+            //column 2
+            {
+                "Header": "[{Statistics.Column2.Header, Converter=StringToUpperString}]",
+                "WidthStretch": true,
+                "IsSeparator": "{Statistics.Column2.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column2.GroupId}",
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value2",
+                            "fg": "{SessionFG}",
+                            "datalvl": "true"
+                        }
+                    }
+                }
+            },
+            //column 3
+            {
+                "Header": "[{Statistics.Column3.Header, Converter=StringToUpperString}]",
+                "WidthStretch": true,
+                "IsSeparator": "{Statistics.Column3.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column3.GroupId}",
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value3",
+                            "fg": "{SessionFG}",
+                            "datalvl": "true"
+                        }
+                    }
+                }
+            },
+            //column 4
+            {
+                "Header": "[{Statistics.Column4.Header, Converter=StringToUpperString}]",
+                "IsSeparator": "{Statistics.Column4.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column4.GroupId}",
+                "WidthStretch": true,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value4",
+                            "fg": "{SessionFG}",
+                            "datalvl": "true"
+                        }
+                    }
+                }
+            },
+            //column 5
+            {
+                "Header": "[{Statistics.Column5.Header, Converter=StringToUpperString}]",
+                "IsSeparator": "{Statistics.Column5.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column5.GroupId}",
+                "WidthStretch": true,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value5",
+                            "fg": "{SessionFG}",
+                            "datalvl": "true"
+                        }
+                    }
+                }
+            },
+            //column 6
+            {
+                "Header": "[{Statistics.Column6.Header, Converter=StringToUpperString}]",
+                "IsSeparator": "{Statistics.Column6.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column6.GroupId}",
+                "WidthStretch": true,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value6",
+                            "fg": "{SessionFG}",
+                            "datalvl": "true"
+                        }
+                    }
+                }
+            },
+            //column 7
+            {
+                "Header": "[{Statistics.Column7.Header, Converter=StringToUpperString}]",
+                "IsSeparator": "{Statistics.Column7.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column7.GroupId}",
+                "WidthStretch": true,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value7",
+                            "fg": "{SessionFG}",
+                            "datalvl": "true"
+                        }
+                    }
+                }
+            },
+            //column 8
+            {
+                "Header": "[{Statistics.Column8.Header, Converter=StringToUpperString}]",
+                "IsSeparator": "{Statistics.Column8.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column8.GroupId}",
+                "WidthStretch": true,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value8",
+                            "fg": "{SessionFG}",
+                            "datalvl": "true"
+                        }
+                    }
+                }
+            },
+            //column 9
+            {
+                "Header": "[{Statistics.Column9.Header, Converter=StringToUpperString}]",
+                "IsSeparator": "{Statistics.Column9.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column9.GroupId}",
+                "WidthStretch": true,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value9",
+                            "fg": "{SessionFG}",
+                            "datalvl": "true"
+                        }
+                    }
+                }
+            },
+            //column 10
+            {
+                "Header": "[{Statistics.Column10.Header, Converter=StringToUpperString}]",
+                "IsSeparator": "{Statistics.Column10.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column10.GroupId}",
+                "WidthStretch": true,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value10",
+                            "fg": "{SessionFG}",
+                            "datalvl": "true"
+                        }
+                    }
+                }
+            },
+            //column 11
+            {
+                "Header": "[{Statistics.Column11.Header, Converter=StringToUpperString}]",
+                "IsSeparator": "{Statistics.Column11.Type, Converter=EnumEquals, Parameter=Separator}",
+                "GroupId": "{Statistics.Column11.GroupId}",
+                "WidthStretch": true,
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "StatCell",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "data": "Item.Value11",
+                            "fg": "{SessionFG}",
+                            "datalvl": "true"
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    "Triggers": [
+        {
+            "Condition": "{Statistics.Header, Converter=StringEquals, Parameter=Top Battles}",
+            "Property": "TableOptions.ColSpacing",
+            "Value": 10
+        }
+    ]
+}

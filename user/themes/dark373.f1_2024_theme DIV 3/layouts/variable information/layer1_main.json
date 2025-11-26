@@ -1,0 +1,117 @@
+{
+    "BlockRoot": {
+        "BlockType": "stack",
+        "Margin": "0,42,0,0",
+        "Items": [
+            {
+                "BlockType": "itemstack",
+                "HorizontalAlignment": "Center",
+                "Orientation": "Horizontal",
+                "ItemStackOptions": {
+                    "ItemSource": "{Session.Drivers}",
+                    "Limit": 1,
+                    "FilterMember": "IsRaceFastestLap",
+                    "FilterMemberValue": "True",
+                    "ItemTemplate": {
+                        "BlockType": "stack",
+                        "Orientation": "Vertical",
+                        "Items": [
+                            {
+                                "BlockType": "stack",
+                                "HorizontalAlignment": "Center",
+                                "Items": [
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "/var info/HeaderBlockVariableInfo"
+                                    }
+                                ]
+                            },
+                            {
+                                "BlockType": "component",
+                                "Margin": "0,-120,0,0",
+                                "Component": "/var info/VariableInfoComponent",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{var1, Converter=StringToUpperString}",
+                                        "fastestlap": "{FastestFontSize}",
+                                        "winner": "{WinnerFontSize}",
+                                        "podium": "{PodiumFontSize}",
+                                        "points": "{PointsFontSize}",
+                                        "position": "{PositionFontSize}"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                "Triggers": [
+                    {
+                        "Condition": "{var1, Converter=StringEquals, Parameter=Winner}",
+                        "Setters": [
+                            {
+                                "Property": "ItemStackOptions.FilterMember",
+                                "Value": "IsFinished"
+                            },
+                            {
+                                "Property": "ItemStackOptions.FilterMemberValue",
+                                "Value": "True"
+                            }
+                        ]
+                    },
+                    {
+                        "Condition": "{var1, Converter=StringEquals, Parameter=PodiumP2}",
+                        "Setters": [
+                            {
+                                "Property": "ItemStackOptions.FilterMember",
+                                "Value": "IsFinished"
+                            },
+                            {
+                                "Property": "ItemStackOptions.FilterMemberValue",
+                                "Value": "True"
+                            },
+                            {
+                                "Property": "ItemStackOptions.IndexStart",
+                                "Value": 1
+                            }
+                        ]
+                    },
+                    {
+                        "Condition": "{var1, Converter=StringEquals, Parameter=PodiumP3}",
+                        "Setters": [
+                            {
+                                "Property": "ItemStackOptions.FilterMember",
+                                "Value": "IsFinished"
+                            },
+                            {
+                                "Property": "ItemStackOptions.FilterMemberValue",
+                                "Value": "True"
+                            },
+                            {
+                                "Property": "ItemStackOptions.IndexStart",
+                                "Value": 2
+                            }
+                        ]
+                    },
+                    {
+                        "Condition": "{var1, Converter=StringEquals, Parameter=Points}",
+                        "ConditionOr":  "{var1, Converter=StringEquals, Parameter=Position}",
+                        "Setters": [
+                            {
+                                "Property": "ItemStackOptions.FilterMember",
+                                "Value": "IsFinished"
+                            },
+                            {
+                                "Property": "ItemStackOptions.FilterMemberValue",
+                                "Value": "True"
+                            },
+                            {
+                                "Property": "ItemStackOptions.IndexStart",
+                                "Value": "{var7, Converter=NumberSubtract, Parameter=1}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

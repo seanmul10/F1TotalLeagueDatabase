@@ -1,0 +1,273 @@
+{
+    "ComponentName": "DriverLineGrid",
+    "BlockType": "dock",
+    "RenderIf": "<renderif>",
+    "MarginBottom": 40,
+    "Height": 150,
+    "Items": [
+        {
+            "BlockType": "stack",
+            "HorizontalAlignment": "Left",
+            "VerticalAlignment": "Center",
+            "BackgroundImage": "components/gridpositionbg.png",
+            "ColorizeBackground": {
+                "Enabled": true,
+                "Color": "{PositionBG}"
+            },
+            "Triggers": [
+                {
+                    "Condition": "{RenderTeamColours}",
+                    "Property": "ColorizeBackground.Color",
+                    "Value": "{Item.Team.Color}"
+                }
+            ],
+            "Items": [
+                {
+                    "BlockType": "text",
+                    "Margin": "0,4,0,0",
+                    "Width": 223,
+                    "Height": 150,
+                    "Source": "{Item.Position}",
+                    "HorizontalAlignment": "Center",
+                    "VerticalAlignment": "Center",
+                    "Foreground": "{PositionFG}",
+                    "FontName": "{FontNameBlack}",
+                    "TextOptions": {
+                        "FontSize": 100,
+                        "HorizontalAlignment": "Center",
+                        "VerticalAlignment": "Center"
+                    }
+                }
+            ]
+        },
+        {
+            "BlockType": "stack",
+            "HorizontalAlignment": "Left",
+            "VerticalAlignment": "Center",
+            "Width": "*",
+            "PaddingRight": 20,
+            "Background": "{Item.Team.Color}",
+            "Items": [
+                {
+                    "BlockType": "dock",
+                    "HorizontalAlignment": "Center",
+                    "Width": 435,
+                    "VerticalAlignment": "Center",
+                    "Items": [
+                        {
+                            "BlockType": "image",
+                            "Width": 223,
+                            "VerticalAlignment": "Center",
+                            "HorizontalAlignment": "Center",
+                            "ImageOptions": {
+                                "Path": "{Item.Team.LightLogotypePath}",
+                                "VerticalAlignment": "Center"
+                            },
+                            "Triggers": [
+                                {
+                                    "Condition": "{Item.Team.LightLogotypePath, Converter=EmptyObjectToTrue}",
+                                    "Property": "ImageOptions.Path",
+                                    "Value": "avatars/placeholder1.png"
+                                },
+                                {
+                                    "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                    "ConditionAnd": "{Livery, Converter=BoolReverse}",
+                                    "Property": "ImageOptions.Path",
+                                    "Value": "{Item.{{{Type}}}.Vendor.LogotypePath}"
+                                },
+                                {
+                                    "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                    "ConditionOr": "{Livery}",
+                                    "Setters": [
+                                        {
+                                            "Property": "ImageOptions.Path",
+                                            "Value": "{Item.{{{Type}}}.LiveryPath}"
+                                        },
+                                        {
+                                            "Property": "Width",
+                                            "Value": 505
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                    "ConditionOr": "{Livery}",
+                                    "ConditionAnd": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                                    "Setters": [
+                                        {
+                                            "Property": "ImageOptions.Path",
+                                            "Value": "logotypes/liveries/Reserve.png"
+                                        },
+                                        {
+                                            "Property": "Width",
+                                            "Value": 505
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "stack",
+                    "RenderIf": "{g3, Converter=StringNotEquals, Parameter=No Avatars}",
+                    "HorizontalAlignment": "Center",
+                    "Margin": "-65,0,0,0",
+                    "Padding": "-235,0",
+                    "VerticalAlignment": "Center",
+                    "Items": [
+                        {
+                            "BlockType": "image",
+                            "Height": 710,
+                            "Margin": "0,-105,0,0",
+                            "VerticalAlignment": "Top",
+                            "HorizontalAlignment": "Center",
+                            "Source": "avatars/{Item.{{{Type}}}.Name}_{Item.SeatPosition}.png",
+                            "Triggers": [
+                                {
+                                    "Trigger": "CustomAvatars"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "stack",
+                    "HorizontalAlignment": "Left",
+                    "VerticalAlignment": "Center",
+                    "Width": "{gri1}",
+                    "PaddingTop": 10,
+                    "PaddingRight": 120,
+                    "Margin": "20,0,0,0",
+                    "Items": [
+                        {
+                            "BlockType": "text",
+                            "Margin": "0,0,20,0",
+                            "Source": "{Item.Driver.{name1}, Converter=StringToUpperString}",
+                            "HorizontalAlignment": "Left",
+                            "VerticalAlignment": "Center",
+                            "FontSize": 90,
+                            "Foreground": "{{Item.{{{Type}}}.Name}DefaultFG}",
+                            "FontName": "{FontNameBlack}",
+                            "Triggers": [
+                                {
+                                    "Trigger": "Name1"
+                                },
+                                {
+                                    "Trigger": "Name2"
+                                },
+                                {
+                                    "Trigger": "Name3"
+                                },
+                                {
+                                    "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                    "ConditionAnd": "{Item.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                    "Property": "Source",
+                                    "Value": "{Item.Driver.Name, Converter=StringToUpperString}"
+                                }
+                            ]
+                        },
+                        {
+                            "BlockType": "text",
+                            "RenderIf": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                            "Source": "{Item.Driver.RealName, Converter=StringToUpperString}",
+                            "HorizontalAlignment": "Left",
+                            "VerticalAlignment": "Center",
+                            "FontSize": 90,
+                            "Foreground": "{{Item.{{{Type}}}.Name}DefaultFG}",
+                            "FontName": "{FontNameBlack}",
+                            "Triggers": [
+                                {
+                                    "Trigger": "Name4"
+                                },
+                                {
+                                    "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                    "ConditionAnd": "{Item.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                    "Property": "RenderIf",
+                                    "Value": false
+                                }
+                            ]
+                        },
+                        {
+                            "BlockType": "itemstack",
+                            "Spacing": 5,
+                            "VerticalAlignment": "Center",
+                            "MarginTop": -8,
+                            "ItemStackOptions": {
+                                "ItemSource": "{Item.Driver.BadgeImages}",
+                                "ItemTemplate": {
+                                    "BlockType": "image",
+                                    "Height": 80,
+                                    "Source": "{Item}"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "stack",
+                    "RenderIf": "{gri2}",
+                    "HorizontalAlignment": "Right",
+                    "VerticalAlignment": "Center",
+                    "Width": 380,
+                    "PaddingTop": 10,
+                    "Items": [
+                        {
+                            "BlockType": "text",
+                            "Source": "{Item.Time}",
+                            "FontName": "{FontNameBlack}",
+                            "Foreground":  "{{Item.{{{Type}}}.Name}DefaultFG}",
+                            "FontSize": 90,
+                            "HorizontalAlignment": "Center",
+                            "Triggers": [
+                                {
+                                    "Condition": "{ItemIndex, Converter=NumberEquals, Parameter=0}",
+                                    "Property": "FontSize",
+                                    "Value": 75
+                                },
+                                {
+                                    "Condition": "{Item.Time, Converter=EmptyObjectToTrue}",
+                                    "Property": "Source",
+                                    "Value": "   - . - - -"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "Triggers": [
+                {
+                    "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                    "Property": "Background",
+                    "Value": "{{TheGridReserveBG}}"
+                }
+            ]
+        },
+        {
+            "BlockType": "stack",
+            "BackgroundImage": "components/gridpositionbgend",
+            "ColorizeBackground": {
+                "Enabled": true,
+                "Color": "{Item.Team.Color}"
+            },
+            "Items": [
+                {
+                    "BlockType": "shape",
+                    "Width": 50,
+                    "Height": 150,
+                    "Opacity": 0,
+                    "ShapeOptions": {
+                        "Fill": "{White}"
+                    }
+                }
+            ],
+            "Triggers": [
+                {
+                    "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                    "Property": "ColorizeBackground.Color",
+                    "Value": "{{TheGridReserveBG}}"
+                }
+            ]
+        }
+    ]
+}

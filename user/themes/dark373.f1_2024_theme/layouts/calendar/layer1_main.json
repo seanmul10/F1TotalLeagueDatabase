@@ -1,0 +1,64 @@
+{
+    "BlockRoot": {
+        "Name": "mainStack",
+        "BlockType": "stack",
+        "Margin": "50,50,50,50",
+        "Orientation": "Vertical",
+        "Items": [
+            {
+                "BlockType": "component",
+                "Component": "/calendar/HeaderBlockCalendar"
+            },
+            {
+                "BlockType": "dock",
+                "Orientation": "Horizontal",
+                "Width": "*",
+                "Items": [
+                    {
+                        "BlockType": "itemstack",
+                        "Orientation": "Vertical",
+                        "ItemStackOptions": {
+                            "ItemSource": "{Events.Events}",
+                            "Limit": "{Season.SeasonOverallNumberEvents, Converter=NumberDivide, Parameter=2}",
+                            "ItemTemplate": {
+                                "BlockType": "component",
+                                "Component": "/calendar/EventCalendar"
+                            }
+                        },
+                        "Triggers": [
+                            {
+                                "Condition": "{cal1, Converter=BoolReverse}",
+                                "Property": "ItemStackOptions.Limit",
+                                "Value": "{Season.SeasonOverallNumberEvents}"
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "shape",
+                        "RenderIf": "{cal1}",
+                        "Margin": "20,3,20,4",
+                        "Width": 5,
+                        "HeightPercent": 100,
+                        "ShapeOptions": {
+                            "Fill": "{{g1}VerticalBarColour}"
+                        }
+                    },
+                    {
+                        "BlockType": "itemstack",
+                        "RenderIf": "{cal1}",
+                        "Orientation": "Vertical",
+                        "ItemStackOptions": {
+                            "ItemSource": "{Events.Events}",
+                            "Limit": "{Season.SeasonOverallNumberEvents, Converter=NumberDivide, Parameter=2}",
+                            "IndexStart": "{Season.SeasonOverallNumberEvents, Converter=NumberDivide, Parameter=2}",
+                            "ItemTemplate": {
+                                "BlockType": "component",
+                                "Component": "/calendar/EventCalendar"
+                            }
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

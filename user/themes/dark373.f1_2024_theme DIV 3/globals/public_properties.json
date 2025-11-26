@@ -1,0 +1,1126 @@
+{
+    "Properties": [
+        {
+            "Name": "g1",
+            "PublicName": "Background Colour Theme",
+            "Description": "Changes the colour theme of certain backgrounds",
+            "Category": "Theme Global",
+            "Type": "Enum",
+            "EnumValues": [
+                "Dark",
+                "Light",
+                "Purple",
+                "Custom Colour",
+                "No Background"
+            ],
+            "DefaultValue": "Dark"
+        },
+        {
+            "Name": "g2",
+            "PublicName": "Plain Background",
+            "Description": "Changes the background pattern of certain renders",
+            "Category": "Theme Global",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "Livery",
+            "PublicName": "Render Car Liveries",
+            "Description": "Changes Logos/Vendors to Liveries",
+            "Category": "Theme Global",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "g4",
+            "PublicName": "League Logo Size",
+            "Description": "Change the size of the league logo",
+            "Category": "Theme Global",
+            "Type": "Integer",
+            "DefaultValue": 100
+        },
+        {
+            "Name": "g5",
+            "PublicName": "Season Name",
+            "Description": "Change the displayed name of the season. (Category) refers to the assignable league categories when right-clicking on a season.",
+            "Category": "Theme Global",
+            "Type": "Enum",
+            "EnumValues": [
+                "Season Name",
+                "Category Name",
+                "Category Short Name"
+            ],
+            "DefaultValue": "Season Name"
+        },
+        {
+            "Name": "PosJumpColour",
+            "PublicName": "Coloured Position Jump Text",
+            "Description": "If enabled, text for the position jump will appear coloured.",
+            "Category": "Theme Global",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "TeamColourFG",
+            "PublicName": "Coloured Team Name Text",
+            "Description": "If enabled, text for team names will appear coloured. Only for standard renders.",
+            "Category": "Theme Global",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "g8",
+            "PublicName": "Font Size",
+            "Description": "Adjust the font size for certain renders.",
+            "Category": "Theme Global",
+            "Type": "Integer",
+            "MinimumValue": 1,
+            "DefaultValue": 70
+        },
+        {
+            "Name": "name1",
+            "PublicName": "Naming Conventions",
+            "Description": "Changes which name fields are used. When (Full Name) is active, both (Name) & (RealName) will be used.",
+            "Category": "Driver Global",
+            "Type": "Enum",
+            "EnumValues": [
+                "Name",
+                "RealName",
+                "InGameName",
+                "Full Name"
+            ],
+            "DefaultValue": "Name"
+        },
+        {
+            "Name": "name2",
+            "PublicName": "Switch Name Fields",
+            "Description": "Changes the order of name fields on renders. When ative, (Real Name) will become before (Name): Only works when (Full Name) is active.",
+            "Category": "Driver Global",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "name3",
+            "PublicName": "Upper Case Names",
+            "Description": "Sets all name fields to uppercase.",
+            "Category": "Driver Global",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "g3",
+            "PublicName": "Driver Avatars",
+            "Description": "Choose whether or not to use driver avatars on certain renders. By selecting (Custom Avatars) the theme use driver name field: (Name), and the theme will search for images named after the name you have given to drivers. Example: (Name): Dark373 avatar image name: Dark373",
+            "Category": "Driver Global",
+            "Type": "Enum",
+            "EnumValues": [
+                "No Avatars",
+                "Default Avatars",
+                "Custom Avatars"
+            ],
+            "DefaultValue": "Name"
+        },
+        {
+            "Name": "g6",
+            "PublicName": "Driver Limit",
+            "Description": "Change the amount of drivers displayed on renders. 10 = top 10 drivers will render.",
+            "Category": "Driver Global",
+            "Type": "Integer",
+            "MinimumValue": 1,
+            "DefaultValue": 20
+        },
+        {
+            "Name": "g7",
+            "PublicName": "Start Position",
+            "Description": "Determines which position continuous lists of drivers/teams starts from. Example: a value of 5 means certain renders will start from P5 instead of P1. For (Variable Information: Points) this value decides which position will render.",
+            "Category": "Driver Global",
+            "Type": "Integer",
+            "MinimumValue": 1,
+            "DefaultValue": 1
+        },
+        {
+            "Name": "SessisonStartPos",
+            "PublicName": "Standard Renders: Start Position",
+            "Description": "Determines which position continuous lists of drivers/teams starts from for Standard renders. Example: a value of 5 means certain renders will start from P5 instead of P1. Session results and standard standings renders are affected.",
+            "Category": "Driver Global",
+            "Type": "Integer",
+            "MinimumValue": 2,
+            "DefaultValue": 2
+        },
+        {
+            "Name": "DriverCardFS",
+            "PublicName": "Standard Renders: Name Font Size",
+            "Description": "Determines the font size of the name on the driver cards associated with standard renders.",
+            "Category": "Driver Global",
+            "Type": "Integer",
+            "DefaultValue": 60
+        },
+        {
+            "Name": "DriverWidth",
+            "PublicName": "Driver Name Width",
+            "Description": "Changes the width of the driver line. Default: 500. For standard renders only.",
+            "Category": "Driver Global",
+            "Type": "Integer",
+            "MinimumValue": 200,
+            "DefaultValue": 500
+        },
+        {
+            "Name": "TeamWidth",
+            "PublicName": "Team Name Width",
+            "Description": "Changes the width of the team line. Default: 850. For standard renders only.",
+            "Category": "Driver Global",
+            "Type": "Integer",
+            "MinimumValue": 200,
+            "DefaultValue": 850
+        },
+        {
+            "Name": "cal1",
+            "PublicName": "Render Calendar Second Column",
+            "Description": "Spilts the total rounds in two columns. Toggle off for all rounds to render in a single column; Advised for very short seasons.",
+            "Category": "Calendar",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "cal3",
+            "PublicName": "Header Font Size",
+            "Description": "Changes the font size of the header text. Advised for languages with longer translations of (calendar).",
+            "Category": "Calendar",
+            "Type": "Integer",
+            "DefaultValue": 120
+        },
+        {
+            "Name": "CalDateFormat",
+            "PublicName": "Date Format",
+            "Description": "(d - Day from 1 to 31) (dd - Day from 01 to 31) (ddd - Abbreviated name of the day of the week) (dddd - Full name of the day of the week) (MM - Month from 01 to 12) (yyyy - Year as a 4 digit number)",
+            "Category": "Calendar",
+            "Type": "String",
+            "DefaultValue": "dd/MM/yyyy"
+        },
+        {
+            "Name": "CalTimeFormat",
+            "PublicName": "Date Format",
+            "Description": "(hh - 12-Hour Clock from 01 to 12) (HH - 24-Hour Clock from 00 to 23) (mm - Minute from 00 to 59) (tt - AM/PM)",
+            "Category": "Calendar",
+            "Type": "String",
+            "DefaultValue": "HH:mm"
+        },
+        {
+            "Name": "CalCircuitInfo",
+            "PublicName": "Render Circuit Info",
+            "Description": "",
+            "Category": "Calendar",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "CalRoundCount",
+            "PublicName": "Render Round Count",
+            "Description": "Sprint Calendar only.",
+            "Category": "Calendar",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "CalCompleted",
+            "PublicName": "Grey Completed Events",
+            "Description": "Sprint Calendar only.",
+            "Category": "Calendar",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "podname1",
+            "PublicName": "Naming Conventions",
+            "Description": "Changes which name fields are used. When (Full Name) is active, both (Name) & (RealName) will be used.",
+            "Category": "Podium Results",
+            "Type": "Enum",
+            "EnumValues": [
+                "Name",
+                "RealName",
+                "InGameName",
+                "Full Name"
+            ],
+            "DefaultValue": "Name"
+        },
+        {
+            "Name": "ln1",
+            "PublicName": "Enable Secondary Names",
+            "Description": "Choose to display a secondary line of driver names below the main driver line.",
+            "Category": "Line-ups",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "lnname1",
+            "PublicName": "Secondary Naming Conventions",
+            "Description": "Changes which name fields are used. When (Full Name) is active, both (Name) & (RealName) will be used.",
+            "Category": "Line-ups",
+            "Type": "Enum",
+            "EnumValues": [
+                "Name",
+                "RealName",
+                "InGameName",
+                "Full Name"
+            ],
+            "DefaultValue": "Name"
+        },
+        {
+            "Name": "lnTeamNumberFonts",
+            "PublicName": "Enable Team Number Fonts",
+            "Description": "If enabled, driver numbers will use team specific fonts.",
+            "Category": "Line-ups",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "ln2",
+            "PublicName": "Name Font Size",
+            "Description": "Affects the font size for drivers on the official line up render.",
+            "Category": "Line-ups",
+            "Type": "Integer",
+            "DefaultValue": 52
+        },
+        {
+            "Name": "ln3",
+            "PublicName": "Font Size: Season Name",
+            "Description": "Affects the font size for the season name. Change when using different lengths of the season name. Default: 216.",
+            "Category": "Line-ups",
+            "Type": "Integer",
+            "MaximumValue": 260,
+            "DefaultValue": 216
+        },
+        {
+            "Name": "ln4",
+            "PublicName": "Font Size: DRIVER",
+            "Description": "Affects the font size for the word: DRIVER. Change when using different length translations of the word. Default: 180.",
+            "Category": "Line-ups",
+            "Type": "Integer",
+            "DefaultValue": 180
+        },
+        {
+            "Name": "ln5",
+            "PublicName": "Font Size: LINE-UP",
+            "Description": "Affects the font size for the word: LINE-UP. Change when using different length translations of the phraze. Default: 171.",
+            "Category": "Line-ups",
+            "Type": "Integer",
+            "DefaultValue": 171
+        },
+        {
+            "Name": "lnreserve",
+            "PublicName": "Reserve Count",
+            "Description": "",
+            "Category": "Line-ups",
+            "Type": "Integer",
+            "DefaultValue": 0
+        },
+        {
+            "Name": "ban1",
+            "PublicName": "Team On Banner",
+            "Description": "Decide which team is rendered on the banner.",
+            "Category": "Line-ups",
+            "Type": "Integer",
+            "MinimumValue": 1,
+            "DefaultValue": 1
+        },
+        {
+            "Name": "ban2",
+            "PublicName": "Driver On Banner",
+            "Description": "Render driver 1 or driver 2 on the banner.",
+            "Category": "Line-ups",
+            "Type": "Integer",
+            "MinimumValue": 1,
+            "MaximumValue": 2,
+            "DefaultValue": 1
+        },
+        {
+            "Name": "BannerDriverNameFS",
+            "PublicName": "Driver Font Size On Banner",
+            "Description": "Font size of the driver name on the driver banner render.",
+            "Category": "Line-ups",
+            "Type": "Integer",
+            "DefaultValue": 260
+        },
+        {
+            "Name": "gri1",
+            "PublicName": "Bar width",
+            "Description": "Changes the width of the bar. Select a greater number, if driver names are too long to fit.",
+            "Category": "The Grid",
+            "Type": "Integer",
+            "MinimumValue": 100,
+            "DefaultValue": 920
+        },
+        {
+            "Name": "gri2",
+            "PublicName": "Render Gaps",
+            "Description": "Renders pole time and the relavtive gap to the pole sitter.",
+            "Category": "The Grid",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "gri3",
+            "PublicName": "Is Sprint Qualifying",
+            "Description": "Alters the background used.",
+            "Category": "The Grid",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "var1",
+            "PublicName": "Displayed Information",
+            "Description": "Chose what is displayed on the Variable Information render",
+            "Category": "Variable Information",
+            "Type": "Enum",
+            "EnumValues": [
+                "Fastest",
+                "Winner",
+                "PodiumP2",
+                "PodiumP3",
+                "Points",
+                "Position"
+            ],
+            "DefaultValue": "Fastest"
+        },
+        {
+            "Name": "var8",
+            "PublicName": "Is Sprint Session",
+            "Description": "Alters the background used.",
+            "Category": "Variable Information",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "var7",
+            "PublicName": "Position",
+            "Description": "Determines which position info is taken from. Affects (Points) & (Position) only",
+            "Category": "Variable Information",
+            "Type": "Integer",
+            "MinimumValue": 1,
+            "DefaultValue": 1
+        },
+        {
+            "Name": "dot1",
+            "PublicName": "Driver Name Font Size",
+            "Description": "Change the size of the driver name on the render.",
+            "Category": "Driver Of The Day",
+            "Type": "Integer",
+            "DefaultValue": 50
+        },
+        {
+            "Name": "pol2",
+            "PublicName": "Is Sprint Qualifying",
+            "Description": "Alters the background used.",
+            "Category": "Pole",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "sta14",
+            "PublicName": "Is Champion",
+            "Description": "Renders golden font colour for champions.",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "StaProgress",
+            "PublicName": "Standings Progress",
+            "Description": "Note: Constructors standings does not support Position Progress",
+            "Category": "Standings",
+            "Type": "Enum",
+            "EnumValues": [
+                "Do Not Render Progress",
+                "Points",
+                "Position"
+            ],
+            "DefaultValue": "Do Not Render Progress"
+        },
+        {
+            "Name": "StaColouredText",
+            "PublicName": "Render Coloured Font Text",
+            "Description": "Renders coloured font text such as gold for total P1.",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "sta13",
+            "PublicName": "Team Colour Background",
+            "Description": "Renders team colour behind the driver name.",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "StaDriverCard",
+            "PublicName": "Render Driver Cards",
+            "Description": "Displays driver cards on the left-hand side.",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "StaSecondDriverCard",
+            "PublicName": "Render Second Driver Card",
+            "Description": "Displays a second driver cards on the left-hand side.",
+            "Category": "Standings",
+            "Type": "Enum",
+            "EnumValues": [
+                "Do Not Render",
+                "Driver Leader",
+                "Team Leader"
+            ],
+            "DefaultValue": "Do Not Render"
+        },
+        {
+            "Name": "sta1",
+            "PublicName": "First Column Data",
+            "Description": "Choose what data is shown in the first coolumn of standings renders",
+            "Category": "Standings",
+            "Type": "Enum",
+            "EnumValues": [
+                "Points",
+                "CountP1",
+                "CountP2",
+                "CountP3",
+                "CountTop3",
+                "CountTop10",
+                "BestPos",
+                "RaceFastestLapCount",
+                "CountQualP1",
+                "RaceDriverDayCount",
+                "PenaltyPoints",
+                "CountDnf"
+            ],
+            "DefaultValue": "Points"
+        },
+        {
+            "Name": "sta2",
+            "PublicName": "Render Data Table",
+            "Description": "Data table contains info such as wins, podiums and more.",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "StaPosJump",
+            "PublicName": "Render Position Jump",
+            "Description": "",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "StaGain",
+            "PublicName": "Render Points Gain",
+            "Description": "Points gained from the previous race.",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "sta3",
+            "PublicName": "First Data Table Column.",
+            "Description": "Default: Points Interval",
+            "Category": "Standings",
+            "Type": "Enum",
+            "EnumValues": [
+                "PointsToAboveDiff",
+                "PointsToLeaderDiff"
+            ],
+            "DefaultValue": "PointsToAboveDiff"
+        },
+        {
+            "Name": "StaInterval",
+            "PublicName": "Render Gap To Above",
+            "Description": "Renders a column with points gap to above.",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "sta4",
+            "PublicName": "Render Second Points Gap Column",
+            "Description": "Renders a second points gap column with points gap to leader.",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "sta5",
+            "PublicName": "Render Podiums",
+            "Description": "Renders the set of podium positions.",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "StaTop5",
+            "PublicName": "Render Top 5",
+            "Description": "Renders the amount of top 5 finishes",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "sta6",
+            "PublicName": "Render Top 10",
+            "Description": "Renders the amount of top 10 finishes",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "StaBest",
+            "PublicName": "Render Best Finishing Position",
+            "Description": "Renders the highest finishing position.",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "StaBestQ",
+            "PublicName": "Render Best Grid Position",
+            "Description": "Renders the highest grid position.",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "sta7",
+            "PublicName": "Render Fastest Lap",
+            "Description": "Renders the amount of fastest lap awards",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "sta8",
+            "PublicName": "Render Poles",
+            "Description": "Renders the amount of pole position awards",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "sta9",
+            "PublicName": "Render DOTD",
+            "Description": "Renders the amount of driver of the day awards",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "sta10",
+            "PublicName": "Render Penalty Points",
+            "Description": "Renders the amount of penalty points",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "sta11",
+            "PublicName": "Render DNF",
+            "Description": "Renders the amount of times a driver did not finish",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "StaEvents",
+            "PublicName": "Render Events Total",
+            "Description": "Renders the amount of events the driver attended.",
+            "Category": "Standings",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "sta12",
+            "PublicName": "Final Column Data",
+            "Description": "Renders what data is displayed in the final column",
+            "Category": "Standings",
+            "Type": "Enum",
+            "EnumValues": [
+                "PointsToLeaderDiff",
+                "EventsCount"
+            ],
+            "DefaultValue": "EventsCount"
+        },
+        {
+            "Name": "cha1",
+            "PublicName": "Bottom Text",
+            "Description": "Optional text with the intention of adding pevious titles. But its up to you.",
+            "Category": "Champion",
+            "Type": "String"
+        },
+        {
+            "Name": "cha2",
+            "PublicName": "Background Colour",
+            "Description": "",
+            "Category": "Champion",
+            "Type": "Enum",
+            "EnumValues": [
+                "Team",
+                "Category",
+                "Gold"
+            ],
+            "DefaultValue": "Team"
+        },
+        {
+            "Name": "cha3",
+            "PublicName": "Gradient Colour",
+            "Description": "",
+            "Category": "Champion",
+            "Type": "Enum",
+            "EnumValues": [
+                "Black",
+                "White"
+            ],
+            "DefaultValue": "Black"
+        },
+        {
+            "Name": "comName",
+            "PublicName": "Secondary Naming Conventions",
+            "Description": "Changes which name fields are used. When (Full Name) is active, both (Name) & (RealName) will be used.",
+            "Category": "Head-To-Head",
+            "Type": "Enum",
+            "EnumValues": [
+                "Do Not Render",
+                "Name",
+                "RealName",
+                "InGameName",
+                "Full Name"
+            ],
+            "DefaultValue": "Do Not Render"
+        },
+        {
+            "Name": "Comparison",
+            "PublicName": "Stat To Compare",
+            "Description": "",
+            "Category": "Head-To-Head",
+            "Type": "Enum",
+            "EnumValues": [
+                "Points",
+                "Wins",
+                "Podiums",
+                "Top 5",
+                "Top 10"
+            ],
+            "DefaultValue": "Points"
+        },
+        {
+            "Name": "com1",
+            "PublicName": "Teammates To Compare",
+            "Description": "Based on the championship order of your season.",
+            "Category": "Head-To-Head",
+            "Type": "Integer",
+            "MinimumValue": 1,
+            "DefaultValue": 1
+        },
+        {
+            "Name": "com2",
+            "PublicName": "First Team To Compare",
+            "Description": "Based on the championship order of your season.",
+            "Category": "Head-To-Head",
+            "Type": "Integer",
+            "MinimumValue": 1,
+            "DefaultValue": 1
+        },
+        {
+            "Name": "com3",
+            "PublicName": "Second Team To Compare",
+            "Description": "Based on the championship order of your season.",
+            "Category": "Head-To-Head",
+            "Type": "Integer",
+            "MinimumValue": 1,
+            "DefaultValue": 1
+        },
+        {
+            "Name": "RaceDriverCard",
+            "PublicName": "Render Driver Cards",
+            "Description": "Displays driver cards on the left-hand side.",
+            "Category": "Race Results",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "RaceSecondDriverCard",
+            "PublicName": "Render Second Driver Card",
+            "Description": "Displays a second driver cards on the left-hand side.",
+            "Category": "Race Results",
+            "Type": "Enum",
+            "EnumValues": [
+                "Do Not Render",
+                "Fastest Lap",
+                "Driver Of The Day",
+                "Pole"
+            ],
+            "DefaultValue": "Do Not Render"
+        },
+        {
+            "Name": "RaceDOTD",
+            "PublicName": "DOTD On Footer",
+            "Description": "Renders driver of the day as well as fastest lap information.",
+            "Category": "Race Results",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "RacePosJump",
+            "PublicName": "Render Position Jump",
+            "Description": "",
+            "Category": "Race Results",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "RaceFL",
+            "PublicName": "Render Fastest Lap",
+            "Description": "",
+            "Category": "Race Results",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "RaceLaps",
+            "PublicName": "Render Laps",
+            "Description": "Total laps driven.",
+            "Category": "Race Results",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "RaceGrid",
+            "PublicName": "Render Grid Position",
+            "Description": "Starting position of each driver.",
+            "Category": "Race Results",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "RaceStops",
+            "PublicName": "Render Pit Stops",
+            "Description": "Number of pit-stops made.",
+            "Category": "Race Results",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "RaceKPH",
+            "PublicName": "Render Maximum Speed",
+            "Description": "Max speed of each driver.",
+            "Category": "Race Results",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "RaceOvertakes",
+            "PublicName": "Render Overtakes",
+            "Description": "Number of overtakes.",
+            "Category": "Race Results",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "RacePenalty",
+            "PublicName": "Render Total Penalties",
+            "Description": "Total number of penalties per driver.",
+            "Category": "Race Results",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "RaceSteward",
+            "PublicName": "Render Steward Penalties",
+            "Description": "Total number of steward penalties per driver.",
+            "Category": "Race Results",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "RaceGame",
+            "PublicName": "Render Game Penalties",
+            "Description": "Total number of game penalties per driver.",
+            "Category": "Race Results",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "RaceStints",
+            "PublicName": "Render Stints",
+            "Description": "Laps per tyre.",
+            "Category": "Race Results",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "QualDriverCard",
+            "PublicName": "Render Driver Cards",
+            "Description": "Displays driver cards on the left-hand side.",
+            "Category": "Qualifying Results",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "QualSecondDriverCard",
+            "PublicName": "Render Second Driver Card",
+            "Description": "Displays a second driver cards on the left-hand side.",
+            "Category": "Qualifying Results",
+            "Type": "Enum",
+            "EnumValues": [
+                "Do Not Render",
+                "Lap Time",
+                "Second"
+            ],
+            "DefaultValue": "Do Not Render"
+        },
+        {
+            "Name": "QualTime",
+            "PublicName": "Render Gap",
+            "Description": "",
+            "Category": "Qualifying Results",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "QualKPH",
+            "PublicName": "Render Maximum Speed",
+            "Description": "",
+            "Category": "Qualifying Results",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "QualTyre",
+            "PublicName": "Render Tyre",
+            "Description": "",
+            "Category": "Qualifying Results",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "QualSector",
+            "PublicName": "Render Sector Times",
+            "Description": "",
+            "Category": "Qualifying Results",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "QualLaps",
+            "PublicName": "Render Laps",
+            "Description": "",
+            "Category": "Qualifying Results",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "QualPoints",
+            "PublicName": "Render Points",
+            "Description": "",
+            "Category": "Qualifying Results",
+            "Type": "Bool",
+            "DefaultValue": false
+        },
+        {
+            "Name": "PenOrder",
+            "PublicName": "Penalty Order",
+            "Description": "Choose how the list is ordered by decending.",
+            "Category": "Penalty Statistics",
+            "Type": "Enum",
+            "EnumValues": [
+                "PenaltyPointsActive",
+                "PenaltyPointsOverall",
+                "PenaltySeconds",
+                "PenaltyIngameSeconds"
+            ],
+            "DefaultValue": "PenaltyPointsActive"
+        },
+        {
+            "Name": "PenPPA",
+            "PublicName": "Active Penalty Points",
+            "Description": "",
+            "Category": "Penalty Statistics",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "PenWA",
+            "PublicName": "Active Warnings",
+            "Description": "",
+            "Category": "Penalty Statistics",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "PenPTS",
+            "PublicName": "Penalty Seconds",
+            "Description": "",
+            "Category": "Penalty Statistics",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "PenPPS",
+            "PublicName": "Penalty Positions",
+            "Description": "",
+            "Category": "Penalty Statistics",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "PenPTG",
+            "PublicName": "In-Game Penalty",
+            "Description": "",
+            "Category": "Penalty Statistics",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "PenPPO",
+            "PublicName": "Total Penalty Points",
+            "Description": "",
+            "Category": "Penalty Statistics",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "PenWO",
+            "PublicName": "Total Warnings",
+            "Description": "",
+            "Category": "Penalty Statistics",
+            "Type": "Bool",
+            "DefaultValue": true
+        },
+        {
+            "Name": "RatingsNameFS",
+            "PublicName": "Name Font Size",
+            "Description": "",
+            "Category": "Driver Ratings",
+            "Type": "Integer",
+            "DefaultValue": 240
+        },
+        {
+            "Name": "RTG",
+            "PublicName": "RTG Rating",
+            "Description": "Overall Rating",
+            "Category": "Driver Ratings",
+            "Type": "Integer",
+            "MinimumValue": 0,
+            "MaximumValue": 100,
+            "DefaultValue": 100
+        },
+        {
+            "Name": "EXP",
+            "PublicName": "EXP Rating",
+            "Description": "Expirence",
+            "Category": "Driver Ratings",
+            "Type": "Integer",
+            "MinimumValue": 0,
+            "MaximumValue": 100,
+            "DefaultValue": 100
+        },
+        {
+            "Name": "RAC",
+            "PublicName": "RAC Rating",
+            "Description": "Race Craft - Ability to gain positions in the race",
+            "Category": "Driver Ratings",
+            "Type": "Integer",
+            "MinimumValue": 0,
+            "MaximumValue": 100,
+            "DefaultValue": 100
+        },
+        {
+            "Name": "AWA",
+            "PublicName": "AWA Rating",
+            "Description": "Awarness - Ability to avoid penalites",
+            "Category": "Driver Ratings",
+            "Type": "Integer",
+            "MinimumValue": 0,
+            "MaximumValue": 100,
+            "DefaultValue": 100
+        },
+        {
+            "Name": "PAC",
+            "PublicName": "PAC Rating",
+            "Description": "Pace",
+            "Category": "Driver Ratings",
+            "Type": "Integer",
+            "MinimumValue": 0,
+            "MaximumValue": 100,
+            "DefaultValue": 100
+        }
+    ],
+    "Categories": [
+        {
+            "Name": "Theme Global"
+        },
+        {
+            "Name": "Driver Global"
+        },
+        {
+            "Name": "Calendar"
+        },
+        {
+            "Name": "Race Results"
+        },
+        {
+            "Name": "Qualifying Results"
+        },
+        {
+            "Name": "Podium Results"
+        },
+        {
+            "Name": "Line-ups"
+        },
+        {
+            "Name": "The Grid"
+        },
+        {
+            "Name": "Variable Information"
+        },
+        {
+            "Name": "Driver Of The Day"
+        },
+        {
+            "Name": "Pole"
+        },
+        {
+            "Name": "Standings"
+        },
+        {
+            "Name": "Penalty Statistics"
+        },
+        {
+            "Name": "Head-To-Head"
+        },
+        {
+            "Name": "Driver Ratings"
+        },
+        {
+            "Name": "Champion"
+        }
+    ],
+    "Presets": [
+        {
+            "Name": "Race Result Preset",
+            "DefinedProperties": {
+                "PosJumpColour": true,
+                "name1": "Full Name",
+                "name2": true,
+                "name3": true,
+                "g3": "Custom Avatars",
+                "g6": 20,
+                "RaceDriverCard": true,
+                "RaceSecondDriverCard": "Pole",
+                "RaceLaps": true,
+                "RaceGrid": true,
+                "RaceStops": true,
+                "RaceKPH": true,
+                "RaceOvertakes": true,
+                "RacePenalty": true
+            }
+        }
+    ]
+}

@@ -1,0 +1,157 @@
+{
+    "ComponentName": "SprintCalendar",
+    "BlockType": "stack",
+    "VerticalAlignment": "Center",
+    "Items": [
+        {
+            "BlockType": "stack",
+            "VerticalAlignment": "Center",
+            "Spacing": 10,
+            "Items": [
+                {
+                    "BlockType": "image",
+                    "Height": 155,
+                    "Width": 160,
+                    "Padding": "1, -25",
+                    "VerticalAlignment": "Center",
+                    "Background": "{Black}",
+                    "ImageOptions": {
+                        "Path": "{Item.Track.Nation.LogotypePath}",
+                        "VerticalAlignment": "Center"
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.Track.Name, Converter=StringEquals, Parameter=TBC}",
+                            "Property": "ImageOptions.Path",
+                            "Value": "flags/tbc.png"
+                        },
+                        {
+                            "Trigger": "Flags"
+                        },
+                        {
+                            "Condition": "{Item.Track.Nation.LogotypePath, Converter=EmptyObjectToTrue}",
+                            "Property": "ImageOptions.Path",
+                            "Value": "avatars/placeholder1.png"
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "stack",
+                    "VerticalAlignment": "Center",
+                    "Background": "{SprintCalendarEventBG#2}",
+                    "Width": "{SprintEventWidth}",
+                    "Height": 105,
+                    "Items": [
+                        {
+                            "BlockType": "stack",
+                            "BackgroundImage": "components/bg.sprint.calendar.png",
+                            "Width": "{SprintEventWidth}",
+                            "Height": 105,
+                            "Spacing": 20,
+                            "VerticalAlignment": "Center",
+                            "ColorizeBackground": {
+                                "Enabled": true,
+                                "Color": "{{SprintCalendarEventBG#1}}"
+                            },
+                            "Items": [
+                                {
+                                    "BlockType": "text",
+                                    "RenderIf": "{CalRoundCount}",
+                                    "Foreground": "{SprintCalendarFG}",
+                                    "HorizontalAlignment": "Left",
+                                    "VerticalAlignment": "Center",
+                                    "FontName": "{FontNameBlack}",
+                                    "Margin": "30,4,0,0",
+                                    "FontSize": 40,
+                                    "MinWidth": 86,
+                                    "Source": "[R{Item.Position}]"
+                                },
+                                {
+                                    "BlockType": "text",
+                                    "Foreground": "{SprintCalendarFG}",
+                                    "HorizontalAlignment": "Left",
+                                    "VerticalAlignment": "Center",
+                                    "FontName": "{FontNameBlack}",
+                                    "Margin": "0,4,0,0",
+                                    "FontSize": 40,
+                                    "Source": "[{Item.Track.CountryName, converter=StringToUpperString}]",
+                                    "Triggers": [
+                                        {
+                                            "Condition": "{Item.IsChampionshipStatus, Converter=BoolReverse}",
+                                            "Property": "Source",
+                                            "Value": "PRE-SEASON"
+                                        },
+                                        {
+                                            "Condition": "{Item.Track.Name, Converter=StringEquals, Parameter=TBC}",
+                                            "Property": "Source",
+                                            "Value": "TBC"
+                                        },
+                                        {
+                                            "Condition": "{CalRoundCount, Converter=BoolReverse}",
+                                            "Property": "Margin",
+                                            "Value": "30,4,0,0"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "BlockType": "text",
+                                    "Foreground": "{SprintCalendarFG}",
+                                    "HorizontalAlignment": "Left",
+                                    "VerticalAlignment": "Center",
+                                    "FontName": "{FontNameBold}",
+                                    "Margin": "0,6,0,0",
+                                    "FontSize": 40,
+                                    "Source": "[{Item.Track.LocationName, converter=StringToUpperString}]",
+                                    "Triggers": [
+                                        {
+                                            "Condition": "{Item.IsChampionshipStatus, Converter=BoolReverse}",
+                                            "Property": "Source",
+                                            "Value": "PRE-SEASON"
+                                        },
+                                        {
+                                            "Condition": "{Item.Track.Name, Converter=StringEquals, Parameter=TBC}",
+                                            "Property": "Source",
+                                            "Value": "TBC"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "BlockType": "text",
+                                    "Foreground": "{SprintCalendarFG}",
+                                    "Orientation": "Vertical",
+                                    "FontName": "{FontNameDefault}",
+                                    "VerticalAlignment": "Center",
+                                    "HorizontalAlignment": "Left",
+                                    "FontSize": 40,
+                                    "Margin": "10,6,0,0",
+                                    "Source": "[{Item.DateLocal, Converter=DateToDayOfMonth} [{Item.DateLocal, Converter=DateToMonthInWords}]]"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "BlockType": "stack",
+            "Height": 105,
+            "Width": 110,
+            "BackgroundImage": "components/bg.sprint.calendar.end.png",
+            "ColorizeBackground": {
+                "Enabled": true,
+                "Color": "{{SprintCalendarEventBG#1}}"
+            },
+            "Items": [
+                {
+                    "BlockType": "shape",
+                    "Height": 105,
+                    "Width": 110,
+                    "Opacity": 0,
+                    "ShapeOptions": {
+                        "Fill": "FFFFFF"
+                    }
+                }
+            ]
+        }
+    ]
+}

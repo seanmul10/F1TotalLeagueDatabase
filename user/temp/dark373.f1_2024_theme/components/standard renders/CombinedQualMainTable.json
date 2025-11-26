@@ -1,0 +1,304 @@
+{
+    "ComponentName": "CombinedQualMainTable",
+    "BlockType": "table",
+    "TableOptions": {
+        "ItemsSource": "{Session.Drivers}",
+        "Limit": "{g6}",
+        "IndexStart": "{SessisonStartPos, Converter=NumberSubtract, Parameter=1}",
+        "RowSpacing": 30,
+        "HeaderTemplate": {
+            "BlockType": "text",
+            "MarginBottom": 108,
+            "Style": "TableSessionHeader"
+        },
+        "Columns": [
+            {
+                "Header": "",
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "45",
+                            "pad": "12,0",
+                            "source": "{Item.Position}"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.Status, Converter=StringEquals, Parameter=DSQ}",
+                            "Property": "Opacity",
+                            "Value": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "Header": "",
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "V1DriverLine",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style1": "FirstNameDefault",
+                            "style2": "SecondNameDefault",
+                            "width": "{DriverWidth}"
+                        }
+                    }
+                }
+            },
+            {
+                "Header": "",
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "V1TeamLine",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "bg": "00000000",
+                            "teamstyle": "TeamDefault"
+                        }
+                    }
+                }
+            },
+            {
+                "Header": "[Q1]",
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "150",
+                            "pad": "20,0",
+                            "source": "{Item.QualQ1Time}"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.IsRaceFastestLap}",
+                            "ComponentVar": "fg",
+                            "Value": "{SessionFastestLapFG}"
+                        },
+                        {
+                            "Condition": "{Item.QualQ1Time, Converter=EmptyObjectToTrue}",
+                            "ComponentVar": "source",
+                            "Value": "[No Time]"
+                        }
+                    ]
+                }
+            },
+            {
+                "Header": "[LAPS]",
+                "Template": {
+                    "RenderIf": "{QualLaps}",
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "50",
+                            "pad": "40,0",
+                            "source": "{Item.LapsCountQ1}"
+                        }
+                    }
+                }
+            },
+            {
+                "Header": "[Q2]",
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "150",
+                            "pad": "20,0",
+                            "source": "{Item.QualQ2Time}"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.IsOverallFastestLap}",
+                            "ComponentVar": "fg",
+                            "Value": "{SessionFastestLapFG}"
+                        },
+                        {
+                            "Condition": "{Item.QualQ2Time, Converter=EmptyObjectToTrue}",
+                            "ComponentVar": "source",
+                            "Value": "[No Time]"
+                        }
+                    ]
+                }
+            },
+            {
+                "Header": "[LAPS]",
+                "Template": {
+                    "RenderIf": "{QualLaps}",
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "50",
+                            "pad": "40,0",
+                            "source": "{Item.LapsCountQ2}"
+                        }
+                    }
+                }
+            },
+            {
+                "Header": "[Q3]",
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "150",
+                            "pad": "20,0",
+                            "source": "{Item.QualQ3Time}"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.QualQ3Time, Converter=EmptyObjectToTrue}",
+                            "ComponentVar": "source",
+                            "Value": "[No Time]"
+                        }
+                    ]
+                }
+            },
+            {
+                "Header": "[LAPS]",
+                "Template": {
+                    "RenderIf": "{QualLaps}",
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "50",
+                            "pad": "40,0",
+                            "source": "{Item.LapsCountQ3}"
+                        }
+                    }
+                }
+            },
+            {
+                "Header": "[GAP]",
+                "Template": {
+                    "RenderIf": "{QualTime}",
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "150",
+                            "pad": "20,0",
+                            "source": "{Item.Time}"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.FastestLapTime, Converter=EmptyObjectToTrue}",
+                            "ComponentVar": "source",
+                            "Value": "[No Time]"
+                        }
+                    ]
+                }
+            },
+            {
+                "Header": "[KPH]",
+                "Template": {
+                    "RenderIf": "{QualKPH}",
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "50",
+                            "pad": "40,0",
+                            "source": "{Item.MaxSpeed}"
+                        }
+                    }
+                }
+            },
+            {
+                "Header": "[TYRE]",
+                "Template": {
+                    "RenderIf": "{QualTyre}",
+                    "BlockType": "dock",
+                    "Width": "114",
+                    "Padding": "0,-5",
+                    "VerticalAlignment": "Center",
+                    "HorizontalAlignment": "Center",
+                    "Items": [
+                        {
+                            "BlockType": "image",
+                            "Source": "tyres/tyres_{Item.FastestLapTyres}.png",
+                            "VerticalAlignment": "Center",
+                            "HorizontalAlignment": "Center",
+                            "Height": 50,
+                            "Triggers": [
+                                {
+                                    "Condition": "{Item.FastestLapTyres, Converter=EmptyObjectToTrue}",
+                                    "Property": "Source",
+                                    "Value": "avatars/placeholder1.png"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "Header": "[POINTS]",
+                "Template": {
+                    "RenderIf": "{QualPoints}",
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{PointsFG}",
+                            "font": "{FontNameBold}",
+                            "w": "100",
+                            "pad": "20,0",
+                            "source": "{Item.DriverPointsString}"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.DriverPointsString, Converter=EmptyObjectToFalse}",
+                            "ComponentVar": "source",
+                            "Value": "+{Item.DriverPointsString}"
+                        },
+                        {
+                            "Condition": "{Item.DriverPointsString, Converter=EmptyObjectToTrue}",
+                            "ComponentVar": "source",
+                            "Value": "0"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

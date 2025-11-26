@@ -1,0 +1,56 @@
+{
+    "ComponentName": "HeaderBlockComparison",
+    "BlockType": "stack",
+    "Orientation": "Vertical",
+    "HorizontalAlignment": "Center",
+    "Margin": "20",
+    "Items": [
+        {
+            "BlockType": "text",
+            "HorizontalAlignment": "Center",
+            "Source": "[{Comparison, Converter=StringToUpperString} COMPARISON]",
+            "FontName": "{FontNameBlack}",
+            "Foreground": "{{g1}}",
+            "FontSize": 100
+        },
+        {
+            "BlockType": "text",
+            "Source": "[BETWEEN TEAM-MATES]",
+            "HorizontalAlignment": "Center",
+            "FontName": "{FontNameBold}",
+            "Foreground": "{Season.MainLeagueCategory.Color}",
+            "FontSize": 60,
+            "Triggers": [
+                {
+                    "Condition": "{g1, Converter=StringEquals, Parameter=Custom Colour}",
+                    "Property": "Foreground",
+                    "Value": "{White}"
+                }
+            ]
+        },
+        {
+            "BlockType": "text",
+            "HorizontalAlignment": "Center",
+            "Source": "{Season.Name, Converter=StringToUpperString}",
+            "FontSize": 40,
+            "Foreground": "{Season.MainLeagueCategory.Color}",
+            "Triggers": [
+                {
+                    "Condition": "{g5, Converter=StringEquals, Parameter=Category Name}",
+                    "Property": "Source",
+                    "Value": "{Season.MainLeagueCategory.Name, Converter=StringToUpperString}"
+                },
+                {
+                    "Condition": "{g5, Converter=StringEquals, Parameter=Category Short Name}",
+                    "Property": "Source",
+                    "Value": "{Season.MainLeagueCategory.ShortName, Converter=StringToUpperString}"
+                },
+                {
+                    "Condition": "{g1, Converter=StringEquals, Parameter=Custom Colour}",
+                    "Property": "Foreground",
+                    "Value": "{White}"
+                }
+            ]
+        }
+    ]
+}

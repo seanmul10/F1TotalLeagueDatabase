@@ -1,0 +1,164 @@
+{
+    "ComponentName": "HeaderBlockVariableInfo",
+    "BlockType": "dock",
+    "Orientation": "Horizontal",
+    "HorizontalAlignment": "Center",
+    "Margin": "50, 0, 50, 0",
+    "Items": [
+        {
+            "BlockType": "itemstack",
+            "HorizontalAlignment": "Center",
+            "Orientation": "Horizontal",
+            "ItemStackOptions": {
+                "ItemSource": "{Session.Drivers}",
+                "FilterMember": "IsRaceFastestLap",
+                "FilterMemberValue": "True",
+                "Limit": 1,
+                "ItemTemplate": {
+                    "BlockType": "dock",
+                    "Width": 2050,
+                    "Items": [
+                        {
+                            "BlockType": "component",
+                            "Component": "DriverLine",
+                            "ComponentOptions": {
+                                "Vars": {
+                                    "Halign": "Left",
+                                    "flagstyle": "DriverFlags",
+                                    "fg1": "{{g1}}",
+                                    "fg2": "{{g1}}",
+                                    "style1": "NameBlack1",
+                                    "style2": "NameBlack2"
+                                }
+                            }
+                        },
+                        {
+                            //headerright
+                            "Width": "*",
+                            "BlockType": "stack",
+                            "HorizontalAlignment": "Right",
+                            "Orientation": "Horizontal",
+                            "Items": [
+                                {
+                                    "BlockType": "text",
+                                    "HorizontalAlignment": "Right",
+                                    "VerticalAlignment": "Center",
+                                    "Source": "{Item.FastestLapTime}",
+                                    "FontName": "{FontNameBlack}",
+                                    "FontSize": 70,
+                                    "Foreground":  "{{g1}}",
+                                    "Triggers": [
+                                        {
+                                            "Condition": "{g1, Converter=StringEquals, Parameter=Custom Colour}",
+                                            "ConditionAnd": "{g2}",
+                                            "Property": "Foreground",
+                                            "Value": "{{Item.{{{Type}}}.Name}DefaultFG}"
+                                        },
+                                        {
+                                            "Condition": "{var1, Converter=StringEquals, Parameter=Fastest Lap}",
+                                            "ConditionAnd": "{Session.IsLiveData}",
+                                            "Property": "Source",
+                                            "Value": "{Item.FastestLapTime} [ON LAP] {Item.FastestLapNumLap}"
+                                        },
+                                        {
+                                            "Condition": "{var1, Converter=StringEquals, Parameter=Winner}",
+                                            "Property": "Source",
+                                            "Value": "[P1]"
+                                        },
+                                        {
+                                            "Condition": "{var1, Converter=StringEquals, Parameter=PodiumP2}",
+                                            "Property": "Source",
+                                            "Value": "[P2]"
+                                        },
+                                        {
+                                            "Condition": "{var1, Converter=StringEquals, Parameter=PodiumP3}",
+                                            "Property": "Source",
+                                            "Value": "[P3]"
+                                        },
+                                        {
+                                            "Condition": "{var1, Converter=StringEquals, Parameter=Points}",
+                                            "Property": "Source",
+                                            "Value": "P{Item.Position}"
+                                        },
+                                        {
+                                            "Condition": "{var1, Converter=StringEquals, Parameter=Position}",
+                                            "Property": "Source",
+                                            "Value": ""
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            "Triggers": [
+                {
+                    "Condition": "{var1, Converter=StringEquals, Parameter=Winner}",
+                    "Setters": [
+                        {
+                            "Property": "ItemStackOptions.FilterMember",
+                            "Value": "IsFinished"
+                        },
+                        {
+                            "Property": "ItemStackOptions.FilterMemberValue",
+                            "Value": "True"
+                        }
+                    ]
+                },
+                {
+                    "Condition": "{var1, Converter=StringEquals, Parameter=PodiumP2}",
+                    "Setters": [
+                        {
+                            "Property": "ItemStackOptions.FilterMember",
+                            "Value": "IsFinished"
+                        },
+                        {
+                            "Property": "ItemStackOptions.FilterMemberValue",
+                            "Value": "True"
+                        },
+                        {
+                            "Property": "ItemStackOptions.IndexStart",
+                            "Value": 1
+                        }
+                    ]
+                },
+                {
+                    "Condition": "{var1, Converter=StringEquals, Parameter=PodiumP3}",
+                    "Setters": [
+                        {
+                            "Property": "ItemStackOptions.FilterMember",
+                            "Value": "IsFinished"
+                        },
+                        {
+                            "Property": "ItemStackOptions.FilterMemberValue",
+                            "Value": "True"
+                        },
+                        {
+                            "Property": "ItemStackOptions.IndexStart",
+                            "Value": 2
+                        }
+                    ]
+                },
+                {
+                    "Condition": "{var1, Converter=StringEquals, Parameter=Points}",
+                    "ConditionOr": "{var1, Converter=StringEquals, Parameter=Position}",
+                    "Setters": [
+                        {
+                            "Property": "ItemStackOptions.FilterMember",
+                            "Value": "IsFinished"
+                        },
+                        {
+                            "Property": "ItemStackOptions.FilterMemberValue",
+                            "Value": "True"
+                        },
+                        {
+                            "Property": "ItemStackOptions.IndexStart",
+                            "Value": "{var7, Converter=NumberSubtract, Parameter=1}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

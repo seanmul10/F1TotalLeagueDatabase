@@ -1,0 +1,129 @@
+{
+    "ComponentName": "V1TeamLine",
+    "BlockType": "dock",
+    "VerticalAlignment": "Center",
+    "Width": "{TeamWidth}",
+    "Items": [
+        {
+            "BlockType": "stack",
+            "HorizontalAlignment": "Left",
+            "VerticalAlignment": "Center",
+            "Items": [
+                {
+                    "BlockType": "image",
+                    "Height": 40,
+                    "Width": 40,
+                    "MarginRight": 25,
+                    "Padding": "12, 4",
+                    "Background": "<bg>",
+                    "VerticalAlignment": "Center",
+                    "ImageOptions": {
+                        "Path": "{Item.Team.LogotypePath}",
+                        "VerticalAlignment": "Center"
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.Position, Converter=NumberEquals, Parameter=1}",
+                            "Property": "ImageOptions.Path",
+                            "Value": "{Item.Team.LightLogotypePath}"
+                        },
+                        {
+                            "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                            "Property": "ImageOptions.Path",
+                            "Value": "logotypes/reserve__light.png"
+                        },
+                        {
+                            "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                            "ConditionAnd": "{Item.Position, Converter=NumberEquals, Parameter=1}",
+                            "Setters": [
+                                {
+                                    "Property": "ImageOptions.Path",
+                                    "Value": "logotypes/reserve.png"
+                                },
+                                {
+                                    "Property": "Background",
+                                    "Value": "{{ReserveStandardRendersColouredBG}}"
+                                }
+                            ]
+                        },
+                        {
+                            "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                            "ConditionOr": "{Livery}",
+                            "Setters": [
+                                {
+                                    "Property": "ImageOptions.Path",
+                                    "Value": "{Item.{{{Type}}}.LiveryPath}"
+                                },
+                                {
+                                    "Property": "Width",
+                                    "Value": "auto"
+                                }
+                            ]
+                        },
+                        {
+                            "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                            "ConditionOr": "{Livery}",
+                            "ConditionAnd": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                            "Setters": [
+                                {
+                                    "Property": "ImageOptions.Path",
+                                    "Value": "logotypes/liveries/Reserve.png"
+                                },
+                                {
+                                    "Property": "Width",
+                                    "Value": "auto"
+                                }
+                            ]
+                        },
+                        {
+                            "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                            "ConditionAnd": "{Livery, Converter=BoolReverse}",
+                            "Property": "ImageOptions.Path",
+                            "Value": "{Item.{{{Type}}}.Vendor.LogotypePath}"
+                        },
+                        {
+                            "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                            "ConditionAnd": "{Item.Position, Converter=NumberEquals, Parameter=1}",
+                            "Property": "Background",
+                            "Value": "{{TeamCarBasedChampBG}}"
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "text",
+                    "Source": "{Standard {Item.{{{Type}}}.Name, Converter=StringToUpperString}}",
+                    "Style": "<teamstyle>",
+                    "Triggers": [
+                        {
+                            "Condition": "{Standard {Item.{{{Type}}}.Name, Converter=StringToUpperString}, Converter=EmptyObjectToTrue}",
+                            "Property": "Source",
+                            "Value": "{Item.{{{Type}}}.Name, Converter=StringToUpperString}"
+                        },
+                        {
+                            "Condition": "{TeamColourFG}",
+                            "Property": "Foreground",
+                            "Value": "{{Item.{{{Type}}}.Name}StandardRendersFG}"
+                        },
+                        {
+                            "Condition": "{{Item.{{{Type}}}.Name}StandardRendersFG, Converter=EmptyObjectToTrue}",
+                            "ConditionAnd": "{TeamColourFG}",
+                            "Property": "Foreground",
+                            "Value": "{Item.Team.Color}"
+                        },
+                        {
+                            "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                            "ConditionAnd": "{TeamColourFG}",
+                            "Property": "Foreground",
+                            "Value": "{{ReserveStandardRendersColouredFG}}"
+                        },
+                        {
+                            "Condition": "{Item.Position, Converter=NumberEquals, Parameter=1}",
+                            "Property": "Foreground",
+                            "Value": "{SessionP1FG}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

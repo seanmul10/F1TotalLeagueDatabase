@@ -1,0 +1,508 @@
+{
+    "ComponentName": "PointsComparisonLine",
+    "BlockType": "dock",
+    "Height": 160,
+    "Items": [
+        {
+            "BlockType": "dock",
+            "VerticalAlignment": "Center",
+            "Width": 300,
+            "Items": [
+                {
+                    "BlockType": "text",
+                    "Source": "{{Item.Driver0.Points.FloatValue, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Item.Driver0.Points.FloatValue, Converter=NumberAdd, Parameter={Item.Driver1.Points.FloatValue}}}%",
+                    "Style": "LP-1",
+                    "FontName": "{FontNameBlack}",
+                    "FontSize": 90,
+                    "MarginTop": 6,
+                    "Triggers": [
+                        {
+                            "Condition": "{TeamColourFG, Converter=BoolReverse}",
+                            "Property": "Foreground",
+                            "Value": "{{Item.Team.Name}DefaultFG}"
+                        },
+                        {
+                            "Condition": "{Item.Driver0.Points.IntValue, Converter=NumberEquals, Parameter=0}",
+                            "Property": "Source",
+                            "Value": "0%"
+                        },
+                        {
+                            "Condition": "{Comparison, Converter=StringNotEquals, Parameter=Points}",
+                            "Property": "Source",
+                            "Value": "{Item.Driver0.{{Comparison}}}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Driver0",
+            "BlockType": "dock",
+            "VerticalAlignment": "Center",
+            "Width": "{ComparisonDriverLineWidth}",
+            "Items": [
+                {
+                    "BlockType": "dock",
+                    "VerticalAlignment": "Center",
+                    "Items": [
+                        {
+                            "BlockType": "stack",
+                            "Orientation": "Vertical",
+                            "HorizontalAlignment": "Right",
+                            "VerticalAlignment": "Center",
+                            "Items": [
+                                {
+                                    "BlockType": "stack",
+                                    "Spacing": 12,
+                                    "HorizontalAlignment": "Right",
+                                    "VerticalAlignment": "Center",
+                                    "Items": [
+                                        {
+                                            "BlockType": "text",
+                                            "Style": "LP-2",
+                                            "MarginTop": 4,
+                                            "Source": "{Item.Driver0.Driver.{comName}, Converter=StringToUpperString}",
+                                            "FontName": "{FontNameBold}",
+                                            "Triggers": [
+                                                {
+                                                    "Trigger": "SecDriver0Name1"
+                                                },
+                                                {
+                                                    "Trigger": "SecDriver0Name2"
+                                                },
+                                                {
+                                                    "Trigger": "SecDriver0Name3"
+                                                },
+                                                {
+                                                    "Condition": "{comName, Converter=StringEquals, Parameter=Full Name}",
+                                                    "ConditionAnd": "{Item.Driver0.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                                    "Property": "Source",
+                                                    "Value": "{Item.Driver0.Driver.Name, Converter=StringToUpperString}"
+                                                },
+                                                {
+                                                    "Condition": "{TeamColourFG, Converter=BoolReverse}",
+                                                    "Property": "Foreground",
+                                                    "Value": "{{Item.Team.Name}DefaultFG}"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "BlockType": "text",
+                                            "Padding": "0,1",
+                                            "RenderIf": "{comName, Converter=StringEquals, Parameter=Full Name}",
+                                            "Style": "LP-2",
+                                            "MarginTop": 4,
+                                            "Source": "{Item.Driver0.Driver.RealName, Converter=StringToUpperString}",
+                                            "FontName": "{FontNameBold}",
+                                            "Triggers": [
+                                                {
+                                                    "Trigger": "SecDriver0Name4"
+                                                },
+                                                {
+                                                    "Condition": "{comName, Converter=StringEquals, Parameter=Full Name}",
+                                                    "ConditionAnd": "{Item.Driver0.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                                    "Property": "RenderIf",
+                                                    "Value": false
+                                                },
+                                                {
+                                                    "Condition": "{TeamColourFG, Converter=BoolReverse}",
+                                                    "Property": "Foreground",
+                                                    "Value": "{{Item.Team.Name}DefaultFG}"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "BlockType": "stack",
+                                    "Spacing": 12,
+                                    "HorizontalAlignment": "Right",
+                                    "VerticalAlignment": "Center",
+                                    "Items": [
+                                        {
+                                            "BlockType": "text",
+                                            "Style": "LP-1",
+                                            "MarginTop": 4,
+                                            "Source": "{Item.Driver0.Driver.{name1}, Converter=StringToUpperString}",
+                                            "Triggers": [
+                                                {
+                                                    "Trigger": "Driver0Name1"
+                                                },
+                                                {
+                                                    "Trigger": "Driver0Name2"
+                                                },
+                                                {
+                                                    "Trigger": "Driver0Name3"
+                                                },
+                                                {
+                                                    "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                    "ConditionAnd": "{Item.Driver0.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                                    "Property": "Source",
+                                                    "Value": "{Item.Driver0.Driver.Name, Converter=StringToUpperString}"
+                                                },
+                                                {
+                                                    "Condition": "{Item.Driver0.Driver.Name, Converter=EmptyObjectToTrue}",
+                                                    "Property": "Source",
+                                                    "Value": "?"
+                                                },
+                                                {
+                                                    "Condition": "{TeamColourFG, Converter=BoolReverse}",
+                                                    "Property": "Foreground",
+                                                    "Value": "{{Item.Team.Name}DefaultFG}"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "BlockType": "text",
+                                            "Padding": "0,1",
+                                            "MarginTop": 4,
+                                            "RenderIf": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                            "Style": "LP-1",
+                                            "Source": "{Item.Driver0.Driver.RealName, Converter=StringToUpperString}",
+                                            "Triggers": [
+                                                {
+                                                    "Trigger": "Driver0Name4"
+                                                },
+                                                {
+                                                    "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                    "ConditionAnd": "{Item.Driver0.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                                    "Property": "RenderIf",
+                                                    "Value": false
+                                                },
+                                                {
+                                                    "Condition": "{TeamColourFG, Converter=BoolReverse}",
+                                                    "Property": "Foreground",
+                                                    "Value": "{{Item.Team.Name}DefaultFG}"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "BlockType": "stack",
+                                    "HorizontalAlignment": "Right",
+                                    "VerticalAlignment": "Center",
+                                    "Spacing": 12,
+                                    "Items": [
+                                        {
+                                            "BlockType": "text",
+                                            "Source": "[{Item.Team.Name}]",
+                                            "Padding": "0,1",
+                                            "Style": "LP-2",
+                                            "MarginTop": 4,
+                                            "HorizontalAlignment": "Right",
+                                            "Triggers": [
+                                                {
+                                                    "Condition": "{TeamColourFG, Converter=BoolReverse}",
+                                                    "Property": "Foreground",
+                                                    "Value": "{{Item.Team.Name}DefaultFG}"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "BlockType": "image",
+                                            "Style": "LineUpFlags",
+                                            "ImageOptions": {
+                                                "Path": "{Item.Driver0.Driver.Nationality.LogotypePath}"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "BlockType": "image",
+                            "RenderIf": "{g3, Converter=StringNotEquals, Parameter=No Avatars}",
+                            "Source": "avatars/{Item.Team.Name}_1.png",
+                            "Height": 580,
+                            "Margin": "0,150,0,0",
+                            "Padding": "-200,0",
+                            "VerticalAlignment": "Center",
+                            "HorizontalAlignment": "Right",
+                            "Triggers": [
+                                {
+                                    "Trigger": "D0CustomAvatars"
+                                },
+                                {
+                                    "Condition": "{Item.Driver0.Driver.Name, Converter=EmptyObjectToTrue}",
+                                    "Property": "Source",
+                                    "Value": "avatars/placeholder0.png"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "BlockType": "dock",
+            "Height": 160,
+            "Width": 300,
+            "HorizontalAlignment": "Center",
+            "Items": [
+                {
+                    "BlockType": "image",
+                    "Height": "{{Item.Team.Name}LineUpLogoSize}",
+                    "HorizontalAlignment": "Center",
+                    "VerticalAlignment": "Center",
+                    "ImageOptions": {
+                        "Path": "{Item.Team.LightLogotypePath}"
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{{Item.Team.Name}LineUpLogoSize, Converter=EmptyObjectToTrue}",
+                            "Property": "Height",
+                            "Value": 210
+                        },
+                        {
+                            "Condition": "{Livery}",
+                            "Setters": [
+                                {
+                                    "Property": "ImageOptions.Path",
+                                    "Value": "{Item.Team.LiveryPath}"
+                                },
+                                {
+                                    "Property": "Height",
+                                    "Value": 90
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Driver1",
+            "BlockType": "dock",
+            "Width": "{ComparisonDriverLineWidth}",
+            "VerticalAlignment": "Center",
+            "HorizontalAlignment": "Right",
+            "Items": [
+                {
+                    "BlockType": "dock",
+                    "VerticalAlignment": "Center",
+                    "Items": [
+                        {
+                            "BlockType": "image",
+                            "RenderIf": "{g3, Converter=StringNotEquals, Parameter=No Avatars}",
+                            "Source": "avatars/{Item.Team.Name}_2.png",
+                            "Height": 580,
+                            "Margin": "0,150,0,0",
+                            "Padding": "-200,0",
+                            "VerticalAlignment": "Center",
+                            "HorizontalAlignment": "Left",
+                            "Triggers": [
+                                {
+                                    "Trigger": "D1CustomAvatars"
+                                },
+                                {
+                                    "Condition": "{Item.Driver1.Driver.Name, Converter=EmptyObjectToTrue}",
+                                    "Property": "Source",
+                                    "Value": "avatars/placeholder0.png"
+                                }
+                            ]
+                        },
+                        {
+                            "BlockType": "stack",
+                            "Orientation": "Vertical",
+                            "HorizontalAlignment": "Left",
+                            "VerticalAlignment": "Center",
+                            "Items": [
+                                {
+                                    "BlockType": "stack",
+                                    "Spacing": 12,
+                                    "HorizontalAlignment": "Left",
+                                    "VerticalAlignment": "Center",
+                                    "Items": [
+                                        {
+                                            "BlockType": "text",
+                                            "Style": "LP-2",
+                                            "MarginTop": 4,
+                                            "Source": "{Item.Driver1.Driver.{comName}, Converter=StringToUpperString}",
+                                            "FontName": "{FontNameBold}",
+                                            "Triggers": [
+                                                {
+                                                    "Trigger": "SecDriver1Name1"
+                                                },
+                                                {
+                                                    "Trigger": "SecDriver1Name2"
+                                                },
+                                                {
+                                                    "Trigger": "SecDriver1Name3"
+                                                },
+                                                {
+                                                    "Condition": "{comName, Converter=StringEquals, Parameter=Full Name}",
+                                                    "ConditionAnd": "{Item.Driver1.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                                    "Property": "Source",
+                                                    "Value": "{Item.Driver1.Driver.Name, Converter=StringToUpperString}"
+                                                },
+                                                {
+                                                    "Condition": "{TeamColourFG, Converter=BoolReverse}",
+                                                    "Property": "Foreground",
+                                                    "Value": "{{Item.Team.Name}DefaultFG}"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "BlockType": "text",
+                                            "Padding": "0,1",
+                                            "RenderIf": "{comName, Converter=StringEquals, Parameter=Full Name}",
+                                            "Style": "LP-2",
+                                            "MarginTop": 4,
+                                            "Source": "{Item.Driver1.Driver.RealName, Converter=StringToUpperString}",
+                                            "FontName": "{FontNameBold}",
+                                            "Triggers": [
+                                                {
+                                                    "Trigger": "SecDriver1Name4"
+                                                },
+                                                {
+                                                    "Condition": "{comName, Converter=StringEquals, Parameter=Full Name}",
+                                                    "ConditionAnd": "{Item.Driver1.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                                    "Property": "RenderIf",
+                                                    "Value": false
+                                                },
+                                                {
+                                                    "Condition": "{TeamColourFG, Converter=BoolReverse}",
+                                                    "Property": "Foreground",
+                                                    "Value": "{{Item.Team.Name}DefaultFG}"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "BlockType": "stack",
+                                    "Spacing": 12,
+                                    "HorizontalAlignment": "Left",
+                                    "VerticalAlignment": "Center",
+                                    "Items": [
+                                        {
+                                            "BlockType": "text",
+                                            "Style": "LP-1",
+                                            "MarginTop": 4,
+                                            "Source": "{Item.Driver1.Driver.{name1}, Converter=StringToUpperString}",
+                                            "Triggers": [
+                                                {
+                                                    "Trigger": "Driver1Name1"
+                                                },
+                                                {
+                                                    "Trigger": "Driver1Name2"
+                                                },
+                                                {
+                                                    "Trigger": "Driver1Name3"
+                                                },
+                                                {
+                                                    "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                    "ConditionAnd": "{Item.Driver1.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                                    "Property": "Source",
+                                                    "Value": "{Item.Driver1.Driver.Name, Converter=StringToUpperString}"
+                                                },
+                                                {
+                                                    "Condition": "{Item.Driver1.Driver.Name, Converter=EmptyObjectToTrue}",
+                                                    "Property": "Source",
+                                                    "Value": "?"
+                                                },
+                                                {
+                                                    "Condition": "{TeamColourFG, Converter=BoolReverse}",
+                                                    "Property": "Foreground",
+                                                    "Value": "{{Item.Team.Name}DefaultFG}"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "BlockType": "text",
+                                            "Padding": "0,1",
+                                            "RenderIf": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                            "Style": "LP-1",
+                                            "MarginTop": 4,
+                                            "Source": "{Item.Driver1.Driver.RealName, Converter=StringToUpperString}",
+                                            "Triggers": [
+                                                {
+                                                    "Trigger": "Driver1Name4"
+                                                },
+                                                {
+                                                    "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                    "ConditionAnd": "{Item.Driver1.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                                    "Property": "RenderIf",
+                                                    "Value": false
+                                                },
+                                                {
+                                                    "Condition": "{TeamColourFG, Converter=BoolReverse}",
+                                                    "Property": "Foreground",
+                                                    "Value": "{{Item.Team.Name}DefaultFG}"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "BlockType": "stack",
+                                    "HorizontalAlignment": "Left",
+                                    "VerticalAlignment": "Center",
+                                    "Spacing": 12,
+                                    "Items": [
+                                        {
+                                            "BlockType": "image",
+                                            "Style": "LineUpFlags",
+                                            "ImageOptions": {
+                                                "Path": "{Item.Driver1.Driver.Nationality.LogotypePath}"
+                                            }
+                                        },
+                                        {
+                                            "BlockType": "text",
+                                            "Source": "[{Item.Team.Name}]",
+                                            "Padding": "0,1",
+                                            "Style": "LP-2",
+                                            "MarginTop": 4,
+                                            "HorizontalAlignment": "Left",
+                                            "Triggers": [
+                                                {
+                                                    "Condition": "{TeamColourFG, Converter=BoolReverse}",
+                                                    "Property": "Foreground",
+                                                    "Value": "{{Item.Team.Name}DefaultFG}"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "BlockType": "dock",
+            "VerticalAlignment": "Center",
+            "HorizontalAlignment": "Right",
+            "Width": 300,
+            "Items": [
+                {
+                    "BlockType": "text",
+                    "Source": "{{{Item.Driver1.Points.FloatValue, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Item.Driver0.Points.FloatValue, Converter=NumberAdd, Parameter={Item.Driver1.Points.FloatValue}}}, Converter=NumberSubtract, Parameter=1}%",
+                    "Style": "LP-1",
+                    "FontName": "{FontNameBlack}",
+                    "FontSize": 90,
+                    "MarginTop": 6,
+                    "Triggers": [
+                        {
+                            "Condition": "{TeamColourFG, Converter=BoolReverse}",
+                            "Property": "Foreground",
+                            "Value": "{{Item.Team.Name}DefaultFG}"
+                        },
+                        {
+                            "Condition": "{Item.Driver1.Points.IntValue, Converter=NumberEquals, Parameter=0}",
+                            "Property": "Source",
+                            "Value": "0%"
+                        },
+                        {
+                            "Condition": "{Comparison, Converter=StringNotEquals, Parameter=Points}",
+                            "Property": "Source",
+                            "Value": "{Item.Driver1.{{Comparison}}}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,158 @@
+{
+    "BlockRoot": {
+        "BlockType": "stack",
+        "Margin": "68,81,68,81",
+        "Orientation": "Vertical",
+        "Items": [
+            {
+                "BlockType": "dock",
+                "Width": "*",
+                "Items": [
+                    {
+                        "BlockType": "component",
+                        "Component": "HeaderBlockStandings",
+                        "ComponentOptions": {
+                            "Vars": {
+                                "source": "[TEAM]"
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                "BlockType": "stack",
+                "VerticalAlignment": "Center",
+                "Height": "*",
+                "Items": [
+                    {
+                        "BlockType": "table",
+                        "HorizontalAlignment": "Center",
+                        "VerticalAlignment": "Center",
+                        "TableOptions": {
+                            "ItemsSource": "{Standings.Teams}",
+                            "Limit": "{g6}",
+                            "IndexStart": "{g7, Converter=NumberSubtract, Parameter=1}",
+                            "HeaderTemplate": {
+                                "BlockType": "text",
+                                "Style": "HeaderStyle"
+                            },
+                            "Columns": [
+                                {
+                                    "Header": "",
+                                    "Template": {
+                                        "BlockType": "component",
+                                        "Component": "TeamLineStandings"
+                                    }
+                                },
+                                {
+                                    "Header": "[{sta1}]",
+                                    "Template": {
+                                        "BlockType": "component",
+                                        "Component": "Column",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "source": "{Item.{sta1}}",
+                                                "style1": "NameBlackPoints",
+                                                "fg": "{PointsStandingsFG}",
+                                                "renderif": "{Item.Position, Converter=NumberNotEquals, Parameter={TeamCount}}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.Points.IntValue, Converter=NumberEquals, Parameter=0}",
+                                                "ConditionAnd": "{sta1, Converter=StringEquals, Parameter=Points}",
+                                                "ComponentVar": "source",
+                                                "Value": "0"
+                                            },
+                                            {
+                                                "Condition": "{Item.Position, Converter=NumberEquals, Parameter=1}",
+                                                "Setters": [
+                                                    {
+                                                        "Property": "BackgroundImage",
+                                                        "Value": "components/bg.position.corner3.png"
+                                                    },
+                                                    {
+                                                        "Property": "ColorizeBackground.Enabled",
+                                                        "Value": true
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "Condition": "{Item.Position, Converter=NumberEquals, Parameter={TeamCount}}",
+                                                "Setters": [
+                                                    {
+                                                        "Property": "BackgroundImage",
+                                                        "Value": "components/bg.position.corner4.png"
+                                                    },
+                                                    {
+                                                        "Property": "ColorizeBackground.Enabled",
+                                                        "Value": true
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "Condition": "{Item.Position, Converter=NumberNotEquals, Parameter={TeamCount}}",
+                                                "ConditionAnd": "{Item.Position, Converter=NumberNotEquals, Parameter=1}",
+                                                "Property": "Background",
+                                                "Value": "{{PointsMediaStandingsBG}}"
+                                            },
+                                            {
+                                                "Condition": "{sta14}",
+                                                "ConditionAnd": "{Item.Position, Converter=NumberEquals, Parameter=1}",
+                                                "ComponentVar": "fg",
+                                                "Value": "{ChampColourFG}"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        },
+                        "Triggers": [
+                            {
+                                "Condition": "{sta2}",
+                                "Property": "Margin",
+                                "Value": "0,26,0,0"
+                            },
+                            {
+                                "Condition": "{StaProgress, Converter=StringNotEquals, Parameter=Do Not Render Progress}",
+                                "ConditionAnd": "{sta2}",
+                                "Property": "Margin",
+                                "Value": "0,95,0,0"
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "stack",
+                        "RenderIf": "{sta2}",
+                        "Items": [
+                            {
+                                "BlockType": "component",
+                                "Component": "DataTable",
+                                "ComponentOptions": {
+                                    "Vars": {
+                                        "source": "{Standings.Teams}",
+                                        "LDT": "TeamDTLeftColumn",
+                                        "RDT": "TeamDTRightColumn"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "Triggers": [
+                    {
+                        "Condition": "{sta2, Converter=BoolReverse}",
+                        "Property": "MarginTop",
+                        "Value": 64
+                    },
+                    {
+                        "Condition": "{StaProgress, Converter=StringNotEquals, Parameter=Do Not Render Progress}",
+                        "ConditionAnd": "{sta2}",
+                        "Property": "Margin",
+                        "Value": "0,-135,0,0"
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,45 @@
+[
+    {
+        "TriggerName": "CustomAvatars",
+        "Condition": "{Item.Driver.LogotypePath, Converter=EmptyObjectToFalse}",
+        "ConditionAnd": "{g3, Converter=StringEquals, Parameter=Custom Avatars}",
+        "Property": "Source",
+        "Value": "{Item.Driver.LogotypePath}"
+    },
+    {
+        "TriggerName": "ReserveCustomAvatars",
+        "Condition": "{Item.Driver.LogotypePath, Converter=EmptyObjectToTrue}",
+        "ConditionAnd": "{g3, Converter=StringNotEquals, Parameter=No Avatars}",
+        "ConditionAnd": "{Item.Team.Name, Converter=EmptyObjectToTrue}",
+        "Property": "Source",
+        "Value": "avatars/Reserve.png"
+    },
+    {
+        "TriggerName": "L0CustomAvatars",
+        "Condition": "{Item.Line0.Driver.LogotypePath, Converter=EmptyObjectToFalse}",
+        "ConditionAnd": "{g3, Converter=StringEquals, Parameter=Custom Avatars}",
+        "Property": "Source",
+        "Value": "{Item.Line0.Driver.LogotypePath}"
+    },
+    {
+        "TriggerName": "L1CustomAvatars",
+        "Condition": "{Item.Line1.Driver.LogotypePath, Converter=EmptyObjectToFalse}",
+        "ConditionAnd": "{g3, Converter=StringEquals, Parameter=Custom Avatars}",
+        "Property": "Source",
+        "Value": "{Item.Line1.Driver.LogotypePath}"
+    },
+    {
+        "TriggerName": "D0CustomAvatars",
+        "Condition": "{Item.Driver0.Driver.LogotypePath, Converter=EmptyObjectToFalse}",
+        "ConditionAnd": "{g3, Converter=StringEquals, Parameter=Custom Avatars}",
+        "Property": "Source",
+        "Value": "{Item.Driver0.Driver.LogotypePath}"
+    },
+    {
+        "TriggerName": "D1CustomAvatars",
+        "Condition": "{Item.Driver1.Driver.LogotypePath, Converter=EmptyObjectToFalse}",
+        "ConditionAnd": "{g3, Converter=StringEquals, Parameter=Custom Avatars}",
+        "Property": "Source",
+        "Value": "{Item.Driver1.Driver.LogotypePath}"
+    }
+]

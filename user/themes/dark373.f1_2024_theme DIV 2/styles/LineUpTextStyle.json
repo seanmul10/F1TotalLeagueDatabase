@@ -1,0 +1,34 @@
+[
+    {
+        "StyleName": "LP-1",
+        "FontName": "{FontNameBlack}",
+        "FontSize": "{ln2}",
+        "Foreground": "{[{Item.Team.Name}OfficialLineUpFG]}",
+        "HorizontalAlignment": "Center",
+        "VerticalAlignment": "Center"
+    },
+    {
+        "StyleName": "LP-2",
+        "FontName": "{FontNameDefault}",
+        "FontSize": 30,
+        "Foreground": "{[{Item.Team.Name}OfficialLineUpFG]}",
+        "HorizontalAlignment": "Center",
+        "VerticalAlignment": "Center"
+    },
+    {
+        "StyleName": "LP-BN",
+        "FontName": "{FontNameBlack}",
+        "FontSize": "{BannerDriverNameFS}",
+        "Foreground": "{[{Item.Team.Name}OfficialLineUpFG]}",
+        "HorizontalAlignment": "Left",
+        "VerticalAlignment": "Center"
+    },
+    {
+        "StyleName": "LP-BN1",
+        "FontName": "{FontNameDefault}",
+        "FontSize": 60,
+        "Foreground": "{[{Item.Team.Name}OfficialLineUpFG]}",
+        "HorizontalAlignment": "Left",
+        "VerticalAlignment": "Bottom"
+    }
+]

@@ -1,0 +1,439 @@
+{
+    "BlockRoot": {
+        "BlockType": "itemstack",
+        "Orientation": "Vertical",
+        "ItemStackOptions": {
+            "ItemSource": "{Session.Drivers}",
+            "FilterMember": "IsRaceDriverOfDay",
+            "FilterMemberValue": "True",
+            "ItemTemplate": {
+                "Name": "mainStack",
+                "Width": 1080,
+                "Height": 1620,
+                "BlockType": "stack",
+                "Orientation": "Vertical",
+                "Triggers": [
+                    {
+                        "Condition": "{g3, Converter=StringEquals, Parameter=No Avatars}",
+                        "Property": "Height",
+                        "Value": "auto"
+                    }
+                ],
+                "Items": [
+                    {
+                        "BlockType": "stack",
+                        "Orientation": "Vertical",
+                        "HorizontalAlignment": "Left",
+                        "VerticalAlignment": "Top",
+                        "Items": [
+                            //header block
+                            {
+                                "BlockType": "component",
+                                "Component": "/dotd/HeaderBlockDotd"
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "stack",
+                        "HorizontalAlignment": "Center",
+                        "Orientation": "Vertical",
+                        "Items": [
+                            {
+                                "BlockType": "stack",
+                                "Orientation": "Horizontal",
+                                "Items": [
+                                    {
+                                        "BlockType": "stack",
+                                        "Margin": "0, 0, -765, -20",
+                                        "BackgroundImage": "components/bg.podium.png",
+                                        "ColorizeBackground": {
+                                            "Enabled": true,
+                                            "Color": "{Item.Team.Color}"
+                                        },
+                                        "Items": [
+                                            {
+                                                "BlockType": "stack",
+                                                "BackgroundImage": "components/bg.podium.gradient.png",
+                                                "ColorizeBackground": {
+                                                    "Enabled": true,
+                                                    "Color": "{Item.Team.SecondaryColor}"
+                                                },
+                                                "Items": [
+                                                    {
+                                                        "BlockType": "image",
+                                                        "Width": 780,
+                                                        "Height": "auto",
+                                                        "Opacity": 0,
+                                                        "Source": "components/bg.podium.png",
+                                                        "Triggers": [
+                                                            {
+                                                                "Condition": "{g3, Converter=StringEquals, Parameter=No Avatars}",
+                                                                "Property": "Height",
+                                                                "Value": 920
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                                "Property": "ColorizeBackground.Color",
+                                                "Value": "{{DotdCarBasedChampBG}}"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "stack",
+                                        "Orientation": "Vertical",
+                                        "Margin": "0, 10, 65, -0",
+                                        "HorizontalAlignment": "Left",
+                                        "VerticalAlignment": "Top",
+                                        "Items": [
+                                            {
+                                                "BlockType": "dock",
+                                                "Orientation": "Horizontal",
+                                                "HorizontalAlignment": "Left",
+                                                "Items": [
+                                                    {
+                                                        "BlockType": "stack",
+                                                        "Width": 700,
+                                                        "HorizontalAlignment": "Left",
+                                                        "Orientation": "Vertical",
+                                                        "Spacing": -10,
+                                                        "Items": [
+                                                            //dotd
+                                                            {
+                                                                "BlockType": "text",
+                                                                "VerticalAlignment": "Center",
+                                                                "Source": "[DRIVER]",
+                                                                "FontName": "{FontNameBlack}",
+                                                                "FontSize": 80,
+                                                                "Foreground": "{White}"
+                                                            },
+                                                            {
+                                                                "BlockType": "text",
+                                                                "VerticalAlignment": "Center",
+                                                                "Source": "[OF THE]",
+                                                                "FontName": "{FontNameBlack}",
+                                                                "Foreground": "{White}",
+                                                                "FontSize": 80
+                                                            },
+                                                            {
+                                                                "BlockType": "text",
+                                                                "VerticalAlignment": "Center",
+                                                                "Source": "[DAY]",
+                                                                "FontName": "{FontNameBlack}",
+                                                                "Foreground": "{White}",
+                                                                "FontSize": 80
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "stack",
+                                        "VerticalAlignment": "Bottom",
+                                        "Orientation": "Vertical",
+                                        "Margin": "-780, 40, 0, -671",
+                                        "Padding": "-510,0",
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{g3, Converter=StringEquals, Parameter=Default Avatars}",
+                                                "ConditionOr": "{g3, Converter=StringEquals, Parameter=Custom Avatars}",
+                                                "Property": "RenderIf",
+                                                "Value": true
+                                            },
+                                            {
+                                                "Condition": "{g3, Converter=StringEquals, Parameter=No Avatars}",
+                                                "Property": "RenderIf",
+                                                "Value": false
+                                            }
+                                        ],
+                                        "Items": [
+                                            {
+                                                "BlockType": "image",
+                                                "HorizontalAlignment": "Center",
+                                                "VerticalAlignment": "Bottom",
+                                                "Height": 1800,
+                                                "Width": "auto",
+                                                "Source": "avatars/{Item.{{{Type}}}.Name}_{Item.SeatPosition}.png",
+                                                "Triggers": [
+                                                    {
+                                                        "Trigger": "CustomAvatars"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "stack",
+                                        "VerticalAlignment": "Bottom",
+                                        "Orientation": "Vertical",
+                                        "Margin": "-780, 0, 0, 20",
+                                        "RenderIf": "{g3, Converter=StringEquals, Parameter=No Avatars}",
+                                        "Items": [
+                                            {
+                                                "BlockType": "image",
+                                                "HorizontalAlignment": "Center",
+                                                "VerticalAlignment": "Bottom",
+                                                "Height": 700,
+                                                "Margin": "0, 0, 80, 0",
+                                                "Width": "auto",
+                                                "ImageOptions": {
+                                                    "Path": "{Item.Team.LogotypePath}"
+                                                },
+                                                "Triggers": [
+                                                    {
+                                                        "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                                        "ConditionOr": "{Livery}",
+                                                        "Setters": [
+                                                            {
+                                                                "Property": "ImageOptions.Path",
+                                                                "Value": "{Item.{{{Type}}}.LiveryPath}"
+                                                            },
+                                                            {
+                                                                "Property": "Height",
+                                                                "Value": 232
+                                                            },
+                                                            {
+                                                                "Property": "Margin",
+                                                                "Value": "0,0,0,0"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                                        "ConditionOr": "{Livery}",
+                                                        "ConditionAnd": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                                                        "Setters": [
+                                                            {
+                                                                "Property": "ImageOptions.Path",
+                                                                "Value": "logotypes/liveries/Reserve.png"
+                                                            },
+                                                            {
+                                                                "Property": "Height",
+                                                                "Value": 232
+                                                            },
+                                                            {
+                                                                "Property": "Margin",
+                                                                "Value": "0,0,0,0"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                                        "ConditionAnd": "{Livery, Converter=BoolReverse}",
+                                                        "Property": "ImageOptions.Path",
+                                                        "Value": "{Item.{{{Type}}}.Vendor.LogotypePath}"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "BlockType": "dock",
+                                "Orientation": "Horizontal",
+                                "HorizontalAlignment": "Center",
+                                "VerticalAlignment": "Center",
+                                "Height": 123,
+                                "BackgroundImage": "components/bg.podium.name.png",
+                                "ColorizeBackground": {
+                                    "Enabled": true,
+                                    "Color": "{Item.Team.Color}"
+                                },
+                                "Items": [
+                                    {
+                                        "BlockType": "stack",
+                                        "Spacing": 16,
+                                        "HorizontalAlignment": "Left",
+                                        "VerticalAlignment": "Center",
+                                        "Items": [
+                                            {
+                                                "BlockType": "image",
+                                                "Height": 70,
+                                                "Background": "{Black}",
+                                                "Padding": "1,-11",
+                                                "MarginLeft": 80,
+                                                "HorizontalAlignment": "Left",
+                                                "VerticalAlignment": "Center",
+                                                "ImageOptions": {
+                                                    "Path": "{Session.DriverDayDriver.Nationality.LogotypePath}",
+                                                    "VerticalAlignment": "Center"
+                                                },
+                                                "Triggers": [
+                                                    {
+                                                        "Trigger": "Flags"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "BlockType": "text",
+                                                "MarginTop": 6,
+                                                "HorizontalAlignment": "Left",
+                                                "VerticalAlignment": "Center",
+                                                "FontSize": "{dot1}",
+                                                "Foreground": "{{Item.{{{Type}}}.Name}DefaultFG}",
+                                                "FontName": "{FontNameDefault}",
+                                                "Source": "{Session.DriverDayDriver.{name1}, Converter=StringToUpperString}",
+                                                "Triggers": [
+                                                    {
+                                                        "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                        "Property": "Source",
+                                                        "Value": "{Session.DriverDayDriver.Name, Converter=StringToUpperString}"
+                                                    },
+                                                    {
+                                                        "Condition": "{name1, Converter=StringEquals, Parameter=Name}",
+                                                        "ConditionOr": "{name1, Converter=StringEquals, Parameter=RealName}",
+                                                        "ConditionOr": "{name1, Converter=StringEquals, Parameter=InGameName}",
+                                                        "ConditionAnd": "{name3, Converter=BoolReverse}",
+                                                        "Property": "Source",
+                                                        "Value": "{Session.DriverDayDriver.{name1}}"
+                                                    },
+                                                    {
+                                                        "Condition": "{name2}",
+                                                        "ConditionAnd": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                        "Property": "Source",
+                                                        "Value": "{Session.DriverDayDriver.RealName, Converter=StringToUpperString}"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "BlockType": "text",
+                                                "MarginTop": 2,
+                                                "RenderIf": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                "HorizontalAlignment": "Left",
+                                                "VerticalAlignment": "Center",
+                                                "FontSize": "{dot1}",
+                                                "Foreground": "{{Item.{{{Type}}}.Name}DefaultFG}",
+                                                "FontName": "{FontNameBlack}",
+                                                "Source": "{Session.DriverDayDriver.RealName, Converter=StringToUpperString}",
+                                                "Triggers": [
+                                                    {
+                                                        "Condition": "{name2}",
+                                                        "Property": "Source",
+                                                        "Value": "{Session.DriverDayDriver.Name, Converter=StringToUpperString}"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                        "Property": "ColorizeBackground.Color",
+                                        "Value": "{{DotdCarBasedChampBG}}"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "dock",
+                        "VerticalAlignment": "Bottom",
+                        "HorizontalAlignment": "Center",
+                        "Margin": "35, 45, 0, 25",
+                        "Items": [
+                            {
+                                "BlockType": "image",
+                                "Background": "{Black}",
+                                "Height": 85,
+                                "Padding": "1,-13",
+                                "HorizontalAlignment": "Left",
+                                "VerticalAlignment": "Center",
+                                "ImageOptions": {
+                                    "Path": "{Session.Track.Nation.LogotypePath}",
+                                    "VerticalAlignment": "Center"
+                                },
+                                "Triggers": [
+                                    {
+                                        "Trigger": "Flags"
+                                    }
+                                ]
+                            },
+                            {
+                                "BlockType": "text",
+                                "MarginLeft": 10,
+                                "FontName": "{FontNameItalic}",
+                                "FontSize": 26,
+                                "Foreground": "{{g1}}",
+                                "Source": "{Session.Track.CircuitName}",
+                                "HorizontalAlignment": "Left",
+                                "VerticalAlignment": "Center"
+                            },
+                            {
+                                "BlockType": "image",
+                                "Height": 40,
+                                "HorizontalAlignment": "Center",
+                                "VerticalAlignment": "Center",
+                                "ImageOptions": {
+                                    "Path": "logotypes/f1_logo.white.png",
+                                    "VerticalAlignment": "Center"
+                                },
+                                "Triggers": [
+                                    {
+                                        "Condition": "{g1, Converter=StringEquals, Parameter=Light}",
+                                        "Property": "Source",
+                                        "Value": "logotypes/f1_logo.black.png"
+                                    },
+                                    {
+                                        "Condition": "{Season.LeagueInfo.LeagueLogo, Converter=EmptyObjectToFalse}",
+                                        "Setters": [
+                                            {
+                                                "Property": "Source",
+                                                "Value": "{Season.LeagueInfo.LeagueLogo}"
+                                            },
+                                            {
+                                                "Property": "Height",
+                                                "Value": "{g4}"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "BlockType": "image",
+                                "Height": 100,
+                                "Margin": "0, 0, 45, 0",
+                                "HorizontalAlignment": "Right",
+                                "VerticalAlignment": "Center",
+                                "ImageOptions": {
+                                    "Path": "{Item.Team.LogotypePath}",
+                                    "VerticalAlignment": "Center"
+                                },
+                                "Triggers": [
+                                    {
+                                        "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                        "ConditionOr": "{Livery}",
+                                        "Setters": [
+                                            {
+                                                "Property": "ImageOptions.Path",
+                                                "Value": "{Item.{{{Type}}}.LiveryPath}"
+                                            },
+                                            {
+                                                "Property": "Height",
+                                                "Value": 50
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                        "ConditionAnd": "{Livery, Converter=BoolReverse}",
+                                        "Property": "ImageOptions.Path",
+                                        "Value": "{Item.{{{Type}}}.Vendor.LogotypePath}"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}

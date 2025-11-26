@@ -1,0 +1,24 @@
+{
+    "BlockRoot": {
+        "RenderIf": "{g1, Converter=StringNotEquals, Parameter=No Background}",
+        "Name": "root",
+        "BlockType": "stack",
+        "Background": "{Black}",
+        "Items": [
+            {
+                "BlockType": "stack",
+                "BackgroundImage": "bg/bg.pirelli.png",
+                "ColorizeBackground": {
+                    "Enabled": true,
+                    "Color": "{Season.MainLeagueCategory.Color}"
+                },
+                "Items": [
+                    {
+                        "BlockType": "image",
+                        "Source": "bg/bg.pirelli.png"
+                    }
+                ]
+            }
+        ]
+    }
+}

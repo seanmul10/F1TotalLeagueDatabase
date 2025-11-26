@@ -1,0 +1,988 @@
+{
+    "BlockRoot": {
+        "BlockType": "stack",
+        "Margin": "20,20,20,20",
+        "Orientation": "Horizontal",
+        "Items": [
+            {
+                "BlockType": "dock",
+                "Orientation": "Vertical",
+                "Items": [
+                    //header block
+                    {
+                        "MarginBottom": 10,
+                        "BlockType": "component",
+                        "Component": "headerBlockSession",
+                        "ComponentOptions": {
+                            "Vars": {
+                                "source0": "{Season.LeagueInfo.LeagueShortName, Converter=StringToUpperString} {Season.Name, Converter=StringToUpperString} [{Session.Track.CircuitName, Converter=StringToUpperString} GRAND PRIX] 2024",
+                                "source1": "[{Session.Track.LocationName, Converter=StringToUpperString}] [PIT STOPS]"
+                            }
+                        },
+                        "Triggers": [
+                            {
+                                "Condition": "{g5, Converter=StringEquals, Parameter=Category Name}",
+                                "ComponentVar": "source0",
+                                "Value": "{Season.LeagueInfo.LeagueShortName, Converter=StringToUpperString} {Season.MainLeagueCategory.Name, Converter=StringToUpperString} [{Session.Track.CircuitName, Converter=StringToUpperString} GRAND PRIX] 2024"
+                            },
+                            {
+                                "Condition": "{g5, Converter=StringEquals, Parameter=Category Short Name}",
+                                "ComponentVar": "source0",
+                                "Value": "{Season.LeagueInfo.LeagueShortName, Converter=StringToUpperString} {Season.MainLeagueCategory.ShortName, Converter=StringToUpperString} [{Session.Track.CircuitName, Converter=StringToUpperString} GRAND PRIX] 2024"
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Margin": "0, 15, 0, 0",
+                        "Items": [
+                            {
+                                "BlockType": "table",
+                                "TableOptions": {
+                                    "ItemsSource": "{Session.Drivers}",
+                                    "Limit": "{g6}",
+                                    "RowSpacing": 30,
+                                    "HeaderTemplate": {
+                                        "BlockType": "text",
+                                        "MarginBottom": 108,
+                                        "Style": "TableSessionHeader"
+                                    },
+                                    "Columns": [
+                                        {
+                                            "Header": "",
+                                            "Template": {
+                                                "BlockType": "component",
+                                                "Component": "MainColumn",
+                                                "ComponentOptions": {
+                                                    "Vars": {
+                                                        "style": "P1Default",
+                                                        "fg": "{ForegroundDefault}",
+                                                        "font": "{FontNameItalic}",
+                                                        "w": "45",
+                                                        "pad": "12,0",
+                                                        "source": "{Item.Position}"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "Header": "",
+                                            "Template": {
+                                                "BlockType": "component",
+                                                "Component": "V1DriverLine",
+                                                "ComponentOptions": {
+                                                    "Vars": {
+                                                        "style1": "FirstNameDefault",
+                                                        "style2": "SecondNameDefault",
+                                                        "width": "*"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "Header": "",
+                                            "Template": {
+                                                "BlockType": "dock",
+                                                "Orientation": "Horizontal",
+                                                "Items": [
+                                                    {
+                                                        "BlockType": "table",
+                                                        "MarginTop": 10,
+                                                        "MaxWidth": "{Item.RaceDistancePercentage, Converter=NumberMultiply, Parameter=25}",
+                                                        "Orientation": "Vertical",
+                                                        "TableOptions": {
+                                                            "ItemsSource": "{Item.Stints}",
+                                                            "RowSpacing": -31,
+                                                            "HeaderTemplate": {
+                                                                "BlockType": "text",
+                                                                "MarginBottom": 108,
+                                                                "Style": "TableSessionHeader"
+                                                            },
+                                                            "Columns": [
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "01",
+                                                                                "renderif": false
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "02"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "03"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "04"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "05"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "06"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "07"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "08"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "09"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "10"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "11"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "12"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "13"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "14"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "15"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "16"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "17"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "18"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "19"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "20"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "21"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "22"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "23"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "24"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "25"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "26"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "27"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "28"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "29"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "30"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "31"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "32"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "33"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "34"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "35"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "36"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "37"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "38"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "39"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "40"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "41"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "42"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "43"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "44"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "45"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "46"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "47"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "48"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "49"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "50"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "51"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "52"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "53"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "54"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "55"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "56"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "57"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "58"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "59"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "60"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "61"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "62"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "63"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "64"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "65"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "66"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "67"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "68"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "69"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "70"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "Header": "",
+                                                                    "Template": {
+                                                                        "BlockType": "component",
+                                                                        "Component": "LapColumn",
+                                                                        "ComponentOptions": {
+                                                                            "Vars": {
+                                                                                "lap": "71"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "BlockType": "stack",
+                                                        "MarginTop": 16,
+                                                        "Padding": "12, 0",
+                                                        "MarginLeft": 20,
+                                                        "HorizontalAlignment": "Right",
+                                                        "Items": [
+                                                            {
+                                                                "BlockType": "text",
+                                                                "Padding": "2, 0",
+                                                                "Source": "{Item.LapsCount}",
+                                                                "FontName": "{FontNameItalic}",
+                                                                "FontSize": 25,
+                                                                "VerticalAlignment": "Center",
+                                                                "HorzontallAlignment": "Center"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

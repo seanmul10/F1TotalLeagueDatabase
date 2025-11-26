@@ -1,0 +1,458 @@
+{
+    "ComponentName": "DriverLineStandings",
+    "BlockType": "stack",
+    "Orientation": "Vertical",
+    "WidthPercent": 100,
+    "Items": [
+        {
+            "BlockType": "dock",
+            "VerticalAlignment": "Center",
+            "HorizontalAlignment": "Left",
+            "WidthPercent": 100,
+            "Items": [
+                {
+                    "BlockType": "stack",
+                    "VerticalAlignment": "Center",
+                    "Items": [
+                        {
+                            "BlockType": "dock",
+                            "Height": 202,
+                            "VerticalAlignment": "Center",
+                            "ColorizeBackground": {
+                                "Enabled": false,
+                                "Color": "F0F0F0"
+                            },
+                            "Items": [
+                                {
+                                    "BlockType": "text",
+                                    "MarginTop": 8,
+                                    "Width": 220,
+                                    "Height": 200,
+                                    "HorizontalAlignment": "Center",
+                                    "Source": "{Item.Position}",
+                                    "Style": "NameBlackStandings",
+                                    "Foreground": "{Black}",
+                                    "VerticalAlignment": "Center",
+                                    "FontSize": 100,
+                                    "Triggers": [
+                                        {
+                                            "Condition": "{sta14}",
+                                            "ConditionAnd": "{Item.Position, Converter=NumberEquals, Parameter=1}",
+                                            "Setters": [
+                                                {
+                                                    "Property": "Foreground",
+                                                    "Value": "{ChampColourFG}"
+                                                },
+                                                {
+                                                    "Property": "Source",
+                                                    "Value": "[C]"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "Triggers": [
+                                {
+                                    "Condition": "{Item.Position, Converter=NumberEquals, Parameter={g7}}",
+                                    "Setters": [
+                                        {
+                                            "Property": "BackgroundImage",
+                                            "Value": "components/bg.position.corner.png"
+                                        },
+                                        {
+                                            "Property": "ColorizeBackground.Enabled",
+                                            "Value": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Condition": "{Item.Position, Converter=NumberEquals, Parameter={g6}}",
+                                    "Setters": [
+                                        {
+                                            "Property": "BackgroundImage",
+                                            "Value": "components/bg.position.corner2.png"
+                                        },
+                                        {
+                                            "Property": "ColorizeBackground.Enabled",
+                                            "Value": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Condition": "{Item.Position, Converter=NumberIsOdd}",
+                                    "Property": "ColorizeBackground.Color",
+                                    "Value": "F0F0F0"
+                                },
+                                {
+                                    "Condition": "{Item.Position, Converter=NumberIsEven}",
+                                    "Property": "ColorizeBackground.Color",
+                                    "Value": "E4E4E4"
+                                }
+                            ]
+                        }
+                    ],
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.Position, Converter=NumberIsOdd}",
+                            "Property": "Background",
+                            "Value": "F0F0F0"
+                        },
+                        {
+                            "Condition": "{Item.Position, Converter=NumberIsEven}",
+                            "Property": "Background",
+                            "Value": "E4E4E4"
+                        },
+                        {
+                            "Condition": "{Item.Position, Converter=NumberEquals, Parameter={g7}}",
+                            "ConditionOr": "{Item.Position, Converter=NumberEquals, Parameter={g6}}",
+                            "Property": "Background",
+                            "Value": "00000000"
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "stack",
+                    "Height": 202,
+                    "Spacing": 60,
+                    "VerticalAlignment": "Center",
+                    "PaddingRight": 20,
+                    "Items": [
+                        {
+                            "BlockType": "dock",
+                            "Width": 360,
+                            "VerticalAlignment": "Center",
+                            "Background": "{Item.Team.Color}",
+                            "Items": [
+                                {
+                                    "BlockType": "image",
+                                    "Padding": "0,4",
+                                    "Height": "{{Item.{{{Type}}}.Name}LogoSize}",
+                                    "HorizontalAlignment": "Center",
+                                    "VerticalAlignment": "Center",
+                                    "ImageOptions": {
+                                        "Path": "{Item.Team.LightLogotypePath}",
+                                        "HorizontalAlignment": "Center",
+                                        "VerticalAlignment": "Center"
+                                    },
+                                    "Triggers": [
+                                        {
+                                            "Condition": "{Item.Team.LightLogotypePath, Converter=EmptyObjectToTrue}",
+                                            "Property": "ImageOptions.Path",
+                                            "Value": "avatars/placeholder1.png"
+                                        },
+                                        {
+                                            "Condition": "{{Item.{{{Type}}}.Name}LogoSize, Converter=EmptyObjectToTrue}",
+                                            "Property": "Height",
+                                            "Value": 204
+                                        },
+                                        {
+                                            "Condition": "{g3, Converter=StringNotEquals, Parameter=No Avatars}",
+                                            "Property": "Padding",
+                                            "Value": "80,4"
+                                        },
+                                        {
+                                            "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                                            "Setters": [
+                                                {
+                                                    "Property": "Background",
+                                                    "Value": "{{ReserveStandardRendersColouredBG}}"
+                                                },
+                                                {
+                                                    "Property": "ImageOptions.Path",
+                                                    "Value": "logotypes/reserve.png"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                            "ConditionOr": "{Livery}",
+                                            "Setters": [
+                                                {
+                                                    "Property": "ImageOptions.Path",
+                                                    "Value": "{Item.{{{Type}}}.LiveryPath}"
+                                                },
+                                                {
+                                                    "Property": "Height",
+                                                    "Value": 110
+                                                },
+                                                {
+                                                    "Property": "Padding",
+                                                    "Value": "0,46"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                            "ConditionOr": "{Livery}",
+                                            "ConditionAnd": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                                            "Setters": [
+                                                {
+                                                    "Property": "ImageOptions.Path",
+                                                    "Value": "logotypes/liveries/Reserve.png"
+                                                },
+                                                {
+                                                    "Property": "Height",
+                                                    "Value": 110
+                                                },
+                                                {
+                                                    "Property": "Padding",
+                                                    "Value": "0,46"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                            "ConditionAnd": "{Livery, Converter=BoolReverse}",
+                                            "Property": "ImageOptions.Path",
+                                            "Value": "{Item.{{{Type}}}.Vendor.LogotypePath}"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "Triggers": [
+                                {
+                                    "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                                    "ConditionAnd": "{sta13}",
+                                    "Property": "Background",
+                                    "Value": "{{CarChampBG}}"
+                                },
+                                {
+                                    "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                                    "Property": "Background",
+                                    "Value": "{{ReserveStandardRendersColouredBG}}"
+                                }
+                            ]
+                        },
+                        {
+                            "BlockType": "dock",
+                            "RenderIf": "{g3, Converter=StringNotEquals, Parameter=No Avatars}",
+                            "HorizontalAlignment": "Left",
+                            "Margin": "-140,0,0,0",
+                            "Padding": "-235,-220",
+                            "VerticalAlignment": "Center",
+                            "Items": [
+                                {
+                                    "BlockType": "image",
+                                    "Height": 710,
+                                    "Margin": "0,-105,0,0",
+                                    "VerticalAlignment": "Bottom",
+                                    "HorizontalAlignment": "Center",
+                                    "Source": "avatars/{Item.{{{Type}}}.Name}_{Item.SeatPosition}.png",
+                                    "Triggers": [
+                                        {
+                                            "Trigger": "CustomAvatars"
+                                        },
+                                        {
+                                            "Trigger": "ReserveCustomAvatars"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.Position, Converter=NumberIsOdd}",
+                            "Property": "Background",
+                            "Value": "F0F0F0"
+                        },
+                        {
+                            "Condition": "{Item.Position, Converter=NumberIsEven}",
+                            "Property": "Background",
+                            "Value": "E4E4E4"
+                        },
+                        {
+                            "Condition": "{sta13}",
+                            "Property": "Background",
+                            "Value": "{Item.Team.Color}"
+                        },
+                        {
+                            "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                            "ConditionAnd": "{sta13}",
+                            "Property": "Background",
+                            "Value": "{{CarChampBG}}"
+                        },
+                        {
+                            "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                            "ConditionAnd": "{sta13}",
+                            "Property": "Background",
+                            "Value": "{{ReserveStandardRendersColouredBG}}"
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "stack",
+                    "MinWidth": 817,
+                    "Width": "*",
+                    "Height": 202,
+                    "PaddingRight": 40,
+                    "HorizontalAlignment": "Left",
+                    "VerticalAlignment": "Center",
+                    "Items": [
+                        {
+                            "BlockType": "component",
+                            "Component": "DriverLine",
+                            "ComponentOptions": {
+                                "Vars": {
+                                    "render": "false",
+                                    "flagstyle": "DriverFlags",
+                                    "Halign": "Left",
+                                    "style1": "NameBlackStandings",
+                                    "fg1": "{Black}",
+                                    "style2": "NameBlackStandings",
+                                    "fg2": "{Black}"
+                                }
+                            },
+                            "Triggers": [
+                                {
+                                    "Condition": "{sta13}",
+                                    "Setters": [
+                                        {
+                                            "ComponentVar": "fg1",
+                                            "Value": "{{Item.{{{Type}}}.Name}DefaultFG}"
+                                        },
+                                        {
+                                            "ComponentVar": "fg2",
+                                            "Value": "{{Item.{{{Type}}}.Name}DefaultFG}"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                                    "ConditionAnd": "{sta13}",
+                                    "Setters": [
+                                        {
+                                            "ComponentVar": "fg1",
+                                            "Value": "{ReserveMediaStandingsFG}"
+                                        },
+                                        {
+                                            "ComponentVar": "fg2",
+                                            "Value": "{ReserveMediaStandingsFG}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "Triggers": [
+                        {
+                            "Condition": "{g3, Converter=StringNotEquals, Parameter=No Avatars}",
+                            "Property": "MinWidth",
+                            "Value": 657
+                        },
+                        {
+                            "Condition": "{Item.Position, Converter=NumberIsOdd}",
+                            "Property": "Background",
+                            "Value": "F0F0F0"
+                        },
+                        {
+                            "Condition": "{Item.Position, Converter=NumberIsEven}",
+                            "Property": "Background",
+                            "Value": "E4E4E4"
+                        },
+                        {
+                            "Condition": "{sta13}",
+                            "Property": "Background",
+                            "Value": "{Item.Team.Color}"
+                        },
+                        {
+                            "Condition": "{Season.LineupsBasedType, Converter=StringEquals, Parameter=Cars}",
+                            "ConditionAnd": "{sta13}",
+                            "Property": "Background",
+                            "Value": "{{CarChampBG}}"
+                        },
+                        {
+                            "Condition": "{Item.{{{Type}}}.Name, Converter=EmptyObjectToTrue}",
+                            "ConditionAnd": "{sta13}",
+                            "Property": "Background",
+                            "Value": "{{ReserveStandardRendersColouredBG}}"
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "dock",
+                    "Orientation": "Horizontal",
+                    "Height": 202,
+                    "Width": 200,
+                    "HorizontalAlignment": "Right",
+                    "Items": [
+                        {
+                            "BlockType": "stack",
+                            "HorizontalAlignment": "Center",
+                            "VerticalAlignment": "Center",
+                            "Spacing": 10,
+                            "Items": [
+                                {
+                                    "BlockType": "image",
+                                    "RenderIf": "{Item.PositionJump, Converter=NumberNotEquals, Parameter=0}",
+                                    "Source": "arrows/arrow_up.png",
+                                    "Height": 50,
+                                    "VerticalAlignment": "Center",
+                                    "HorizontalAlignment": "Center",
+                                    "Triggers": [
+                                        {
+                                            "Condition": "{Item.PositionJump, Converter=NumberLess, Parameter=0}",
+                                            "Property": "Source",
+                                            "Value": "arrows/arrow_down.png"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "BlockType": "text",
+                                    "Source": "{Item.PositionJump, Converter=NumberAbs}",
+                                    "FontName": "{FontNameBlack}",
+                                    "FontSize": 70,
+                                    "MarginTop": 6,
+                                    "Foreground": "{Black}",
+                                    "HorizontalAlignment": "Center",
+                                    "VerticalAlignment": "Center",
+                                    "Triggers": [
+                                        {
+                                            "Condition": "{Item.PositionJump, Converter=NumberEquals, Parameter=0}",
+                                            "Property": "Source",
+                                            "Value": "-"
+                                        },
+                                        {
+                                            "Condition": "{Item.PositionJump, Converter=NumberGreater, Parameter=0}",
+                                            "ConditionAnd": "{PosJumpColour}",
+                                            "Property": "Foreground",
+                                            "Value": "{PosStandingsIncreaseFG}"
+                                        },
+                                        {
+                                            "Condition": "{Item.PositionJump, Converter=NumberLess, Parameter=0}",
+                                            "ConditionAnd": "{PosJumpColour}",
+                                            "Property": "Foreground",
+                                            "Value": "{PosDecreaseFG}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.Position, Converter=NumberIsOdd}",
+                            "Property": "Background",
+                            "Value": "F0F0F0"
+                        },
+                        {
+                            "Condition": "{Item.Position, Converter=NumberIsEven}",
+                            "Property": "Background",
+                            "Value": "E4E4E4"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "BlockType": "shape",
+            "RenderIf": "{Item.Position, Converter=NumberNotEquals, Parameter={g6}}",
+            "WidthPercent": 100,
+            "Height": 8,
+            "ShapeOptions": {
+                "Fill": "{White}"
+            }
+        }
+    ]
+}

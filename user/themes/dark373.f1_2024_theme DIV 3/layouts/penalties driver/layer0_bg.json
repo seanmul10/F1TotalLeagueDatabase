@@ -1,0 +1,13 @@
+{
+    "BlockRoot": {
+        "Name": "root",
+        "BlockType": "stack",
+        "Items": [
+            {
+                "Name": "bg",
+                "BlockType": "image", 
+                "Source": "bg.png"
+            }
+        ]
+    }
+}

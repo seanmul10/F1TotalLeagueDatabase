@@ -1,0 +1,355 @@
+{
+    "BlockRoot": {
+        "BlockType": "stack",
+        "Orientation": "Vertical",
+        "Items": [
+            {
+                "BlockType": "stack",
+                "BackgroundImage": "DriverStatCard.bg.png",
+                "Height": 2048,
+                "Width": 1573,
+                "Orientation": "Vertical",
+                "ColorizeBackground": {
+                    "Enabled": true,
+                    "Color": "{RatingBG}"
+                },
+                "Items": [
+                    {
+                        "BlockType": "stack",
+                        "HorizontalAlignment": "Center",
+                        "Margin": "0,100,0,-1700",
+                        "Items": [
+                            {
+                                "BlockType": "image",
+                                "Source": "{DriverInfo.Driver.LogotypePath}",
+                                "Height": 1600,
+                                "Padding": "-300,0",
+                                "Triggers": [
+                                    {
+                                        "Condition": "{g3, Converter=StringEquals, Parameter=Custom Avatars}",
+                                        "ConditionAnd": "{DriverInfo.Driver.LogotypePath, Converter=EmptyObjectToTrue}",
+                                        "Property": "Source",
+                                        "Value": "avatars/placeholder1.png"
+                                    },
+                                    {
+                                        "Condition": "{g3, Converter=StringNotEquals, Parameter=Custom Avatars}",
+                                        "Setters": [
+                                            {
+                                                "Property": "Source",
+                                                "Value": "{DriverInfo.Team.DarkLogotypePath}"
+                                            },
+                                            {
+                                                "Property": "Height",
+                                                "Value": 600
+                                            },
+                                            {
+                                                "Property": "Margin",
+                                                "Value": "100,450,0,550"
+                                            },
+                                            {
+                                                "Property": "Padding",
+                                                "Value": "0,0"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "Condition": "{g3, Converter=StringEquals, Parameter=No Avatars}",
+                                        "Property": "Source",
+                                        "Value": "avatars/placeholder1.png"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Orientation": "Vertical",
+                        "Margin": "0,0,0,100",
+                        "Width": 1320,
+                        "Items": [
+                            {
+                                "BlockType": "dock",
+                                "Margin": "120,0,0,0",
+                                "ColorizeBackground": {
+                                    "Enabled": true,
+                                    "Color": "{White}"
+                                },
+                                "HorizontalAlignment": "Center",
+                                "Items": [
+                                    {
+                                        "BlockType": "stack",
+                                        "Orientation": "Vertical",
+                                        "Items": [
+                                            {
+                                                "BlockType": "stack",
+                                                "Spacing": -25,
+                                                "Orientation": "Vertical",
+                                                "VerticalAlignment": "Top",
+                                                "Items": [
+                                                    {
+                                                        "BlockType": "text",
+                                                        "Source": "[RTG]",
+                                                        "Style": "NameBlack1",
+                                                        "Foreground": "{RatingNameFG}",
+                                                        "FontName": "Compacta-Bold",
+                                                        "FontSize": 120
+                                                    },
+                                                    {
+                                                        "BlockType": "text",
+                                                        "Source": "{RTG}",
+                                                        "Style": "NameBlack1",
+                                                        "Foreground": "{RatingNumberFG}",
+                                                        "FontName": "Compacta-Bold",
+                                                        "FontSize": 350
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "BlockType": "image",
+                                                "MarginTop": 100,
+                                                "Source": "{DriverInfo.Driver.Nationality.LogotypePath}",
+                                                "Background": "{Black}",
+                                                "Padding": "1,-29",
+                                                "Height": 180,
+                                                "Triggers": [
+                                                    {
+                                                        "Condition": "{name1, Converter=StringNotEquals, Parameter=Full Name}",
+                                                        "ConditionOr": "{DriverInfo.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                                        "Property": "MarginTop",
+                                                        "Value": 320
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "BlockType": "stack",
+                                                "Spacing": -30,
+                                                "Orientation": "Vertical",
+                                                "Items": [
+                                                    {
+                                                        "BlockType": "text",
+                                                        "Source": "{DriverInfo.Driver.{name1}, Converter=StringToUpperString}",
+                                                        "Style": "NameBlack1",
+                                                        "FontSize": "{RatingsNameFS}",
+                                                        "FontName": "Compacta-Bold",
+                                                        "Foreground": "{Black}",
+                                                        "Triggers": [
+                                                            {
+                                                                "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                                "Property": "Source",
+                                                                "Value": "{DriverInfo.Driver.Name, Converter=StringToUpperString}"
+                                                            },
+                                                            {
+                                                                "Condition": "{name1, Converter=StringEquals, Parameter=Name}",
+                                                                "ConditionOr": "{name1, Converter=StringEquals, Parameter=RealName}",
+                                                                "ConditionOr": "{name1, Converter=StringEquals, Parameter=InGameName}",
+                                                                "ConditionAnd": "{name3, Converter=BoolReverse}",
+                                                                "Property": "Source",
+                                                                "Value": "{DriverInfo.Driver.{name1}}"
+                                                            },
+                                                            {
+                                                                "Condition": "{name2}",
+                                                                "ConditionAnd": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                                "Property": "Source",
+                                                                "Value": "{DriverInfo.Driver.RealName, Converter=StringToUpperString}"
+                                                            },
+                                                            {
+                                                                "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                                "ConditionAnd": "{DriverInfo.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                                                "Property": "Source",
+                                                                "Value": "{DriverInfo.Driver.Name, Converter=StringToUpperString}"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "BlockType": "text",
+                                                        "RenderIf": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                        "Source": "{DriverInfo.Driver.RealName, Converter=StringToUpperString}",
+                                                        "Style": "NameBlack1",
+                                                        "FontSize": "{RatingsNameFS}",
+                                                        "FontName": "Compacta-Bold",
+                                                        "Foreground": "{Black}",
+                                                        "Triggers": [
+                                                            {
+                                                                "Condition": "{name2}",
+                                                                "Property": "Source",
+                                                                "Value": "{DriverInfo.Driver.Name, Converter=StringToUpperString}"
+                                                            },
+                                                            {
+                                                                "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                                "ConditionAnd": "{DriverInfo.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                                                "Property": "RenderIf",
+                                                                "Value": false
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "Name": "Ratings",
+                                                "MarginTop": 50,
+                                                "Spacing": 50,
+                                                "BlockType": "stack",
+                                                "HorizontalAlignment": "Left",
+                                                "Items": [
+                                                    {
+                                                        "BlockType": "stack",
+                                                        "Spacing": -15,
+                                                        "Orientation": "Vertical",
+                                                        "Items": [
+                                                            {
+                                                                "BlockType": "text",
+                                                                "Source": "[EXP]",
+                                                                "Style": "NameBlack1",
+                                                                "Foreground": "{RatingNameFG}",
+                                                                "FontName": "Compacta-Bold",
+                                                                "FontSize": 80
+                                                            },
+                                                            {
+                                                                "BlockType": "text",
+                                                                "Source": "{EXP}",
+                                                                "Style": "NameBlack1",
+                                                                "Foreground": "{RatingNumberFG}",
+                                                                "FontName": "Compacta-Bold",
+                                                                "FontSize": 200
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "BlockType": "stack",
+                                                        "Spacing": -15,
+                                                        "Orientation": "Vertical",
+                                                        "Items": [
+                                                            {
+                                                                "BlockType": "text",
+                                                                "Source": "[RAC]",
+                                                                "Style": "NameBlack1",
+                                                                "Foreground": "{RatingNameFG}",
+                                                                "FontName": "Compacta-Bold",
+                                                                "FontSize": 80
+                                                            },
+                                                            {
+                                                                "BlockType": "text",
+                                                                "Source": "{RAC}",
+                                                                "Style": "NameBlack1",
+                                                                "Foreground": "{RatingNumberFG}",
+                                                                "FontName": "Compacta-Bold",
+                                                                "FontSize": 200
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "BlockType": "stack",
+                                                        "Spacing": -15,
+                                                        "Orientation": "Vertical",
+                                                        "Items": [
+                                                            {
+                                                                "BlockType": "text",
+                                                                "Source": "[AWA]",
+                                                                "Style": "NameBlack1",
+                                                                "Foreground": "{RatingNameFG}",
+                                                                "FontName": "Compacta-Bold",
+                                                                "FontSize": 80
+                                                            },
+                                                            {
+                                                                "BlockType": "text",
+                                                                "Source": "{AWA}",
+                                                                "Style": "NameBlack1",
+                                                                "Foreground": "{RatingNumberFG}",
+                                                                "FontName": "Compacta-Bold",
+                                                                "FontSize": 200
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "BlockType": "stack",
+                                                        "Spacing": -15,
+                                                        "Orientation": "Vertical",
+                                                        "Items": [
+                                                            {
+                                                                "BlockType": "text",
+                                                                "Source": "[PAC]",
+                                                                "Style": "NameBlack1",
+                                                                "Foreground": "{RatingNameFG}",
+                                                                "FontName": "Compacta-Bold",
+                                                                "FontSize": 80
+                                                            },
+                                                            {
+                                                                "BlockType": "text",
+                                                                "Source": "{PAC}",
+                                                                "Style": "NameBlack1",
+                                                                "Foreground": "{RatingNumberFG}",
+                                                                "FontName": "Compacta-Bold",
+                                                                "FontSize": 200
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "Triggers": [
+                                    {
+                                        "Condition": "{g3, Converter=StringNotEquals, Parameter=No Avatars}",
+                                        "Property": "BackgroundImage",
+                                        "Value": "components/driver.stat.gradient.png"
+                                    }
+                                ]
+                            },
+                            {
+                                "BlockType": "dock",
+                                "Margin": "180,0,0,0",
+                                "Height": 220,
+                                "Spacing": 20,
+                                "Items": [
+                                    {
+                                        "Name": "LeagueLogo",
+                                        "BlockType": "image",
+                                        "Height": "{g4}",
+                                        "Source": "{Season.LeagueInfo.LeagueLogo}",
+                                        "VerticalAlignment": "Center",
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Season.LeagueInfo.LeagueLogo, Converter=EmptyObjectToTrue}",
+                                                "Setters": [
+                                                    {
+                                                        "Property": "Source",
+                                                        "Value": "logotypes/f1_logo.png"
+                                                    },
+                                                    {
+                                                        "Property": "Height",
+                                                        "Value": 55
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "text",
+                                        "Source": "{Season.Name, Converter=StringToUpperString}",
+                                        "Style": "NameBlack1",
+                                        "Foreground": "{RatingNumberFG}",
+                                        "FontName": "Compacta-Bold",
+                                        "FontSize": 60,
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{g5, Converter=StringEquals, Parameter=Category Name}",
+                                                "Property": "Source",
+                                                "Value": "{Season.MainLeagueCategory.Name, Converter=StringToUpperString}"
+                                            },
+                                            {
+                                                "Condition": "{g5, Converter=StringEquals, Parameter=Category Short Name}",
+                                                "Property": "Source",
+                                                "Value": "{Season.MainLeagueCategory.ShortName, Converter=StringToUpperString}"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
