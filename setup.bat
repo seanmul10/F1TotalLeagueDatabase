@@ -39,7 +39,7 @@ REM Create the directory junction
 mklink /J "%TARGET%" "%SOURCE%"
 
 @echo off
-echo Installing Git hook...
+echo Installing Git pre-commit hook...
 
 REM Ensure we're in a Git repo
 if not exist ".git" (
@@ -53,8 +53,11 @@ if not exist ".git\hooks" (
     mkdir ".git\hooks"
 )
 
-REM Copy the tracked hook into the actual hook location
-copy /Y "scripts\pre-commit.bat" ".git\hooks\pre-commit.bat" >nul
+REM Remove any old/broken hook variants
+if exist ".git\hooks\pre-commit.bat" del ".git\hooks\pre-commit.bat"
+
+REM Install/overwrite the actual hook (Git expects the name 'pre-commit' with no extension)
+copy /Y "scripts\pre-commit.hook" ".git\hooks\pre-commit" >nul
 
 echo Git pre-commit hook installed successfully.
 

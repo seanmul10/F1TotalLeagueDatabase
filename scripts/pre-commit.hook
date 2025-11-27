@@ -1,0 +1,10 @@
+#!/bin/sh
+# Git pre-commit hook wrapper to dump SQLite DB
+
+# Find repo root
+REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || echo ".")
+cd "$REPO_ROOT" || exit 1
+
+# Call the Windows batch script that does the real work
+cmd.exe /C "scripts\\pre-commit.bat"
+exit $?
