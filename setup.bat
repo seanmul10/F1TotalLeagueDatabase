@@ -54,13 +54,13 @@ if not exist ".git\hooks" (
 )
 
 REM Remove any old/broken hook variants
+if exist ".git\hooks\pre-commit" del ".git\hooks\pre-commit"
 if exist ".git\hooks\pre-commit.bat" del ".git\hooks\pre-commit.bat"
 
-REM Install/overwrite the actual hook (Git expects the name 'pre-commit' with no extension)
+REM Install/overwrite the actual hook (Git expects the name 'pre-commit')
 copy /Y "scripts\pre-commit.hook" ".git\hooks\pre-commit" >nul
 
 echo Git pre-commit hook installed successfully.
-
 echo.
 echo Done.
 pause
