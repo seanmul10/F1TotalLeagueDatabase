@@ -1,1 +1,3 @@
 themes_path.txt
+*.db-wal
+*.db-shm
