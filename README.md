@@ -1,2 +1,4 @@
 # F1TotalLeagueDatabase
 Repo for the Racing League Tools database used for the F1Total divisions.
+
+After cloning for the first time, make sure to set the path your RacingLeagueTools installation expects the themes folder to be. For example, "C:\Users\me\Downloads\RacingLeagueTools\user\themes".
