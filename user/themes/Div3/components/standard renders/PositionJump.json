@@ -1,0 +1,72 @@
+{
+    "ComponentName": "PositionJump",
+    "BlockType": "dock",
+    "Width": 70,
+    "Items": [
+        {
+            "BlockType": "stack",
+            "PaddingLeft": 10,
+            "PaddingRight": 10,
+            "HorizontalAlignment": "Center",
+            "VerticalAlignment": "Center",
+            "Items": [
+                {
+                    "BlockType": "image",
+                    "RenderIf": "{Item.PositionJump, Converter=NumberGreater, Parameter=0}",
+                    "Source": "<source0>",
+                    "HorizontalAlignment": "Center",
+                    "VerticalAlignment": "Center",
+                    "Height": 12
+                },
+                {
+                    "BlockType": "image",
+                    "RenderIf": "{Item.PositionJump, Converter=NumberEquals, Parameter=0}",
+                    "Source": "<source1>",
+                    "HorizontalAlignment": "Center",
+                    "VerticalAlignment": "Center",
+                    "Height": 12
+                },
+                {
+                    "BlockType": "image",
+                    "RenderIf": "{Item.PositionJump, Converter=NumberLess, Parameter=0}",
+                    "Source": "<source2>",
+                    "HorizontalAlignment": "Center",
+                    "VerticalAlignment": "Center",
+                    "Height": 12
+                },
+                {
+                    "BlockType": "text",
+                    "MarginLeft": 10,
+                    "MarginTop": 3,
+                    "Source": "{Item.PositionJump, Converter=NumberAbs}",
+                    "HorizontalAlignment": "Center",
+                    "VerticalAlignment": "Center",
+                    "Foreground": "{SessionFG}",
+                    "FontSize": 20,
+                    "TextOptions": {
+                        "HorizontalAlignment": "Center"
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.PositionJump, Converter=NumberGreater, Parameter=0}",
+                            "ConditionAnd": "{PosJumpColour}",
+                            "Property": "Foreground",
+                            "Value": "{PosIncreaseFG}"
+                        },
+                        {
+                            "Condition": "{Item.PositionJump, Converter=NumberLess, Parameter=0}",
+                            "ConditionAnd": "{PosJumpColour}",
+                            "Property": "Foreground",
+                            "Value": "{PosDecreaseFG}"
+                        },
+                        {
+                            "Condition": "{Item.Position, Converter=NumberEquals, Parameter=1}",
+                            "Property": "Foreground",
+                            "Value": "{SessionP1FG}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

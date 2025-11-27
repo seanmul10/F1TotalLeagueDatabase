@@ -1,0 +1,101 @@
+{
+    "ComponentName": "HeaderBlockCalendar",
+    "VerticalAlignment": "Center",
+    "MarginLeft": 10,
+    "BlockType": "dock",
+    "Orientation": "Horizontal",
+    "Items": [
+        //headerLeft
+        {
+            "BlockType": "stack",
+            "Orientation": "Vertical",
+            "Spacing": -10,
+            "HorizontalAlignment": "Left",
+            "Items": [
+                {
+                    "Name": "f1-logo",
+                    "MarginBottom": 20,
+                    "BlockType": "image",
+                    "Height": "55",
+                    "HorizontalAlignment": "Left",
+                    "Source": "logotypes/f1_logo.png",
+                    "RenderIf": "{Season.LeagueInfo.LeagueLogo, Converter=EmptyObjectToTrue}"
+                },
+                {
+                    "Name": "LeagueLogo",
+                    "MarginBottom": 20,
+                    "BlockType": "image",
+                    "Height": "{g4}",
+                    "Width": "auto",
+                    "HorizontalAlignment": "Left",
+                    "Source": "{Season.LeagueInfo.LeagueLogo}",
+                    "RenderIf": "{Season.LeagueInfo.LeagueLogo, Converter=EmptyObjectToFalse}"
+                },
+                //league name
+                {
+                    "BlockType": "stack",
+                    "VerticalAlignment": "Center",
+                    "Items": [
+                        {
+                            "BlockType": "text",
+                            "VerticalAlignment": "Center",
+                            "Source": "{Season.Name, Converter=StringToUpperString}",
+                            "FontName": "{FontNameBlack}",
+                            "FontSize": "{cal3}",
+                            "Foreground": "{White}",
+                            "Triggers": [
+                                {
+                                    "Condition": "{cal1, Converter=BoolReverse}",
+                                    "Property": "FontSize",
+                                    "Value": "{cal3, Converter=NumberSubtract, Parameter=5}"
+                                },
+                                {
+                                    "Condition": "{g5, Converter=StringEquals, Parameter=Category Name}",
+                                    "Property": "Source",
+                                    "Value": "{Season.MainLeagueCategory.Name, Converter=StringToUpperString}"
+                                },
+                                {
+                                    "Condition": "{g5, Converter=StringEquals, Parameter=Category Short Name}",
+                                    "Property": "Source",
+                                    "Value": "{Season.MainLeagueCategory.ShortName, Converter=StringToUpperString}"
+                                },
+                                {
+                                    "Condition": "{g1, Converter=StringNotEquals, Parameter=Custom Colour}",
+                                    "Property": "Foreground",
+                                    "Value": "{{SeasonNameColouredFG}}"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                //second line
+                {
+                    "Name": "headerSessionLine",
+                    "BlockType": "stack",
+                    "VerticalAlignment": "Center",
+                    "Items": [
+                        {
+                            "BlockType": "text",
+                            "Foreground": "{Black}",
+                            "FontSize": "{cal3}",
+                            "FontName": "{FontNameBlack}",
+                            "Source": "[CALENDAR]",
+                            "Triggers": [
+                                {
+                                    "Condition": "{g1, Converter=StringNotEquals, Parameter=Light}",
+                                    "Property": "Foreground",
+                                    "Value": "{White}"
+                                },
+                                {
+                                    "Condition": "{cal1, Converter=BoolReverse}",
+                                    "Property": "FontSize",
+                                    "Value": "{cal3, Converter=NumberSubtract, Parameter=5}"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

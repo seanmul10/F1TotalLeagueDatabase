@@ -1,0 +1,293 @@
+{
+    "ComponentName": "ScheduleEvents",
+    "BlockType": "dock",
+    "Height": 56,
+    "Width": "*",
+    "Items": [
+        {
+            "BlockType": "stack",
+            "VerticalAlignment": "Center",
+            "Items": [
+                {
+                    "Name": "Round Count",
+                    "BlockType": "dock",
+                    "BackgroundImage": "components/event.schedule.png",
+                    "Width": 106,
+                    "Height": 56,
+                    "VerticalAlignment": "Center",
+                    "ColorizeBackground": {
+                        "Enabled": true,
+                        "Color": "{{RoundCountBG}}"
+                    },
+                    "Items": [
+                        {
+                            "BlockType": "text",
+                            "MarginTop": 3,
+                            "HorizontalAlignment": "Center",
+                            "VerticalAlignment": "Center",
+                            "Source": "R{Item.Position, Converter=NumberSubtract, Parameter={Season.SeasonOverallNumberEvents, Converter=NumberSubtract, Parameter={Season.SeasonOverallNumberEventsExcludingNonChampionship}}}",
+                            "Foreground": "{RoundCountFG}",
+                            "FontName": "{FontNameBlack}",
+                            "FontSize": 35,
+                            "Triggers": [
+                                {
+                                    "Condition": "{Item.IsChampionshipStatus, Converter=BoolReverse}",
+                                    "Property": "Source",
+                                    "Value": "[PRE]"
+                                },
+                                {
+                                    "Condition": "{Item.CompletedStatus, Converter=StringEquals, Parameter=completed}",
+                                    "Property": "Foreground",
+                                    "Value": "{RoundCountCompletedStatusFG}"
+                                }
+                            ]
+                        }
+                    ],
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.CompletedStatus, Converter=StringEquals, Parameter=completed}",
+                            "Property": "ColorizeBackground.Color",
+                            "Value": "{RoundCountCompletedStatusBG}"
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "stack",
+                    "Background": "{Black}",
+                    "Items": [
+                        {
+                            "Name": "Nation Flag",
+                            "BlockType": "image",
+                            "Height": 84,
+                            "VerticalAlignment": "Center",
+                            "HorizontalAlignment": "Left",
+                            "ImageOptions": {
+                                "Path": "{Item.Track.Nation.LogotypePath}"
+                            },
+                            "Triggers": [
+                                {
+                                    "Condition": "{Item.Track.Name, Converter=StringEquals, Parameter=TBC}",
+                                    "Property": "ImageOptions.Path",
+                                    "Value": "flags/tbc.png"
+                                },
+                                {
+                                    "Trigger": "Flags"
+                                },
+                                {
+                                    "Condition": "{Item.CompletedStatus, Converter=StringEquals, Parameter=completed}",
+                                    "Property": "Opacity",
+                                    "Value": 40
+                                },
+                                {
+                                    "Condition": "{Item.Track.Nation.LogotypePath, Converter=EmptyObjectToTrue}",
+                                    "Property": "ImageOptions.Path",
+                                    "Value": "avatars/placeholder1.png"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "BlockType": "stack",
+            "HorizontalAlignment": "Left",
+            "VerticalAlignment": "Center",
+            "Width": "*",
+            "Height": 56,
+            "Background": "{ScheduleCalendarTheme}",
+            "PaddingLeft": 20,
+            "Items": [
+                {
+                    "Name": "Date",
+                    "BlockType": "text",
+                    "Padding": "0,5",
+                    "Width": 180,
+                    "MarginTop": 3,
+                    "HorizontalAlignment": "Left",
+                    "VerticalAlignment": "Center",
+                    "Source": "[{Item.DateLocal, Converter=DateCustomFormat, Parameter=dd} [{Item.DateLocal, Converter=DateToMonthInWords}]]",
+                    "FontName": "{FontNameItalic}",
+                    "FontSize": 23,
+                    "Foreground": "{ScheduleCalendarMainFG}",
+                    "Triggers": [
+                        {
+                            "Condition": "{g1, Converter=StringEquals, Parameter=Light}",
+                            "Property": "Foreground",
+                            "Value": "{White}"
+                        },
+                        {
+                            "Condition": "{Item.CompletedStatus, Converter=StringEquals, Parameter=completed}",
+                            "Property": "Foreground",
+                            "Value": "{RoundCountCompletedStatusFG}"
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "dock",
+                    "MarginTop": 3,
+                    "VerticalAlignment": "Center",
+                    "Items": [
+                        {
+                            "Name": "CircuitName",
+                            "BlockType": "text",
+                            "Padding": "0,5",
+                            "HorizontalAlignment": "Left",
+                            "VerticalAlignment": "Center",
+                            "Source": "[{Item.Track.CircuitName, converter=StringToUpperString}]",
+                            "FontName": "{FontNameBold}",
+                            "FontSize": 23,
+                            "Foreground": "{{CountryNameFG}}",
+                            "Triggers": [
+                                {
+                                    "Condition": "{Item.CompletedStatus, Converter=StringEquals, Parameter=completed}",
+                                    "Property": "Foreground",
+                                    "Value": "{CountryNameCompletedStatusFG}"
+                                }
+                            ]
+                        },
+                        {
+                            "BlockType": "stack",
+                            "Margin": "120,0,0,0",
+                            "VerticalAlignment": "Center",
+                            "HorizontalAlignment": "Center",
+                            "Spacing": 20,
+                            "Items": [
+                                {
+                                    "Name": "Date 2",
+                                    "BlockType": "text",
+                                    "Padding": "2,5",
+                                    "HorizontalAlignment": "Center",
+                                    "VerticalAlignment": "Center",
+                                    "Source": "{Item.DateLocal, Converter=DateCustomFormat, Parameter={CalDateFormat}}",
+                                    "FontName": "{FontNameItalic}",
+                                    "FontSize": 23,
+                                    "Foreground": "{ScheduleCalendarMainFG}",
+                                    "Triggers": [
+                                        {
+                                            "Condition": "{g1, Converter=StringEquals, Parameter=Light}",
+                                            "Property": "Foreground",
+                                            "Value": "{White}"
+                                        },
+                                        {
+                                            "Condition": "{Item.CompletedStatus, Converter=StringEquals, Parameter=completed}",
+                                            "Property": "Foreground",
+                                            "Value": "{RoundCountCompletedStatusFG}"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Name": "Time",
+                                    "BlockType": "text",
+                                    "Padding": "0,5",
+                                    "Width": 90,
+                                    "HorizontalAlignment": "Center",
+                                    "VerticalAlignment": "Center",
+                                    "Source": "{Item.DateLocal, Converter=DateCustomFormat, Parameter={CalTimeFormat}}",
+                                    "FontName": "{FontNameItalic}",
+                                    "FontSize": 23,
+                                    "Foreground": "{ScheduleCalendarMainFG}",
+                                    "Triggers": [
+                                        {
+                                            "Condition": "{g1, Converter=StringEquals, Parameter=Light}",
+                                            "Property": "Foreground",
+                                            "Value": "{White}"
+                                        },
+                                        {
+                                            "Condition": "{Item.CompletedStatus, Converter=StringEquals, Parameter=completed}",
+                                            "Property": "Foreground",
+                                            "Value": "{RoundCountCompletedStatusFG}"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Name": "Circuit Length",
+                                    "RenderIf": "{CalCircuitInfo}",
+                                    "BlockType": "text",
+                                    "Padding": "2,5",
+                                    "Width": 120,
+                                    "HorizontalAlignment": "Center",
+                                    "VerticalAlignment": "Center",
+                                    "Source": "{Item.Track.Length, Converter=NumberGroupWithSeparator, Parameter=.}km",
+                                    "FontName": "{FontNameItalic}",
+                                    "FontSize": 23,
+                                    "Foreground": "{ScheduleCalendarMainFG}",
+                                    "Triggers": [
+                                        {
+                                            "Condition": "{g1, Converter=StringEquals, Parameter=Light}",
+                                            "Property": "Foreground",
+                                            "Value": "{White}"
+                                        },
+                                        {
+                                            "Condition": "{Item.CompletedStatus, Converter=StringEquals, Parameter=completed}",
+                                            "Property": "Foreground",
+                                            "Value": "{RoundCountCompletedStatusFG}"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Name": "Circuit Record Time",
+                                    "RenderIf": "{CalCircuitInfo}",
+                                    "BlockType": "text",
+                                    "Padding": "2,5",
+                                    "Width": 120,
+                                    "HorizontalAlignment": "Center",
+                                    "VerticalAlignment": "Center",
+                                    "Source": "{Item.Track.RaceLapRecordTime}",
+                                    "FontName": "{FontNameItalic}",
+                                    "FontSize": 23,
+                                    "Foreground": "{ScheduleCalendarMainFG}",
+                                    "Triggers": [
+                                        {
+                                            "Condition": "{g1, Converter=StringEquals, Parameter=Light}",
+                                            "Property": "Foreground",
+                                            "Value": "{White}"
+                                        },
+                                        {
+                                            "Condition": "{Item.CompletedStatus, Converter=StringEquals, Parameter=completed}",
+                                            "Property": "Foreground",
+                                            "Value": "{RoundCountCompletedStatusFG}"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Name": "Circuit Record Driver",
+                                    "RenderIf": "{CalCircuitInfo}",
+                                    "BlockType": "text",
+                                    "Padding": "2,5",
+                                    "Width": "{ScheduleRecordDriverLineWidth}",
+                                    "HorizontalAlignment": "Left",
+                                    "VerticalAlignment": "Center",
+                                    "Source": "{Item.Track.RaceLapRecordDriverName}",
+                                    "FontName": "{FontNameItalic}",
+                                    "FontSize": 23,
+                                    "Foreground": "{ScheduleCalendarMainFG}",
+                                    "Triggers": [
+                                        {
+                                            "Condition": "{g1, Converter=StringEquals, Parameter=Light}",
+                                            "Property": "Foreground",
+                                            "Value": "{White}"
+                                        },
+                                        {
+                                            "Condition": "{Item.CompletedStatus, Converter=StringEquals, Parameter=completed}",
+                                            "Property": "Foreground",
+                                            "Value": "{RoundCountCompletedStatusFG}"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "Triggers": [
+                {
+                    "Condition": "{g1, Converter=StringEquals, Parameter=Light}",
+                    "ConditionOr": "{Item.CompletedStatus, Converter=StringEquals, Parameter=completed}",
+                    "Property": "Background",
+                    "Value": "{DarkenedCalendarTheme}"
+                }
+            ]
+        }
+    ]
+}

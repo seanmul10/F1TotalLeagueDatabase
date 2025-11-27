@@ -1,0 +1,81 @@
+[
+    {
+        "TriggerName": "Name1",
+        "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+        "Property": "Source",
+        "Value": "{Item.Driver.Name, Converter=StringToUpperString}"
+    },
+    {
+        "TriggerName": "Name2",
+        "Condition": "{name1, Converter=StringEquals, Parameter=Name}",
+        "ConditionOr": "{name1, Converter=StringEquals, Parameter=RealName}",
+        "ConditionOr": "{name1, Converter=StringEquals, Parameter=InGameName}",
+        "ConditionAnd": "{name3, Converter=BoolReverse}",
+        "Property": "Source",
+        "Value": "{Item.Driver.{name1}}"
+    },
+    {
+        "TriggerName": "Name3",
+        "Condition": "{name2}",
+        "ConditionAnd": "{name1, Converter=StringEquals, Parameter=Full Name}",
+        "Property": "Source",
+        "Value": "{Item.Driver.RealName, Converter=StringToUpperString}"
+    },
+    {
+        "TriggerName": "Name4",
+        "Condition": "{name2}",
+        "Property": "Source",
+        "Value": "{Item.Driver.Name, Converter=StringToUpperString}"
+    },
+    {
+        "TriggerName": "PodName1",
+        "Condition": "{podname1, Converter=StringEquals, Parameter=Full Name}",
+        "Property": "Source",
+        "Value": "{Item.Driver.Name, Converter=StringToUpperString}"
+    },
+    {
+        "TriggerName": "PodName2",
+        "Condition": "{podname1, Converter=StringEquals, Parameter=Name}",
+        "ConditionOr": "{podname1, Converter=StringEquals, Parameter=RealName}",
+        "ConditionOr": "{podname1, Converter=StringEquals, Parameter=InGameName}",
+        "ConditionAnd": "{name3, Converter=BoolReverse}",
+        "Property": "Source",
+        "Value": "{Item.Driver.{podname1}}"
+    },
+    {
+        "TriggerName": "PodName3",
+        "Condition": "{name2}",
+        "ConditionAnd": "{podname1, Converter=StringEquals, Parameter=Full Name}",
+        "Property": "Source",
+        "Value": "{Item.Driver.RealName, Converter=StringToUpperString}"
+    },
+    //default
+    {
+        "TriggerName": "DefaultName1",
+        "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+        "Property": "Source",
+        "Value": "{Item.Driver.Name}"
+    },
+    {
+        "TriggerName": "DefaultName2",
+        "Condition": "{name1, Converter=StringEquals, Parameter=Name}",
+        "ConditionOr": "{name1, Converter=StringEquals, Parameter=RealName}",
+        "ConditionOr": "{name1, Converter=StringEquals, Parameter=InGameName}",
+        "ConditionAnd": "{name3, Converter=BoolReverse}",
+        "Property": "Source",
+        "Value": "{Item.Driver.{name1}}"
+    },
+    {
+        "TriggerName": "DefaultName3",
+        "Condition": "{name2}",
+        "ConditionAnd": "{name1, Converter=StringEquals, Parameter=Full Name}",
+        "Property": "Source",
+        "Value": "{Item.Driver.RealName}"
+    },
+    {
+        "TriggerName": "DefaultName4",
+        "Condition": "{name2}",
+        "Property": "Source",
+        "Value": "{Item.Driver.Name, Converter=StringToUpperString}"
+    }
+]

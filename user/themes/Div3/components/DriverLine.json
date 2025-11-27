@@ -1,0 +1,87 @@
+{
+    "ComponentName": "DriverLine",
+    "BlockType": "dock",
+    "VerticalAlignment": "Center",
+    "MarginTop": 8,
+    "Items": [
+        {
+            "BlockType": "stack",
+            "Spacing": 12,
+            "HorizontalAlignment": "<Halign>",
+            "VerticalAlignment": "Center",
+            "Items": [
+                {
+                    "BlockType": "image",
+                    "RenderIf": "<render>",
+                    "Style": "<flagstyle>",
+                    "ImageOptions": {
+                        "Path": "{Item.Driver.Nationality.LogotypePath}"
+                    },
+                    "Triggers": [
+                        {
+                            "Trigger": "Flags"
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "text",
+                    "Style": "<style1>",
+                    "Foreground": "<fg1>",
+                    "Height": "*",
+                    "Source": "{Item.Driver.{name1}, Converter=StringToUpperString}",
+                    "Triggers": [
+                        {
+                            "Trigger": "Name1"
+                        },
+                        {
+                            "Trigger": "Name2"
+                        },
+                        {
+                            "Trigger": "Name3"
+                        },
+                        {
+                            "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                            "ConditionAnd": "{Item.Driver.RealName, Converter=EmptyObjectToTrue}",
+                            "Property": "Source",
+                            "Value": "{Item.Driver.Name, Converter=StringToUpperString}"
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "text",
+                    "Padding": "0,1",
+                    "RenderIf": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                    "Style": "<style2>",
+                    "Height": "*",
+                    "Foreground": "<fg2>",
+                    "Source": "{Item.Driver.RealName, Converter=StringToUpperString}",
+                    "Triggers": [
+                        {
+                            "Trigger": "Name4"
+                        },
+                        {
+                            "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                            "ConditionAnd": "{Item.Driver.RealName, Converter=EmptyObjectToTrue}",
+                            "Property": "RenderIf",
+                            "Value": false
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "itemstack",
+                    "Spacing": 5,
+                    "VerticalAlignment": "Center",
+                    "MarginTop": -4,
+                    "ItemStackOptions": {
+                        "ItemSource": "{Item.Driver.BadgeImages}",
+                        "ItemTemplate": {
+                            "BlockType": "image",
+                            "Height": 70,
+                            "Source": "{Item}"
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,50 @@
+{
+    "ComponentName": "DataTableColumn",
+    "Width": "<w>",
+    "Height": 210,
+    "BlockType": "stack",
+    "HorizontalAlignment": "Center",
+    "VerticalAlignment": "Center",
+    "Orientation": "Vertical",
+    "Items": [
+        {
+            "BlockType": "stack",
+            "Height": 210,
+            "HorizontalAlignment": "Center",
+            "Orientation": "Vertical",
+            "Items": [
+                {
+                    "BlockType": "text",
+                    "Source": "<source>",
+                    "Opacity": "<opacity>",
+                    "Padding": "<padding>",
+                    "Width": "<w>",
+                    "Height": 210,
+                    "Style": "NameBlackDataTable",
+                    "Foreground": "<fg>"
+                }
+            ]
+        },
+        {
+            "BlockType": "shape",
+            "RenderIf": "{Item.Position, Converter=NumberNotEquals, Parameter={g6}}",
+            "WidthPercent": 100,
+            "Height": 8,
+            "ShapeOptions": {
+                "Fill": "{White}"
+            }
+        }
+    ],
+    "Triggers": [
+        {
+            "Condition": "{Item.Position, Converter=NumberIsOdd}",
+            "Property": "Background",
+            "Value": "F0F0F0"
+        },
+        {
+            "Condition": "{Item.Position, Converter=NumberIsEven}",
+            "Property": "Background",
+            "Value": "E4E4E4"
+        }
+    ]
+}

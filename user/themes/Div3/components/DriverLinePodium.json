@@ -1,0 +1,84 @@
+{
+    "ComponentName": "DriverLinePodium",
+    "BlockType": "dock",
+    "VerticalAlignment": "Center",
+    "MarginTop": 8,
+    "Items": [
+        {
+            "BlockType": "stack",
+            "Spacing": 12,
+            "HorizontalAlignment": "<Halign>",
+            "VerticalAlignment": "Center",
+            "Items": [
+                {
+                    "BlockType": "image",
+                    "RenderIf": "<render>",
+                    "Style": "<flagstyle>",
+                    "ImageOptions": {
+                        "Path": "{Item.Driver.Nationality.LogotypePath}"
+                    },
+                    "Triggers": [
+                        {
+                            "Trigger": "Flags"
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "text",
+                    "Style": "<style1>",
+                    "Foreground": "<fg1>",
+                    "Source": "{Item.Driver.{podname1}, Converter=StringToUpperString}",
+                    "Triggers": [
+                        {
+                            "Trigger": "PodName1"
+                        },
+                        {
+                            "Trigger": "PodName2"
+                        },
+                        {
+                            "Trigger": "PodName3"
+                        },
+                        {
+                            "Condition": "{podname1, Converter=StringEquals, Parameter=Full Name}",
+                            "ConditionAnd": "{Item.Driver.RealName, Converter=EmptyObjectToTrue}",
+                            "Property": "Source",
+                            "Value": "{Item.Driver.Name, Converter=StringToUpperString}"
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "text",
+                    "RenderIf": "{podname1, Converter=StringEquals, Parameter=Full Name}",
+                    "Style": "<style2>",
+                    "Foreground": "<fg2>",
+                    "Source": "{Item.Driver.RealName, Converter=StringToUpperString}",
+                    "Triggers": [
+                        {
+                            "Trigger": "Name4"
+                        },
+                        {
+                            "Condition": "{podname1, Converter=StringEquals, Parameter=Full Name}",
+                            "ConditionAnd": "{Item.Driver.RealName, Converter=EmptyObjectToTrue}",
+                            "Property": "RenderIf",
+                            "Value": false
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "itemstack",
+                    "Spacing": 5,
+                    "VerticalAlignment": "Center",
+                    "MarginTop": -4,
+                    "ItemStackOptions": {
+                        "ItemSource": "{Item.Driver.BadgeImages}",
+                        "ItemTemplate": {
+                            "BlockType": "image",
+                            "Height": 40,
+                            "Source": "{Item}"
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

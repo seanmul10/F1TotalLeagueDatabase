@@ -1,0 +1,391 @@
+{
+    "ComponentName": "MainTable",
+    "BlockType": "table",
+    "TableOptions": {
+        "ItemsSource": "<itemsource>",
+        "Limit": "{g6}",
+        "IndexStart": "{SessisonStartPos, Converter=NumberSubtract, Parameter=1}",
+        "RowSpacing": 30,
+        "HeaderTemplate": {
+            "BlockType": "text",
+            "MarginBottom": 108,
+            "Style": "TableSessionHeader"
+        },
+        "Columns": [
+            {
+                "Header": "",
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "45",
+                            "pad": "12,0",
+                            "source": "{Item.Position}"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.Status, Converter=StringEquals, Parameter=DSQ}",
+                            "Property": "Opacity",
+                            "Value": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "Header": "",
+                "Template": {
+                    "RenderIf": "{RacePosJump}",
+                    "BlockType": "component",
+                    "Component": "PositionJump",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "source0": "arrows/arrow.up.png",
+                            "source1": "arrows/equal.png",
+                            "source2": "arrows/arrow.down.png"
+                        }
+                    }
+                }
+            },
+            {
+                "Header": "",
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "V1DriverLine",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style1": "FirstNameDefault",
+                            "style2": "SecondNameDefault",
+                            "width": "{DriverWidth}"
+                        }
+                    }
+                }
+            },
+            {
+                "Header": "",
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "V1TeamLine",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "bg": "00000000",
+                            "teamstyle": "TeamDefault"
+                        }
+                    }
+                }
+            },
+            {
+                "Header": "[TIME]",
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "230",
+                            "pad": "0,0",
+                            "source": "{Item.Time}"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.Time, Converter=EmptyObjectToTrue}",
+                            "ComponentVar": "source",
+                            "Value": "- - . - - -"
+                        }
+                    ]
+                }
+            },
+            {
+                "Header": "[BEST]",
+                "Template": {
+                    "RenderIf": "{RaceFL}",
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "160",
+                            "pad": "10,0",
+                            "source": "{Item.FastestLapTime}"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.IsRaceFastestLap}",
+                            "ComponentVar": "fg",
+                            "Value": "{SessionFastestLapFG}"
+                        },
+                        {
+                            "Condition": "{Item.FastestLapTime, Converter=EmptyObjectToTrue}",
+                            "ComponentVar": "source",
+                            "Value": "- : - - . - - -"
+                        }
+                    ]
+                }
+            },
+            {
+                "Header": "[LAPS]",
+                "Template": {
+                    "RenderIf": "{RaceLaps}",
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "50",
+                            "pad": "40,0",
+                            "source": "{Item.LapsCount}"
+                        }
+                    }
+                }
+            },
+            {
+                "Header": "[GRID]",
+                "Template": {
+                    "RenderIf": "{RaceGrid}",
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "50",
+                            "pad": "40,0",
+                            "source": "{Item.GridPosition}"
+                        }
+                    }
+                }
+            },
+            {
+                "Header": "[STOPS]",
+                "Template": {
+                    "RenderIf": "{RaceStops}",
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "50",
+                            "pad": "40,0",
+                            "source": "{Item.PitsCount}"
+                        }
+                    }
+                }
+            },
+            {
+                "Header": "[KPH]",
+                "Template": {
+                    "RenderIf": "{RaceKPH}",
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "50",
+                            "pad": "40,0",
+                            "source": "{Item.MaxSpeed}"
+                        }
+                    }
+                }
+            },
+            {
+                "Header": "[OVER.]",
+                "Template": {
+                    "RenderIf": "{RaceOvertakes}",
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "60",
+                            "pad": "40,0",
+                            "source": "{Item.OvertakesCount}"
+                        }
+                    }
+                }
+            },
+            {
+                "Header": "[PEN.]",
+                "Template": {
+                    "RenderIf": "{RacePenalty}",
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "80",
+                            "pad": "30,0",
+                            "source": "{Item.PenaltyTimeTotal}s"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.PenaltyTimeTotal, Converter=NumberEquals, Parameter=0}",
+                            "Setters": [
+                                {
+                                    "ComponentVar": "source",
+                                    "Value": "0"
+                                },
+                                {
+                                    "Property": "Opacity",
+                                    "Value": 0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "Header": "[STEW.]",
+                "Template": {
+                    "RenderIf": "{RaceSteward}",
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "80",
+                            "pad": "30,0",
+                            "source": "{Item.PenaltyTimeStewards}s"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.PenaltyTimeStewards, Converter=NumberEquals, Parameter=0}",
+                            "Setters": [
+                                {
+                                    "ComponentVar": "source",
+                                    "Value": "0"
+                                },
+                                {
+                                    "Property": "Opacity",
+                                    "Value": 0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "Header": "[GAME]",
+                "Template": {
+                    "RenderIf": "{RaceGame}",
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{SessionFG}",
+                            "font": "{FontNameItalic}",
+                            "w": "80",
+                            "pad": "30,0",
+                            "source": "{Item.PenaltyTimeIngame}s"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.PenaltyTimeIngame, Converter=NumberEquals, Parameter=0}",
+                            "Setters": [
+                                {
+                                    "ComponentVar": "source",
+                                    "Value": "0"
+                                },
+                                {
+                                    "Property": "Opacity",
+                                    "Value": 0
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "Header": "",
+                "Template": {
+                    "RenderIf": "{RaceStints}",
+                    "BlockType": "itemstack",
+                    "Width": 260,
+                    "Padding": "20, 0",
+                    "ItemStackOptions": {
+                        "ItemSource": "{Item.Stints}",
+                        "ItemTemplate": {
+                            "BlockType": "stack",
+                            "VerticalAlignment": "Center",
+                            "MarginRight": 4,
+                            "Spacing": 3,
+                            "Items": [
+                                {
+                                    "BlockType": "image",
+                                    "Height": 40,
+                                    "VerticalAlignment": "Center",
+                                    "Source": "tyres/tyres_{Item.Tyres}.png"
+                                },
+                                {
+                                    "BlockType": "text",
+                                    "MarginTop": 3,
+                                    "Source": "{Item.Laps}",
+                                    "HorizontalAlignment": "Center",
+                                    "VerticalAlignment": "Center",
+                                    "FontName": "{FontNameItalic}",
+                                    "FontSize": 18,
+                                    "Foreground": "{SessionFG}"
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            {
+                "Header": "[POINTS]",
+                "Template": {
+                    "BlockType": "component",
+                    "Component": "MainColumn",
+                    "ComponentOptions": {
+                        "Vars": {
+                            "style": "P1Default",
+                            "fg": "{PointsFG}",
+                            "font": "{FontNameBold}",
+                            "w": "100",
+                            "pad": "20,0",
+                            "source": "{Item.DriverPointsString}"
+                        }
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.DriverPointsString, Converter=EmptyObjectToFalse}",
+                            "ComponentVar": "source",
+                            "Value": "+{Item.DriverPointsString}"
+                        },
+                        {
+                            "Condition": "{Item.DriverPointsString, Converter=EmptyObjectToTrue}",
+                            "ComponentVar": "source",
+                            "Value": "0"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

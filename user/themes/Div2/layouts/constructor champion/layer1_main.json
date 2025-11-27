@@ -1,0 +1,374 @@
+{
+    "BlockRoot": {
+        "BlockType": "itemstack",
+        "Orientation": "Vertical",
+        "Width": 2160,
+        "Height": 2700,
+        "ItemStackOptions": {
+            "ItemSource": "{Standings.Teams}",
+            "Limit": 1,
+            "ItemTemplate": {
+                "BlockType": "stack",
+                "Orientation": "Vertical",
+                "Items": [
+                    {
+                        "BlockType": "dock",
+                        "HorizontalAlignment": "Center",
+                        "VerticalAlignment": "Center",
+                        "Items": [
+                            {
+                                "BlockType": "component",
+                                "Component": "HeaderBlockChampion"
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Margin": "0,420,0,1685",
+                        "Height": 500,
+                        "HorizontalAlignment": "Center",
+                        "Items": [
+                            {
+                                "BlockType": "stack",
+                                "HorizontalAlignment": "Left",
+                                "Orientation": "Vertical",
+                                "Items": [
+                                    {
+                                        "BlockType": "text",
+                                        "Source": "{Item.Driver.Name}",
+                                        "Style": "NameBlack1",
+                                        "Foreground": "{White}"
+                                    }
+                                ]
+                            },
+                            {
+                                "BlockType": "image",
+                                "Margin": "0,200,0,0",
+                                "HorizontalAlignment": "Left",
+                                "VerticalAlignment": "Center",
+                                "Height": 1000,
+                                "Source": "avatars/{Item.Team.Name}_1.png",
+                                "Triggers": [
+                                    {
+                                        "Trigger": "D0CustomAvatars"
+                                    },
+                                    {
+                                        "Condition": "{g3, Converter=StringEquals, Parameter=No Avatars}",
+                                        "Setters": [
+                                            {
+                                                "Property": "Source",
+                                                "Value": "{Item.Team.LogotypePath}"
+                                            },
+                                            {
+                                                "Property": "Height",
+                                                "Value": 1000
+                                            },
+                                            {
+                                                "Property": "Margin",
+                                                "Value": "0,700,0,905"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "BlockType": "image",
+                                "Margin": "0,200,0,0",
+                                "HorizontalAlignment": "Right",
+                                "VerticalAlignment": "Center",
+                                "Height": 1000,
+                                "Source": "avatars/{Item.Team.Name}_2.png",
+                                "Triggers": [
+                                    {
+                                        "Trigger": "D1CustomAvatars"
+                                    },
+                                    {
+                                        "Condition": "{g3, Converter=StringEquals, Parameter=No Avatars}",
+                                        "Setters": [
+                                            {
+                                                "Property": "Source",
+                                                "Value": "{Item.Team.LogotypePath}"
+                                            },
+                                            {
+                                                "Property": "Height",
+                                                "Value": 1000
+                                            },
+                                            {
+                                                "Property": "Margin",
+                                                "Value": "0,700,0,905"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "dock",
+                        "Margin": "0,-2000,0,0",
+                        "Orientation": "Vertical",
+                        "HorizontalAlignment": "Center",
+                        "Width": 2160,
+                        "Height": 2015,
+                        "BackgroundImage": "components/bg.pole.gradient.png",
+                        "ColorizeBackground": {
+                            "Enabled": true,
+                            "Color": "{{cha3}}"
+                        },
+                        "Items": [
+                            {
+                                "BlockType": "stack",
+                                "VerticalAlignment": "Top",
+                                "HorizontalAlignment": "Center",
+                                "Orientation": "Vertical",
+                                "Width": 2160,
+                                "Height": 2015,
+                                "BackgroundImage": "components/bg.middle.gradient.png",
+                                "ColorizeBackground": {
+                                    "Enabled": true,
+                                    "Color": "{{cha3}}"
+                                },
+                                "Items": [
+                                    {
+                                        "BlockType": "dock",
+                                        "Margin": "20,240,20,0",
+                                        "VerticalAlignment": "Bottom",
+                                        "Items": [
+                                            {
+                                                "BlockType": "dock",
+                                                "VerticalAlignment": "Center",
+                                                "MarginTop": 8,
+                                                "Items": [
+                                                    {
+                                                        "BlockType": "stack",
+                                                        "Spacing": 12,
+                                                        "HorizontalAlignment": "Left",
+                                                        "VerticalAlignment": "Center",
+                                                        "Items": [
+                                                            {
+                                                                "BlockType": "image",
+                                                                "Style": "DriverFlags",
+                                                                "ImageOptions": {
+                                                                    "Path": "{Item.Driver0.Driver.Nationality.LogotypePath}"
+                                                                },
+                                                                "Triggers": [
+                                                                    {
+                                                                        "Trigger": "Flags"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "BlockType": "text",
+                                                                "Style": "NameChampLeft",
+                                                                "Source": "{Item.Driver0.Driver.{name1}, Converter=StringToUpperString}",
+                                                                "Triggers": [
+                                                                    {
+                                                                        "Trigger": "Driver0Name1"
+                                                                    },
+                                                                    {
+                                                                        "Trigger": "Driver0Name2"
+                                                                    },
+                                                                    {
+                                                                        "Trigger": "Driver0Name3"
+                                                                    },
+                                                                    {
+                                                                        "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                                        "ConditionAnd": "{Item.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                                                        "Property": "Source",
+                                                                        "Value": "{Item.Driver0.Driver.Name, Converter=StringToUpperString}"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "BlockType": "text",
+                                                                "RenderIf": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                                "Style": "NameChampLeft",
+                                                                "Source": "{Item.Driver0.Driver.RealName, Converter=StringToUpperString}",
+                                                                "Triggers": [
+                                                                    {
+                                                                        "Trigger": "Driver0Name4"
+                                                                    },
+                                                                    {
+                                                                        "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                                        "ConditionAnd": "{Item.Driver0.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                                                        "Property": "RenderIf",
+                                                                        "Value": false
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "BlockType": "dock",
+                                                "VerticalAlignment": "Center",
+                                                "MarginTop": 8,
+                                                "Items": [
+                                                    {
+                                                        "BlockType": "stack",
+                                                        "Spacing": 12,
+                                                        "HorizontalAlignment": "Left",
+                                                        "VerticalAlignment": "Center",
+                                                        "Items": [
+                                                            {
+                                                                "BlockType": "text",
+                                                                "Style": "NameChampRight",
+                                                                "Source": "{Item.Driver1.Driver.{name1}, Converter=StringToUpperString}",
+                                                                "Triggers": [
+                                                                    {
+                                                                        "Trigger": "Driver1Name1"
+                                                                    },
+                                                                    {
+                                                                        "Trigger": "Driver1Name2"
+                                                                    },
+                                                                    {
+                                                                        "Trigger": "Driver1Name3"
+                                                                    },
+                                                                    {
+                                                                        "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                                        "ConditionAnd": "{Item.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                                                        "Property": "Source",
+                                                                        "Value": "{Item.Driver1.Driver.Name, Converter=StringToUpperString}"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "BlockType": "text",
+                                                                "RenderIf": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                                "Style": "NameChampRight",
+                                                                "Source": "{Item.Driver1.Driver.RealName, Converter=StringToUpperString}",
+                                                                "Triggers": [
+                                                                    {
+                                                                        "Trigger": "Driver1Name4"
+                                                                    },
+                                                                    {
+                                                                        "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                                                                        "ConditionAnd": "{Item.Driver1.Driver.RealName, Converter=EmptyObjectToTrue}",
+                                                                        "Property": "RenderIf",
+                                                                        "Value": false
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "BlockType": "image",
+                                                                "Style": "DriverFlags",
+                                                                "ImageOptions": {
+                                                                    "Path": "{Item.Driver1.Driver.Nationality.LogotypePath}"
+                                                                },
+                                                                "Triggers": [
+                                                                    {
+                                                                        "Trigger": "Flags"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "text",
+                                        "Source": "[CONSTRUCTORS']",
+                                        "FontName": "{FontNameBlack}",
+                                        "FontSize": "{ChampTextFS}",
+                                        "Foreground": "{ChampColourFG}",
+                                        "HorizontalAlignment": "Center",
+                                        "VerticalAlignment": "Center"
+                                    },
+                                    {
+                                        "BlockType": "text",
+                                        "Margin": "0,-35,0,0",
+                                        "Source": "[CHAMPION]",
+                                        "FontName": "{FontNameBlack}",
+                                        "FontSize": "{ChampTextFS}",
+                                        "Foreground": "{ChampColourFG}",
+                                        "HorizontalAlignment": "Center",
+                                        "VerticalAlignment": "Center"
+                                    },
+                                    {
+                                        "BlockType": "text",
+                                        "Margin": "0,-25,0,0",
+                                        "Source": "{Item.Team.Name, Converter=StringToUpperString}",
+                                        "FontName": "{FontNameBlack}",
+                                        "FontSize": 140,
+                                        "Foreground": "{ChampColourFG}",
+                                        "HorizontalAlignment": "Center",
+                                        "VerticalAlignment": "Center"
+                                    }
+                                ]
+                            },
+                            {
+                                "BlockType": "image",
+                                "Margin": "0,300,0,0",
+                                "Height": 400,
+                                "HorizontalAlignment": "Center",
+                                "VerticalAlignment": "Center",
+                                "ImageOptions": {
+                                    "Path": "{Item.Team.LiveryPath}"
+                                }
+                            },
+                            {
+                                "BlockType": "dock",
+                                "Orientation": "Horizontal",
+                                "Margin": "25,0,25,25",
+                                "VerticalAlignment": "Bottom",
+                                "Items": [
+                                    {
+                                        "BlockType": "image",
+                                        "Height": 140,
+                                        "HorizontalAlignment": "Left",
+                                        "VerticalAlignment": "Center",
+                                        "ImageOptions": {
+                                            "Path": "{Item.Team.LogotypePath}"
+                                        }
+                                    },
+                                    {
+                                        "BlockType": "text",
+                                        "HorizontalAlignment": "Center",
+                                        "Source": "{cha1, Converter=StringToUpperString}",
+                                        "Style": "NameDefault1",
+                                        "Foreground": "{ChampColourFG}"
+                                    },
+                                    {
+                                        "BlockType": "image",
+                                        "Height": 40,
+                                        "HorizontalAlignment": "Right",
+                                        "VerticalAlignment": "Center",
+                                        "ImageOptions": {
+                                            "Path": "logotypes/f1_logo.png",
+                                            "VerticalAlignment": "Center",
+                                            "HorizontalAlignment": "Right"
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.Team.Name, Converter=StringEquals, Parameter=Ferrari}",
+                                                "ConditionAnd": "{g1, Converter=StringEquals, Parameter=Custom Colour}",
+                                                "Property": "Source",
+                                                "Value": "logotypes/f1_logo.black.png"
+                                            },
+                                            {
+                                                "Condition": "{Season.LeagueInfo.LeagueLogo, Converter=EmptyObjectToFalse}",
+                                                "Setters": [
+                                                    {
+                                                        "Property": "Source",
+                                                        "Value": "{Season.LeagueInfo.LeagueLogo}"
+                                                    },
+                                                    {
+                                                        "Property": "Height",
+                                                        "Value": "{g4}"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}

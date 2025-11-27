@@ -1,0 +1,63 @@
+[
+    {
+        "StyleName": "NameDefault1",
+        "FontName": "{FontNameDefault}",
+        "FontSize": 30,
+        "HorizontalAlignment": "Left",
+        "VerticalAlignment": "Center"
+    },
+    {
+        "StyleName": "NameDefault2",
+        "RenderIf": "{name1, Converter=StringEquals, Parameter=Full Name}",
+        "FontName": "{FontNameDefault}",
+        "FontSize": 30,
+        "HorizontalAlignment": "Left",
+        "VerticalAlignment": "Center"
+    },
+    {
+        "StyleName": "P1TeamDefault",
+        "MarginTop": 12,
+        "HorizontalAlignment": "Center",
+        "Foreground": "{SessionP1FG}",
+        "Fontsize": 30
+    },
+    {
+        "StyleName": "TeamDefault",
+        "MarginTop": 12,
+        "HorizontalAlignment": "Center",
+        "Foreground": "{SessionFG}",
+        "Fontsize": 30
+    },
+    {
+        "StyleName": "P1FirstNameDefault",
+        "MarginTop": 15,
+        "HorizontalAlignment": "Left",
+        "FontName": "{FontNameItalic}",
+        "Foreground": "{SessionP1FG}",
+        "FontSize": 28
+    },
+    {
+        "StyleName": "P1SecondNameDefault",
+        "Margin": "0,10,0,0",
+        "HorizontalAlignment": "Left",
+        "FontName": "{FontNameBoldItalic}",
+        "Foreground": "{SessionP1FG}",
+        "FontSize": 36
+    },
+    {
+        "StyleName": "FirstNameDefault",
+        "MarginTop": 15,
+        "HorizontalAlignment": "Left",
+        "FontName": "{FontNameItalic}",
+        "Foreground": "{NameSessionFG}",
+        "FontSize": 28
+    },
+    {
+        "StyleName": "SecondNameDefault",
+        "Margin": "0,10,0,0",
+        "HorizontalAlignment": "Left",
+        "FontName": "{FontNameBoldItalic}",
+        "Foreground": "{NameSessionFG}",
+        "FontSize": 36
+    }
+]

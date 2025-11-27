@@ -1,0 +1,8 @@
+{
+    "TriggerName": "Flags",
+    "Condition": "{Item.Track.CountryName, Converter=StringEquals, Parameter=Saudi Arabia}",
+    "ConditionOr": "{Item.Track.CountryName, Converter=StringEquals, Parameter=Mexico}",
+    "ConditionOr": "{Item.Track.CountryName, Converter=StringEquals, Parameter=Brazil}",
+    "Property": "Source",
+    "Value": "flags/{Item.Track.CountryName}.png"
+}

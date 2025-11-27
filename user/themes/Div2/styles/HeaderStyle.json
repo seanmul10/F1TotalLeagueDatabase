@@ -1,0 +1,8 @@
+{
+    "StyleName": "HeaderStyle",
+    "FontName" : "{FontNameDefault}",
+    "FontSize" : 50,
+    "Foreground" : "{{g1}}",
+    "HorizontalAlignment" : "Center",
+    "VerticalAlignment" : "Center"
+  }

@@ -1,0 +1,52 @@
+{
+    "ComponentName": "HeaderBlockChampion",
+    "Margin": "25,25,25,0",
+    "BlockType": "dock",
+    "Items": [
+        {
+            "BlockType": "text",
+            "Style": "NameBlack1",
+            "Foreground": "{ChampColourFG}",
+            "HorizontalAlignment": "Left",
+            "Source": "{Item.Points} [POINTS]",
+            "Triggers": [
+                {
+                    "Condition": "{g1, Converter=StringEquals, Parameter=Custom Colour}",
+                    "ConditionAnd": "{g2}",
+                    "Property": "Foreground",
+                    "Value": "{White}"
+                }
+            ]
+        },
+        {
+            "BlockType": "text",
+            "Style": "NameBlack1",
+            "Foreground": "{ChampColourFG}",
+            "HorizontalAlignment": "Center",
+            "Source": "[{Item.CountP1} [WINS]]",
+            "Triggers": [
+                {
+                    "Condition": "{g1, Converter=StringEquals, Parameter=Custom Colour}",
+                    "ConditionAnd": "{g2}",
+                    "Property": "Foreground",
+                    "Value": "{White}"
+                }
+            ]
+        },
+        {
+            "BlockType": "text",
+            "Style": "NameBlack1",
+            "Foreground": "{ChampColourFG}",
+            "HorizontalAlignment": "Right",
+            "Source": "[{Item.CountTop3} [PODIUMS]]",
+            "Triggers": [
+                {
+                    "Condition": "{g1, Converter=StringEquals, Parameter=Custom Colour}",
+                    "ConditionAnd": "{g2}",
+                    "Property": "Foreground",
+                    "Value": "{White}"
+                }
+            ]
+        }
+    ]
+}

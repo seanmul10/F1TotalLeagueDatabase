@@ -1,0 +1,144 @@
+{
+    "BlockType": "dock",
+    "Spacing": 20,
+    "VerticalAlignment": "Top",
+    "HorizontalAlignment": "Center",
+    "Width": 2160,
+    "Items": [
+        {
+            "BlockType": "stack",
+            "Width": 900,
+            "Orientation": "Vertical",
+            "HorizontalAlignment": "Left",
+            "VerticalAlignment": "Center",
+            "Items": [
+                {
+                    "BlockType": "text",
+                    "Source": "{Item.Driver0.Driver.{name1}, Converter=StringToUpperString}",
+                    "FontName": "{FontNameBlack}",
+                    "FontSize": "{g8, Converter=NumberAdd, Parameter=20}",
+                    "Foreground": "{{g1}}",
+                    "HorizontalAlignment": "Right",
+                    "VerticalAlignment": "Center",
+                    "Triggers": [
+                        {
+                            "Condition": "{name1, Converter=StringNotEquals, Parameter=Full Name}",
+                            "Property": "Foreground",
+                            "Value": "{Item.Team.Color}"
+                        },
+                        {
+                            "Trigger": "Driver0Name1"
+                        },
+                        {
+                            "Trigger": "Driver0Name2"
+                        },
+                        {
+                            "Trigger": "Driver0Name3"
+                        },
+                        {
+                            "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                            "ConditionAnd": "{Item.Driver0.Driver.RealName, Converter=EmptyObjectToTrue}",
+                            "Property": "Source",
+                            "Value": "{Item.Driver0.Driver.Name, Converter=StringToUpperString}"
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "text",
+                    "RenderIf": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                    "Source": "{Item.Driver0.Driver.RealName, Converter=StringToUpperString}",
+                    "FontName": "{FontNameBlack}",
+                    "FontSize": "{g8, Converter=NumberAdd, Parameter=20}",
+                    "Foreground": "{Item.Team.Color}",
+                    "HorizontalAlignment": "Right",
+                    "VerticalAlignment": "Center",
+                    "Triggers": [
+                        {
+                            "Trigger": "Driver0Name4"
+                        },
+                        {
+                            "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                            "ConditionAnd": "{Item.Driver0.Driver.RealName, Converter=EmptyObjectToTrue}",
+                            "Property": "RenderIf",
+                            "Value": false
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "BlockType": "image",
+            "Padding": "20,0",
+            "Background": "{Item.Team.Color}",
+            "Height": 250,
+            "VerticalAlignment": "Center",
+            "HorizontalAlignment": "Center",
+            "ImageOptions": {
+                "Path": "{Item.Team.LightLogotypePath}",
+                "VerticalAlignment": "Center",
+                "HorizontalAlignment": "Center"
+            }
+        },
+        {
+            "BlockType": "stack",
+            "Width": 900,
+            "Orientation": "Vertical",
+            "HorizontalAlignment": "Right",
+            "VerticalAlignment": "Center",
+            "Items": [
+                {
+                    "BlockType": "text",
+                    "Source": "{Item.Driver1.Driver.{name1}, Converter=StringToUpperString}",
+                    "FontName": "{FontNameBlack}",
+                    "FontSize": "{g8, Converter=NumberAdd, Parameter=20}",
+                    "Foreground": "{{g1}}",
+                    "HorizontalAlignment": "Left",
+                    "VerticalAlignment": "Center",
+                    "Triggers": [
+                        {
+                            "Condition": "{name1, Converter=StringNotEquals, Parameter=Full Name}",
+                            "Property": "Foreground",
+                            "Value": "{Item.Team.SecondaryColor}"
+                        },
+                        {
+                            "Trigger": "Driver1Name1"
+                        },
+                        {
+                            "Trigger": "Driver1Name2"
+                        },
+                        {
+                            "Trigger": "Driver1Name3"
+                        },
+                        {
+                            "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                            "ConditionAnd": "{Item.Driver1.Driver.RealName, Converter=EmptyObjectToTrue}",
+                            "Property": "Source",
+                            "Value": "{Item.Driver1.Driver.Name, Converter=StringToUpperString}"
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "text",
+                    "RenderIf": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                    "Source": "{Item.Driver1.Driver.RealName, Converter=StringToUpperString}",
+                    "FontName": "{FontNameBlack}",
+                    "FontSize": "{g8, Converter=NumberAdd, Parameter=20}",
+                    "Foreground": "{Item.Team.SecondaryColor}",
+                    "HorizontalAlignment": "Left",
+                    "VerticalAlignment": "Center",
+                    "Triggers": [
+                        {
+                            "Trigger": "Driver1Name4"
+                        },
+                        {
+                            "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                            "ConditionAnd": "{Item.Driver1.Driver.RealName, Converter=EmptyObjectToTrue}",
+                            "Property": "RenderIf",
+                            "Value": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

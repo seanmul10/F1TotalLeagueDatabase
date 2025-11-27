@@ -1,0 +1,91 @@
+{
+    "BlockType": "stack",
+    "Orientation": "Vertical",
+    "VerticalAlignment": "Center",
+    "ComponentName": "HeaderBlockSprintCalendar",
+    "Items": [
+        {
+            "BlockType": "stack",
+            "VerticalAlignment": "Center",
+            "Spacing": 20,
+            "Items": [
+                {
+                    "Name": "Logo",
+                    "BlockType": "image",
+                    "Height": 60,
+                    "HorizontalAlignment": "Left",
+                    "VerticalAlignment": "Center",
+                    "ImageOptions": {
+                        "Path": "logotypes/f1_logo.png",
+                        "VerticalAlignment": "Center",
+                        "HorizontalAlignment": "Left"
+                    },
+                    "Triggers": [
+                        {
+                            "Condition": "{Season.LeagueInfo.LeagueLogo, Converter=EmptyObjectToFalse}",
+                            "Setters": [
+                                {
+                                    "Property": "Source",
+                                    "Value": "{Season.LeagueInfo.LeagueLogo}"
+                                },
+                                {
+                                    "Property": "Height",
+                                    "Value": "{g4}"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "stack",
+                    "Margin": "0,14,0,0",
+                    "Spacing": 20,
+                    "Items": [
+                        {
+                            "Name": "Sprint",
+                            "BlockType": "text",
+                            "Source": "[SPRINT]",
+                            "FontName": "{FontNameBlack}",
+                            "FontSize": 80,
+                            "Foreground": "{{g1}}"
+                        },
+                        {
+                            "Name": "Sprint",
+                            "BlockType": "text",
+                            "Source": "[LOCATIONS]",
+                            "FontName": "{FontNameBlack}",
+                            "FontSize": 80,
+                            "Foreground": "{{g1}}"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Name": "Season Name",
+            "BlockType": "text",
+            "VerticalAlignment": "Center",
+            "Source": "{Season.Name, Converter=StringToUpperString}",
+            "FontName": "{FontNameBlack}",
+            "FontSize": 80,
+            "Foreground": "{White}",
+            "Triggers": [
+                {
+                    "Condition": "{g5, Converter=StringEquals, Parameter=Category Name}",
+                    "Property": "Source",
+                    "Value": "{Season.MainLeagueCategory.Name, Converter=StringToUpperString}"
+                },
+                {
+                    "Condition": "{g5, Converter=StringEquals, Parameter=Category Short Name}",
+                    "Property": "Source",
+                    "Value": "{Season.MainLeagueCategory.ShortName, Converter=StringToUpperString}"
+                },
+                {
+                    "Condition": "{g1, Converter=StringNotEquals, Parameter=Custom Colour}",
+                    "Property": "Foreground",
+                    "Value": "{{SeasonNameColouredFG}}"
+                }
+            ]
+        }
+    ]
+}

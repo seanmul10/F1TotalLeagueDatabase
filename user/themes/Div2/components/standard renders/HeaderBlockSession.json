@@ -1,0 +1,71 @@
+{
+    "ComponentName": "headerBlockSession",
+    "Name": "headerBlock",
+    "BlockType": "dock",
+    "Orientation": "Horizontal",
+    "Items": [
+        //headerLeft
+        {
+            "Name": "headerLeftPart",
+            "Spacing": 20,
+            "BlockType": "stack",
+            "HorizontalAlignment": "Left",
+            "Orientation": "Vertical",
+            "Items": [
+                //league name
+                {
+                    "BlockType": "stack",
+                    "VerticalAlignment": "Center",
+                    "MarginBottom": -7,
+                    "Items": [
+                        {
+                            "BlockType": "text",
+                            "VerticalAlignment": "Center",
+                            "Source": "<source0>",
+                            "FontName": "{FontNameBlack}",
+                            "FontSize": 40,
+                            "Foreground": "{White}"
+                        }
+                    ]
+                },
+                //session
+                {
+                    "Name": "headerSessionLine",
+                    "BlockType": "stack",
+                    "VerticalAlignment": "Center",
+                    "Items": [
+                        {
+                            "BlockType": "text",
+                            "PaddingTop": 12,
+                            "VerticalAlignment": "Center",
+                            "Source": "<source1>",
+                            "FontName": "{FontNameBold}",
+                            "FontSize": 70,
+                            "Foreground": "ABACB1"
+                        }
+                    ]
+                }
+            ]
+        },
+        //headerRight
+        {
+            "Name": "headerRightPart",
+            "BlockType": "stack",
+            "Orientation": "Vertical",
+            "HorizontalAlignment": "Right",
+            "Items": [
+                {
+                    "BlockType": "stack",
+                    "Items": [
+                        {
+                            "Name": "leagueLogo",
+                            "BlockType": "image",
+                            "Height": "{g4}",
+                            "Source": "{Season.LeagueInfo.LeagueLogo}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

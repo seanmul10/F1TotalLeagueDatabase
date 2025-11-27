@@ -1,0 +1,254 @@
+{
+    "BlockRoot": {
+        "BlockType": "stack",
+        "Margin": "0,42,0,0",
+        "Items": [
+            {
+                "BlockType": "itemstack",
+                "HorizontalAlignment": "Center",
+                "Orientation": "Horizontal",
+                "ItemStackOptions": {
+                    "ItemSource": "{Session.Drivers}",
+                    "Limit": 1,
+                    "ItemTemplate": {
+                        "BlockType": "stack",
+                        "Orientation": "Vertical",
+                        "Items": [
+                            {
+                                "BlockType": "stack",
+                                "HorizontalAlignment": "Center",
+                                "Items": [
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "/pole/HeaderBlockPole"
+                                    }
+                                ]
+                            },
+                            {
+                                "BlockType": "stack",
+                                "Margin": "0,-120,0,0",
+                                "Orientation": "Vertical",
+                                "Items": [
+                                    {
+                                        "BlockType": "stack",
+                                        "Width": 2160,
+                                        "Height": 2700,
+                                        "Orientation": "Vertical",
+                                        "VerticalAlignment": "Center",
+                                        "Items": [
+                                            {
+                                                "BlockType": "image",
+                                                "Margin": "0,0,0,0",
+                                                "HorizontalAlignment": "Center",
+                                                "VerticalAlignment": "Center",
+                                                "Height": 3000,
+                                                "Source": "avatars/{Item.{{{Type}}}.Name}_{Item.SeatPosition}.png",
+                                                "Triggers": [
+                                                    {
+                                                        "Trigger": "CustomAvatars"
+                                                    },
+                                                    {
+                                                        "Condition": "{g3, Converter=StringEquals, Parameter=No Avatars}",
+                                                        "Setters": [
+                                                            {
+                                                                "Property": "Source",
+                                                                "Value": "{Item.Team.LogotypePath}"
+                                                            },
+                                                            {
+                                                                "Property": "Height",
+                                                                "Value": 1000
+                                                            },
+                                                            {
+                                                                "Property": "Margin",
+                                                                "Value": "0,700,0,905"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "Condition": "{g1, Converter=StringEquals, Parameter=Custom Colour}",
+                                                        "ConditionAnd": "{g3, Converter=StringEquals, Parameter=No Avatars}",
+                                                        "Property": "Source",
+                                                        "Value": "{Item.Team.LightLogotypePath}"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "dock",
+                                        "Margin": "0,-2700,0,0",
+                                        "Orientation": "Vertical",
+                                        "Width": 2160,
+                                        "Height": 2700,
+                                        "BackgroundImage": "components/bg.pole.gradient.png",
+                                        "ColorizeBackground": {
+                                            "Enabled": true,
+                                            "Color": "{Item.Team.Color}"
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.{{{Type}}}.Name, COnverter=EmptyObjectToTrue}",
+                                                "Property": "ColorizeBackground.Color",
+                                                "Value": "{Season.MainLeagueCategory.Color}"
+                                            },
+                                            {
+                                                "Condition": "{g1, Converter=StringNotEquals, Parameter=Custom Colour}",
+                                                "Property": "ColorizeBackground.Color",
+                                                "Value": "{{g1}Gradient}"
+                                            }
+                                        ],
+                                        "Items": [
+                                            {
+                                                "BlockType": "text",
+                                                "Margin": "-0,930,0,0",
+                                                "Source": "[POLE]",
+                                                "FontName": "{FontNameBlack}",
+                                                "FontSize": "{PoleFontSize}",
+                                                "Foreground": "{{Item.{{{Type}}}.Name}DefaultFG}",
+                                                "HorizontalAlignment": "Center",
+                                                "VerticalAlignment": "Center",
+                                                "Triggers": [
+                                                    {
+                                                        "Condition": "{g1, Converter=StringNotEquals, Parameter=Custom Colour}",
+                                                        "Property": "Foreground",
+                                                        "Value": "{{g1}}"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "BlockType": "dock",
+                                                "Spacing": 12,
+                                                "Margin": "50,0,50,25",
+                                                "VerticalAlignment": "Bottom",
+                                                "Items": [
+                                                    {
+                                                        "BlockType": "image",
+                                                        "Height": 85,
+                                                        "Background": "{Black}",
+                                                        "Padding": "1,-13",
+                                                        "HorizontalAlignment": "Left",
+                                                        "VerticalAlignment": "Center",
+                                                        "ImageOptions": {
+                                                            "Path": "{Session.Track.Nation.LogotypePath}"
+                                                        },
+                                                        "Triggers": [
+                                                            {
+                                                                "Condition": "{Item.Track.CountryName, Converter=StringEquals, Parameter=Saudi Arabia}",
+                                                                "Property": "Source",
+                                                                "Value": "flags/saudi_arabia.png"
+                                                            },
+                                                            {
+                                                                "Condition": "{Item.Track.CountryName, Converter=StringEquals, Parameter=Mexico}",
+                                                                "Property": "Source",
+                                                                "Value": "flags/mexico.png"
+                                                            },
+                                                            {
+                                                                "Condition": "{Item.Track.CountryName, Converter=StringEquals, Parameter=Brazil}",
+                                                                "Property": "Source",
+                                                                "Value": "flags/brazil.png"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "BlockType": "text",
+                                                        "Source": "{Season.Name, Converter=StringToUpperString}",
+                                                        "FontName": "{FontNameBlack}",
+                                                        "FontSize": 50,
+                                                        "Foreground": "{{Item.{{{Type}}}.Name}DefaultFG}",
+                                                        "HorizontalAlignment": "Left",
+                                                        "VerticalAlignment": "Center",
+                                                        "Triggers": [
+                                                            {
+                                                                "Condition": "{g5, Converter=StringEquals, Parameter=Category Name}",
+                                                                "Property": "Source",
+                                                                "Value": "{Season.MainLeagueCategory.Name}"
+                                                            },
+                                                            {
+                                                                "Condition": "{g5, Converter=StringEquals, Parameter=Category Short Name}",
+                                                                "Property": "Source",
+                                                                "Value": "{Season.MainLeagueCategory.ShortName}"
+                                                            },
+                                                            {
+                                                                "Condition": "{g1, Converter=StringNotEquals, Parameter=Custom Colour}",
+                                                                "Property": "Foreground",
+                                                                "Value": "{{g1}}"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "BlockType": "text",
+                                                        "Source": "[{Session.Track.CircuitName, Converter=StringToUpperString} GP]",
+                                                        "FontSize": 50,
+                                                        "Foreground": "{{Item.{{{Type}}}.Name}DefaultFG}",
+                                                        "FontName": "{FontNameBlack}",
+                                                        "VerticalAlignment": "Center",
+                                                        "HorizontalAlignment": "Left",
+                                                        "Triggers": [
+                                                            {
+                                                                "Condition": "{g1, Converter=StringNotEquals, Parameter=Custom Colour}",
+                                                                "Property": "Foreground",
+                                                                "Value": "{{g1}}"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "BlockType": "image",
+                                                        "Height": 140,
+                                                        "HorizontalAlignment": "Center",
+                                                        "VerticalAlignment": "Center",
+                                                        "ImageOptions": {
+                                                            "Path": "{Item.Team.LogotypePath}"
+                                                        },
+                                                        "Triggers": [
+                                                            {
+                                                                "Condition": "{g1, Converter=StringEquals, Parameter=Custom Colour}",
+                                                                "Property": "ImageOptions.Path",
+                                                                "Value": "{Item.Team.LightLogotypePath}"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "BlockType": "image",
+                                                        "Height": 40,
+                                                        "HorizontalAlignment": "Right",
+                                                        "VerticalAlignment": "Center",
+                                                        "ImageOptions": {
+                                                            "Path": "logotypes/f1_logo.png",
+                                                            "VerticalAlignment": "Center",
+                                                            "HorizontalAlignment": "Right"
+                                                        },
+                                                        "Triggers": [
+                                                            {
+                                                                "Condition": "{Item.{{{Type}}}.Name, Converter=StringEquals, Parameter=Ferrari}",
+                                                                "ConditionAnd": "{g1, Converter=StringEquals, Parameter=Custom Colour}",
+                                                                "Property": "Source",
+                                                                "Value": "logotypes/f1_logo.black.png"
+                                                            },
+                                                            {
+                                                                "Condition": "{Season.LeagueInfo.LeagueLogo, Converter=EmptyObjectToFalse}",
+                                                                "Setters": [
+                                                                    {
+                                                                        "Property": "Source",
+                                                                        "Value": "{Season.LeagueInfo.LeagueLogo}"
+                                                                    },
+                                                                    {
+                                                                        "Property": "Height",
+                                                                        "Value": "{g4}"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}

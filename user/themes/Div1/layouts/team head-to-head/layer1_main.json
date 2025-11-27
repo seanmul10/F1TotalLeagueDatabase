@@ -1,0 +1,861 @@
+{
+    "BlockRoot": {
+        "BlockType": "stack",
+        "HorizontalAlignment": "Center",
+        "Margin": "0,25,0,0",
+        "Orientation": "Vertical",
+        "Width": 2200,
+        "Height": 2750,
+        "Items": [
+            {
+                "BlockType": "stack",
+                "Orientation": "Vertical",
+                "HorizontalAlignment": "Center",
+                "VerticalAlignment": "Center",
+                "Items": [
+                    {
+                        "BlockType": "component",
+                        "Component": "/comparison/HeaderBlockTeamName"
+                    }
+                ]
+            },
+            {
+                "BlockType": "text",
+                "Padding": "0,40",
+                "HorizontalAlignment": "Center",
+                "Source": "{Season.Name, Converter=StringToUpperString} [TEAM] [HEAD-TO-HEAD]",
+                "Style": "NameBlack1",
+                "Foreground": "{{g1}}",
+                "Triggers": [
+                    {
+                        "Condition": "{g5, Converter=StringEquals, Parameter=Category Name}",
+                        "Property": "Source",
+                        "Value": "{Season.MainLeagueCategory.Name, Converter=StringToUpperString} [TEAM] [HEAD-TO-HEAD]"
+                    },
+                    {
+                        "Condition": "{g5, Converter=StringEquals, Parameter=Category Short Name}",
+                        "Property": "Source",
+                        "Value": "{Season.MainLeagueCategory.ShortName, Converter=StringToUpperString} [TEAM] [HEAD-TO-HEAD]"
+                    }
+                ]
+            },
+            {
+                "BlockType": "stack",
+                "HorizontalAlignment": "Center",
+                "Spacing": 5,
+                "Orientation": "Vertical",
+                "Items": [
+                    {
+                        "BlockType": "stack",
+                        "Orientation": "Vertical",
+                        "HorizontalAlignment": "Center",
+                        "Items": [
+                            {
+                                "BlockType": "text",
+                                "HorizontalAlignment": "Center",
+                                "Source": "[POINTS]",
+                                "Style": "NameDefault1",
+                                "Foreground": "{{g1}}"
+                            },
+                            {
+                                "BlockType": "stack",
+                                "HorizontalAlignment": "Center",
+                                "Orientation": "Horizontal",
+                                "Items": [
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "RightStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{{Item.Points.IntValue, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={35, Converter=NumberMultiply, Parameter={Season.SeasonOverallNumberEvents}}}",
+                                                "statvalue": "{Item.Points}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.Points.IntValue, Converter=NumberEquals, Parameter=0}",
+                                                "Setters": [
+                                                    {
+                                                        "ComponentVar": "stat",
+                                                        "Value": 2
+                                                    },
+                                                    {
+                                                        "ComponentVar": "statvalue",
+                                                        "Value": "0"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "LeftStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{{Item.Points.IntValue, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={35, Converter=NumberMultiply, Parameter={Season.SeasonOverallNumberEvents}}}",
+                                                "statvalue": "{Item.Points}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.Points.IntValue, Converter=NumberEquals, Parameter=0}",
+                                                "Setters": [
+                                                    {
+                                                        "ComponentVar": "stat",
+                                                        "Value": 2
+                                                    },
+                                                    {
+                                                        "ComponentVar": "statvalue",
+                                                        "Value": "0"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "shape",
+                        "Margin": "0,0,0,20",
+                        "HorizontalAlignment": "Center",
+                        "Width": 2000,
+                        "Height": 4,
+                        "ShapeOptions": {
+                            "Fill": "{{g1}}"
+                        }
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Orientation": "Vertical",
+                        "HorizontalAlignment": "Center",
+                        "Items": [
+                            {
+                                "BlockType": "text",
+                                "HorizontalAlignment": "Center",
+                                "Source": "[CHAMPIONSHIP POSITION]",
+                                "Style": "NameDefault1",
+                                "Foreground": "{{g1}}"
+                            },
+                            {
+                                "BlockType": "stack",
+                                "HorizontalAlignment": "Center",
+                                "Orientation": "Horizontal",
+                                "Items": [
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "RightStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{105, Converter=NumberSubtract, Parameter={{Item.Position, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.GridSize, Converter=NumberDivide, Parameter=2}}}",
+                                                "statvalue": "P{Item.Position}"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "LeftStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{105, Converter=NumberSubtract, Parameter={{Item.Position, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.GridSize, Converter=NumberDivide, Parameter=2}}}",
+                                                "statvalue": "P{Item.Position}"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "shape",
+                        "Margin": "0,0,0,20",
+                        "HorizontalAlignment": "Center",
+                        "Width": 2000,
+                        "Height": 4,
+                        "ShapeOptions": {
+                            "Fill": "{{g1}}"
+                        }
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Orientation": "Vertical",
+                        "HorizontalAlignment": "Center",
+                        "Items": [
+                            {
+                                "BlockType": "text",
+                                "HorizontalAlignment": "Center",
+                                "Source": "[WINS]",
+                                "Style": "NameDefault1",
+                                "Foreground": "{{g1}}"
+                            },
+                            {
+                                "BlockType": "stack",
+                                "HorizontalAlignment": "Center",
+                                "Orientation": "Horizontal",
+                                "Items": [
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "RightStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{{Item.CountP1, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.SeasonOverallNumberEvents}}",
+                                                "statvalue": "{Item.CountP1}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.CountP1, Converter=NumberEquals, Parameter=0}",
+                                                "ComponentVar": "stat",
+                                                "Value": 1
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "LeftStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{{Item.CountP1, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.SeasonOverallNumberEvents}}",
+                                                "statvalue": "{Item.CountP1}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.CountP1, Converter=NumberEquals, Parameter=0}",
+                                                "ComponentVar": "stat",
+                                                "Value": 1
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "shape",
+                        "Margin": "0,0,0,20",
+                        "HorizontalAlignment": "Center",
+                        "Width": 2000,
+                        "Height": 4,
+                        "ShapeOptions": {
+                            "Fill": "{{g1}}"
+                        }
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Orientation": "Vertical",
+                        "HorizontalAlignment": "Center",
+                        "Items": [
+                            {
+                                "BlockType": "text",
+                                "HorizontalAlignment": "Center",
+                                "Source": "[PODIUMS]",
+                                "Style": "NameDefault1",
+                                "Foreground": "{{g1}}"
+                            },
+                            {
+                                "BlockType": "stack",
+                                "HorizontalAlignment": "Center",
+                                "Orientation": "Horizontal",
+                                "Items": [
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "RightStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{{Item.CountTop3, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.SeasonOverallNumberEvents, Converter=NumberMultiply, Parameter=2}}",
+                                                "statvalue": "{Item.CountTop3}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.CountTop3, Converter=NumberEquals, Parameter=0}",
+                                                "ComponentVar": "stat",
+                                                "Value": 1
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "LeftStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{{Item.CountTop3, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.SeasonOverallNumberEvents, Converter=NumberMultiply, Parameter=2}}",
+                                                "statvalue": "{Item.CountTop3}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.CountTop3, Converter=NumberEquals, Parameter=0}",
+                                                "ComponentVar": "stat",
+                                                "Value": 1
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "shape",
+                        "Margin": "0,0,0,20",
+                        "HorizontalAlignment": "Center",
+                        "Width": 2000,
+                        "Height": 4,
+                        "ShapeOptions": {
+                            "Fill": "{{g1}}"
+                        }
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Orientation": "Vertical",
+                        "HorizontalAlignment": "Center",
+                        "Items": [
+                            {
+                                "BlockType": "text",
+                                "HorizontalAlignment": "Center",
+                                "Source": "[TOP 10 FINISHES]",
+                                "Style": "NameDefault1",
+                                "Foreground": "{{g1}}"
+                            },
+                            {
+                                "BlockType": "stack",
+                                "HorizontalAlignment": "Center",
+                                "Orientation": "Horizontal",
+                                "Items": [
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "RightStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{{Item.CountTop10, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.SeasonOverallNumberEvents, Converter=NumberMultiply, Parameter=2}}",
+                                                "statvalue": "{Item.CountTop10}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.CountTop10, Converter=NumberEquals, Parameter=0}",
+                                                "ComponentVar": "stat",
+                                                "Value": 1
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "LeftStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat":  "{{Item.CountTop10, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.SeasonOverallNumberEvents, Converter=NumberMultiply, Parameter=2}}",
+                                                "statvalue": "{Item.CountTop10}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.CountTop10, Converter=NumberEquals, Parameter=0}",
+                                                "ComponentVar": "stat",
+                                                "Value": 1
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "shape",
+                        "Margin": "0,0,0,20",
+                        "HorizontalAlignment": "Center",
+                        "Width": 2000,
+                        "Height": 4,
+                        "ShapeOptions": {
+                            "Fill": "{{g1}}"
+                        }
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Orientation": "Vertical",
+                        "HorizontalAlignment": "Center",
+                        "Items": [
+                            {
+                                "BlockType": "text",
+                                "HorizontalAlignment": "Center",
+                                "Source": "[BEST RACE FINISH]",
+                                "Style": "NameDefault1",
+                                "Foreground": "{{g1}}"
+                            },
+                            {
+                                "BlockType": "stack",
+                                "HorizontalAlignment": "Center",
+                                "Orientation": "Horizontal",
+                                "Items": [
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "RightStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{105, Converter=NumberSubtract, Parameter={{Item.BestPos1, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.GridSize}}}",
+                                                "statvalue": "P{Item.BestPos1}"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "LeftStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat":  "{105, Converter=NumberSubtract, Parameter={{Item.BestPos1, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.GridSize}}}",
+                                                "statvalue": "P{Item.BestPos1}"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "shape",
+                        "Margin": "0,0,0,20",
+                        "HorizontalAlignment": "Center",
+                        "Width": 2000,
+                        "Height": 4,
+                        "ShapeOptions": {
+                            "Fill": "{{g1}}"
+                        }
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Orientation": "Vertical",
+                        "HorizontalAlignment": "Center",
+                        "Items": [
+                            {
+                                "BlockType": "text",
+                                "HorizontalAlignment": "Center",
+                                "Source": "[HIGHEST GRID POSITION]",
+                                "Style": "NameDefault1",
+                                "Foreground": "{{g1}}"
+                            },
+                            {
+                                "BlockType": "stack",
+                                "HorizontalAlignment": "Center",
+                                "Orientation": "Horizontal",
+                                "Items": [
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "RightStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{105, Converter=NumberSubtract, Parameter={{Item.BestPosQual, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.GridSize}}}",
+                                                "statvalue": "P{Item.BestPosQual}"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "LeftStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat":  "{105, Converter=NumberSubtract, Parameter={{Item.BestPosQual, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.GridSize}}}",
+                                                "statvalue": "P{Item.BestPosQual}"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "shape",
+                        "Margin": "0,0,0,20",
+                        "HorizontalAlignment": "Center",
+                        "Width": 2000,
+                        "Height": 4,
+                        "ShapeOptions": {
+                            "Fill": "{{g1}}"
+                        }
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Orientation": "Vertical",
+                        "HorizontalAlignment": "Center",
+                        "Items": [
+                            {
+                                "BlockType": "text",
+                                "HorizontalAlignment": "Center",
+                                "Source": "[FASTEST LAPS]",
+                                "Style": "NameDefault1",
+                                "Foreground": "{{g1}}"
+                            },
+                            {
+                                "BlockType": "stack",
+                                "HorizontalAlignment": "Center",
+                                "Orientation": "Horizontal",
+                                "Items": [
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "RightStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{{Item.RaceFastestLapCount, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.SeasonOverallNumberEvents}}",
+                                                "statvalue": "{Item.RaceFastestLapCount}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.RaceFastestLapCount, Converter=NumberEquals, Parameter=0}",
+                                                "ComponentVar": "stat",
+                                                "Value": 1
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "LeftStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{{Item.RaceFastestLapCount, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.SeasonOverallNumberEvents}}",
+                                                "statvalue": "{Item.RaceFastestLapCount}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.RaceFastestLapCount, Converter=NumberEquals, Parameter=0}",
+                                                "ComponentVar": "stat",
+                                                "Value": 1
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "shape",
+                        "Margin": "0,0,0,20",
+                        "HorizontalAlignment": "Center",
+                        "Width": 2000,
+                        "Height": 4,
+                        "ShapeOptions": {
+                            "Fill": "{{g1}}"
+                        }
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Orientation": "Vertical",
+                        "HorizontalAlignment": "Center",
+                        "Items": [
+                            {
+                                "BlockType": "text",
+                                "HorizontalAlignment": "Center",
+                                "Source": "[POLES]",
+                                "Style": "NameDefault1",
+                                "Foreground": "{{g1}}"
+                            },
+                            {
+                                "BlockType": "stack",
+                                "HorizontalAlignment": "Center",
+                                "Orientation": "Horizontal",
+                                "Items": [
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "RightStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{{Item.CountQualP1, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.SeasonOverallNumberEvents}}",
+                                                "statvalue": "{Item.CountQualP1}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.CountQualP1, Converter=NumberEquals, Parameter=0}",
+                                                "ComponentVar": "stat",
+                                                "Value": 1
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "LeftStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{{Item.CountQualP1, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.SeasonOverallNumberEvents}}",
+                                                "statvalue": "{Item.CountQualP1}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.CountQualP1, Converter=NumberEquals, Parameter=0}",
+                                                "ComponentVar": "stat",
+                                                "Value": 1
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "shape",
+                        "Margin": "0,0,0,20",
+                        "HorizontalAlignment": "Center",
+                        "Width": 2000,
+                        "Height": 4,
+                        "ShapeOptions": {
+                            "Fill": "{{g1}}"
+                        }
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Orientation": "Vertical",
+                        "HorizontalAlignment": "Center",
+                        "Items": [
+                            {
+                                "BlockType": "text",
+                                "HorizontalAlignment": "Center",
+                                "Source": "[DOTD]",
+                                "Style": "NameDefault1",
+                                "Foreground": "{{g1}}"
+                            },
+                            {
+                                "BlockType": "stack",
+                                "HorizontalAlignment": "Center",
+                                "Orientation": "Horizontal",
+                                "Items": [
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "RightStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{{Item.RaceDriverDayCount, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.SeasonOverallNumberEvents}}",
+                                                "statvalue": "{Item.RaceDriverDayCount}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.RaceDriverDayCount, Converter=NumberEquals, Parameter=0}",
+                                                "ComponentVar": "stat",
+                                                "Value": 2
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "LeftStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{{Item.RaceDriverDayCount, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.SeasonOverallNumberEvents}}",
+                                                "statvalue": "{Item.RaceDriverDayCount}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.RaceDriverDayCount, Converter=NumberEquals, Parameter=0}",
+                                                "ComponentVar": "stat",
+                                                "Value": 1
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "shape",
+                        "Margin": "0,0,0,20",
+                        "HorizontalAlignment": "Center",
+                        "Width": 2000,
+                        "Height": 4,
+                        "ShapeOptions": {
+                            "Fill": "{{g1}}"
+                        }
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Orientation": "Vertical",
+                        "HorizontalAlignment": "Center",
+                        "Items": [
+                            {
+                                "BlockType": "text",
+                                "HorizontalAlignment": "Center",
+                                "Source": "[PENALTY POINTS]",
+                                "Style": "NameDefault1",
+                                "Foreground": "{{g1}}"
+                            },
+                            {
+                                "BlockType": "stack",
+                                "HorizontalAlignment": "Center",
+                                "Orientation": "Horizontal",
+                                "Items": [
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "RightStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{{Item.PenaltyPoints, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={TotalPPBothDriversCanEarn}}",
+                                                "statvalue": "{Item.PenaltyPoints}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.PenaltyPoints, Converter=NumberEquals, Parameter=0}",
+                                                "ComponentVar": "stat",
+                                                "Value": 2
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "LeftStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{{Item.PenaltyPoints, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={TotalPPBothDriversCanEarn}}",
+                                                "statvalue": "{Item.PenaltyPoints}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.PenaltyPoints, Converter=NumberEquals, Parameter=0}",
+                                                "ComponentVar": "stat",
+                                                "Value": 1
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "shape",
+                        "Margin": "0,0,0,20",
+                        "HorizontalAlignment": "Center",
+                        "Width": 2000,
+                        "Height": 4,
+                        "ShapeOptions": {
+                            "Fill": "{{g1}}"
+                        }
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Orientation": "Vertical",
+                        "HorizontalAlignment": "Center",
+                        "Items": [
+                            {
+                                "BlockType": "text",
+                                "HorizontalAlignment": "Center",
+                                "Source": "[DNF]",
+                                "Style": "NameDefault1",
+                                "Foreground": "{{g1}}"
+                            },
+                            {
+                                "BlockType": "stack",
+                                "HorizontalAlignment": "Center",
+                                "Orientation": "Horizontal",
+                                "Items": [
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "RightStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat":  "{{Item.CountDnf, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.SeasonOverallNumberEvents}}",
+                                                "statvalue": "{Item.CountDnf}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{stat, Converter=NumberEquals, Parameter=0}",
+                                                "ComponentVar": "stat",
+                                                "Value": 2
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "LeftStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{{Item.CountDnf, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.SeasonOverallNumberEvents}}",
+                                                "statvalue": "{Item.CountDnf}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{stat, Converter=NumberEquals, Parameter=0}",
+                                                "ComponentVar": "stat",
+                                                "Value": 1
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "BlockType": "shape",
+                        "Margin": "0,0,0,20",
+                        "HorizontalAlignment": "Center",
+                        "Width": 2000,
+                        "Height": 4,
+                        "ShapeOptions": {
+                            "Fill": "{{g1}}"
+                        }
+                    },
+                    {
+                        "BlockType": "stack",
+                        "Orientation": "Vertical",
+                        "HorizontalAlignment": "Center",
+                        "Items": [
+                            {
+                                "BlockType": "text",
+                                "HorizontalAlignment": "Center",
+                                "Source": "[EVENTS]",
+                                "Style": "NameDefault1",
+                                "Foreground": "{{g1}}"
+                            },
+                            {
+                                "BlockType": "stack",
+                                "HorizontalAlignment": "Center",
+                                "Orientation": "Horizontal",
+                                "Items": [
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "RightStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat":  "{{Item.EventsCount, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.SeasonOverallNumberEvents}}",
+                                                "statvalue": "{Item.EventsCount}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.EventsCount, Converter=NumberEquals, Parameter=0}",
+                                                "Property": "stat",
+                                                "Value": 1
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "BlockType": "component",
+                                        "Component": "LeftStatsBarTeam",
+                                        "ComponentOptions": {
+                                            "Vars": {
+                                                "stat": "{{Item.EventsCount, Converter=NumberMultiply, Parameter=100}, Converter=NumberDivide, Parameter={Season.SeasonOverallNumberEvents}}",
+                                                "statvalue": "{Item.EventsCount}"
+                                            }
+                                        },
+                                        "Triggers": [
+                                            {
+                                                "Condition": "{Item.EventsCount, Converter=NumberEquals, Parameter=0}",
+                                                "ComponentVar": "stat",
+                                                "Value": 1
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,37 @@
+{
+    "BlockRoot": {
+        "BlockType": "itemstack",
+        "HorizontalAlignment": "Center",
+        "Orientation": "Vertical",
+        "ItemStackOptions": {
+            "ItemSource": "{Standings.Teams}",
+            "Limit": 1,
+            "IndexStart": "{com1, Converter=NumberSubtract, Parameter=1}",
+            "ItemTemplate": {
+                "BlockType": "stack",
+                "Background": "{Item.Team.Color}",
+                "Items": [
+                    {
+                        "BlockType": "image",
+                        "Source": "bg/bg.{g1}.png",
+                        "Triggers": [
+                            {
+                                "Condition": "{g2}",
+                                "Property": "Source",
+                                "Value": "bg/bg.{g1}.plain.png"
+                            }
+                        ]
+                    }
+                ],
+                "Triggers": [
+                    {
+                        "Condition": "{g1, Converter=StringEquals, Parameter=Custom Colour}",
+                        "ConditionAnd": "{g2}",
+                        "Property": "Opacity",
+                        "Value": 60
+                    }
+                ]
+            }
+        }
+    }
+}

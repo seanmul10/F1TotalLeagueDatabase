@@ -1,0 +1,118 @@
+{
+    "ComponentName": "V1DriverLine",
+    "BlockType": "dock",
+    "PaddingLeft": 12,
+    "PaddingRight": 55,
+    "Width": "<width>",
+    "Height": 40,
+    "Items": [
+        {
+            "BlockType": "stack",
+            "Spacing": 4,
+            "HorizontalAlignment": "Left",
+            "VerticalAlignment": "Center",
+            "Items": [
+                {
+                    "BlockType": "image",
+                    "Style": "V1Flags",
+                    "ImageOptions": {
+                        "Path": "{Item.Driver.Nationality.LogotypePath}"
+                    },
+                    "Triggers": [
+                        {
+                            "Trigger": "Flags"
+                        },
+                        {
+                            "Condition": "{Item.Driver.Nationality.LogotypePath, Converter=EmptyObjectToTrue}",
+                            "Setters": [
+                                {
+                                    "Property": "ImageOptions.Path",
+                                    "Value": "avatars/placeholder1.png"
+                                },
+                                {
+                                    "Property": "Opacity",
+                                    "Value": 0
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "text",
+                    "Style": "<style1>",
+                    "Padding": "1,0",
+                    "Source": "{Item.Driver.{name1}}",
+                    "Triggers": [
+                        {
+                            "Trigger": "DefaultName1"
+                        },
+                        {
+                            "Trigger": "DefaultName2"
+                        },
+                        {
+                            "Trigger": "DefaultName3"
+                        },
+                        {
+                            "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                            "ConditionAnd": "{Item.Driver.RealName, Converter=EmptyObjectToTrue}",
+                            "Property": "Source",
+                            "Value": "{Item.Driver.Name}"
+                        },
+                        {
+                            "Condition": "{name1, Converter=StringNotEquals, Parameter=Full Name}",
+                            "Property": "MarginTop",
+                            "Value": 8
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "text",
+                    "Padding": "5,5",
+                    "RenderIf": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                    "Style": "<style2>",
+                    "Source": "{Item.Driver.RealName, Converter=StringToUpperString}",
+                    "Triggers": [
+                        {
+                            "Trigger": "DefaultName4"
+                        },
+                        {
+                            "Condition": "{name1, Converter=StringEquals, Parameter=Full Name}",
+                            "ConditionAnd": "{Item.Driver.RealName, Converter=EmptyObjectToTrue}",
+                            "Property": "RenderIf",
+                            "Value": false
+                        }
+                    ]
+                },
+                {
+                    "BlockType": "itemstack",
+                    "Spacing": 5,
+                    "VerticalAlignment": "Center",
+                    "ItemStackOptions": {
+                        "ItemSource": "{Item.Driver.BadgeImages}",
+                        "ItemTemplate": {
+                            "BlockType": "image",
+                            "Height": 30,
+                            "Source": "{Item}"
+                        }
+                    }
+                },
+                {
+                    "BlockType": "text",
+                    "Source": "{Item.Driver.BadgeText}",
+                    "VerticalAlignment": "Center",
+                    "Margin": "0,9,0,0",
+                    "FontName": "{FontNameItalic}",
+                    "Foreground": "{SessionFG}",
+                    "FontSize": 16,
+                    "Triggers": [
+                        {
+                            "Condition": "{Item.Position, Converter=NumberEquals, Parameter=1}",
+                            "Property": "Foreground",
+                            "Value": "{SessionP1FG}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
