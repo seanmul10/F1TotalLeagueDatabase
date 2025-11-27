@@ -38,6 +38,26 @@ if exist "%TARGET%" rmdir "%TARGET%" /S /Q
 REM Create the directory junction
 mklink /J "%TARGET%" "%SOURCE%"
 
+@echo off
+echo Installing Git hook...
+
+REM Ensure we're in a Git repo
+if not exist ".git" (
+    echo ERROR: .git folder not found. Run this from the repo root.
+    pause
+    exit /b 1
+)
+
+REM Create hooks folder if missing
+if not exist ".git\hooks" (
+    mkdir ".git\hooks"
+)
+
+REM Copy the tracked hook into the actual hook location
+copy /Y "scripts\pre-commit.bat" ".git\hooks\pre-commit.bat" >nul
+
+echo Git pre-commit hook installed successfully.
+
 echo.
 echo Done.
 pause
