@@ -1,12 +1,43 @@
 @echo off
-setlocal enabledelayedexpansion
+
+REM Location of this script and the config file
+set "SCRIPT_DIR=%~dp0"
+set "CONFIG_FILE=%SCRIPT_DIR%app_path.txt"
+set "BASE="
+
+REM Try to read saved path if it exists
+if exist "%CONFIG_FILE%" (
+    for /f "usebackq tokens=* delims=" %%A in ("%CONFIG_FILE%") do (
+        set "BASE=%%A"
+        goto have_base_candidate
+    )
+)
+
+goto ask
+
+:have_base_candidate
+REM Strip any stray quotes
+set "BASE=%BASE:"=%"
+
+echo Found saved RacingLeagueTools path in app_path.txt:
+echo   %BASE%
+
+if exist "%BASE%\RacingLeagueTools.exe" (
+    goto have_base
+) else (
+    echo Saved path is invalid, will ask for a new one...
+    echo.
+    set "BASE="
+    goto ask
+)
 
 :ask
-echo Enter the base path of your RacingLeagueTools app installation: (eg. C:\Users\me\Downloads\RacingLeagueTools):
+echo Enter the base path of your RacingLeagueTools app installation:
+echo   (eg. C:\Users\me\Downloads\RacingLeagueTools)
 set /p BASE=
 
-REM Normalise quotes removed if the user pasted them
-set BASE=%BASE:"=%
+REM Strip quotes if they pasted a quoted path
+set "BASE=%BASE:"=%"
 
 REM Validate the exe exists
 if not exist "%BASE%\RacingLeagueTools.exe" (
@@ -17,11 +48,15 @@ if not exist "%BASE%\RacingLeagueTools.exe" (
     goto ask
 )
 
+REM Save the valid path for next time
+> "%CONFIG_FILE%" echo %BASE%
+
+:have_base
 REM Build full target path
-set TARGET=%BASE%\user\themes
+set "TARGET=%BASE%\user\themes"
 
 REM Resolve the repo's themes folder
-set SOURCE=%~dp0themes
+set "SOURCE=%SCRIPT_DIR%themes"
 
 echo.
 echo Creating symlink:
