@@ -1,82 +1,51 @@
 #!/bin/sh
 
-# Stop on errors
 set -e
 
 # Find staged .db files
 DB_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '\.db$' || true)
 
 if [ -z "$DB_FILES" ]; then
-    # No DB files staged → nothing to check
+    # No DB files staged → nothing to do
     exit 0
 fi
 
 echo "Checking locks for staged .db files..."
 
-# Get lock info in JSON form
-LOCKS_JSON=$(git lfs locks --json 2>/dev/null || echo '{"locks": []}')
-
-# Get current Git user's name/email
-USER_NAME=$(git config user.name)
-USER_EMAIL=$(git config user.email)
-
 for FILE in $DB_FILES; do
-    # Extract lock owner for this specific file
-    LOCK_OWNER_NAME=$(echo "$LOCKS_JSON" | grep -A4 "\"path\": \"$FILE\"" | grep '"name"' | sed 's/.*"name": "\(.*\)".*/\1/')
-    LOCK_OWNER_EMAIL=$(echo "$LOCKS_JSON" | grep -A4 "\"path\": \"$FILE\"" | grep '"email"' | sed 's/.*"email": "\(.*\)".*/\1/')
+    echo "  $FILE"
 
-    if [ -z "$LOCK_OWNER_NAME" ]; then
-        # No lock found → attempt to lock it
-        echo "No lock found for $FILE. Attempting to lock..."
-        if git lfs lock "$FILE" >/dev/null 2>&1; then
-            echo "✔ Locked $FILE for $USER_NAME ($USER_EMAIL)"
-        else
-            echo "✖ Failed to lock $FILE. It may have been locked by someone else."
-            echo "Commit aborted."
-            exit 1
-        fi
-    else
-        # File IS locked → check owner
-        if [ "$LOCK_OWNER_EMAIL" = "$USER_EMAIL" ]; then
-            echo "✔ $FILE is already locked by you."
-        else
-            echo ""
-            echo "✖ Cannot commit changes to $FILE"
-            echo "This file is locked by:"
-            echo "    $LOCK_OWNER_NAME <$LOCK_OWNER_EMAIL>"
-            echo ""
-            echo "Ask them to merge/unlock, or use force-unlock.bat if you're knowingly discarding their work."
-            echo "Commit aborted."
-            exit 1
-        fi
+    # 1) Do WE already have a local lock on this file?
+    LOCAL_LOCK=$(git lfs locks --local --path="$FILE" 2>/dev/null || true)
+
+    if echo "$LOCAL_LOCK" | grep -q "$FILE"; then
+        echo "    ✔ Already locked by you (local lock present)."
+        continue
     fi
+
+    # 2) If no local lock, check remote locks (someone else?)
+    REMOTE_LOCK=$(git lfs locks --path="$FILE" 2>/dev/null || true)
+
+    if echo "$REMOTE_LOCK" | grep -q "$FILE"; then
+        echo "    ✖ File appears to be locked by another user (no local lock for you)."
+        echo "    Run 'git lfs locks' to see who owns the lock."
+        echo "    Commit aborted."
+        exit 1
+    fi
+
+    # 3) No lock at all → try to lock it for this user
+    echo "    No lock found. Attempting to lock..."
+    OUTPUT=$(git lfs lock "$FILE" 2>&1)
+    STATUS=$?
+
+    if [ $STATUS -ne 0 ]; then
+        echo "    ✖ Failed to lock $FILE. git-lfs said:"
+        echo "      $OUTPUT"
+        echo "    Commit aborted."
+        exit $STATUS
+    fi
+
+    echo "    ✔ Locked $FILE for you."
 done
-
-# Git pre-commit hook: dump SQLite DB for diffing
-
-# Find repo root
-REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || echo ".")
-cd "$REPO_ROOT" || exit 1
-
-# Sanity checks
-if [ ! -f "tools/sqlite3.exe" ]; then
-  echo "[pre-commit] ERROR: tools/sqlite3.exe not found." >&2
-  exit 1
-fi
-
-if [ ! -f "F1TOTAL.db" ]; then
-  echo "[pre-commit] ERROR: F1TOTAL.db not found in repo root." >&2
-  exit 1
-fi
-
-# Generate dump
-./tools/sqlite3.exe F1TOTAL.db .dump > F1TOTAL_dump.sql
-if [ $? -ne 0 ]; then
-  echo "[pre-commit] ERROR: sqlite3 dump failed." >&2
-  exit 1
-fi
-
-# Stage the dump
-git add F1TOTAL_dump.sql
 
 exit 0

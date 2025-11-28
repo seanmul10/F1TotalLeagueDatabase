@@ -1,29 +1,42 @@
 @echo off
 setlocal ENABLEDELAYEDEXPANSION
 
-REM Usage: force-unlock.bat path\to\file.db
+REM This script lives in:   repo\scripts\force-unlock.bat
+REM We need to step up to:  repo\
+cd /d "%~dp0\.."
 
-if "%~1"=="" (
-    echo Usage: %~n0 path\to\file.db
+echo ============================================
+echo   Git LFS FORCE UNLOCK
+echo ============================================
+echo.
+
+echo Currently locked files:
+git lfs locks
+echo.
+
+set "FILE="
+set /P FILE=Enter the file to force-unlock (exact path shown above, blank to cancel): 
+
+if "%FILE%"=="" (
     echo.
-    echo Currently locked files:
-    git lfs locks
-    echo.
+    echo No file entered. Aborted.
     goto :eof
 )
 
-set "FILE=%~1"
-
+echo.
 echo You are about to FORCE UNLOCK:
-echo   %FILE%
+echo   "%FILE%"
 echo.
+
 echo Current lock info for this file (if any):
-git lfs locks "%FILE%"
+git lfs locks --path="%FILE%"
 echo.
+
 echo This will break the lock even if someone else owns it,
 echo and any unmerged work they have on this file may be LOST.
 echo.
 
+set "CONFIRM="
 set /P CONFIRM=Type YES to continue, or anything else to cancel: 
 
 if /I not "%CONFIRM%"=="YES" (
@@ -43,4 +56,7 @@ if errorlevel 1 (
 
 echo.
 echo Force unlock complete.
+echo.
+
 endlocal
+pause
