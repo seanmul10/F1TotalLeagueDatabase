@@ -1,29 +1,51 @@
 #!/bin/sh
-# Git pre-commit hook: dump SQLite DB for diffing
 
-# Find repo root
-REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || echo ".")
-cd "$REPO_ROOT" || exit 1
+set -e
 
-# Sanity checks
-if [ ! -f "tools/sqlite3.exe" ]; then
-  echo "[pre-commit] ERROR: tools/sqlite3.exe not found." >&2
-  exit 1
+# Find staged .db files
+DB_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '\.db$' || true)
+
+if [ -z "$DB_FILES" ]; then
+    # No DB files staged → nothing to do
+    exit 0
 fi
 
-if [ ! -f "F1TOTAL.db" ]; then
-  echo "[pre-commit] ERROR: F1TOTAL.db not found in repo root." >&2
-  exit 1
-fi
+echo "Checking locks for staged .db files..."
 
-# Generate dump
-./tools/sqlite3.exe F1TOTAL.db .dump > F1TOTAL_dump.sql
-if [ $? -ne 0 ]; then
-  echo "[pre-commit] ERROR: sqlite3 dump failed." >&2
-  exit 1
-fi
+for FILE in $DB_FILES; do
+    echo "  $FILE"
 
-# Stage the dump
-git add F1TOTAL_dump.sql
+    # 1) Do WE already have a local lock on this file?
+    LOCAL_LOCK=$(git lfs locks --local --path="$FILE" 2>/dev/null || true)
+
+    if echo "$LOCAL_LOCK" | grep -q "$FILE"; then
+        echo "    ✔ Already locked by you (local lock present)."
+        continue
+    fi
+
+    # 2) If no local lock, check remote locks (someone else?)
+    REMOTE_LOCK=$(git lfs locks --path="$FILE" 2>/dev/null || true)
+
+    if echo "$REMOTE_LOCK" | grep -q "$FILE"; then
+        echo "    ✖ File appears to be locked by another user (no local lock for you)."
+        echo "    Run 'git lfs locks' to see who owns the lock."
+        echo "    Commit aborted."
+        exit 1
+    fi
+
+    # 3) No lock at all → try to lock it for this user
+    echo "    No lock found. Attempting to lock..."
+    OUTPUT=$(git lfs lock "$FILE" 2>&1)
+    STATUS=$?
+
+    if [ $STATUS -ne 0 ]; then
+        echo "    ✖ Failed to lock $FILE. git-lfs said:"
+        echo "      $OUTPUT"
+        echo "    Commit aborted."
+        exit $STATUS
+    fi
+
+    echo "    ✔ Locked $FILE for you."
+done
 
 exit 0
