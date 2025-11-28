@@ -1,0 +1,47 @@
+name: Auto-unlock DB files on merge
+
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  unlock-db:
+    if: >
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out merge commit
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+
+      - name: Find changed .db files in this PR
+        id: find_db
+        run: |
+          BASE_SHA="${{ github.event.pull_request.base.sha }}"
+          HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+
+          echo "Base SHA:  $BASE_SHA"
+          echo "Head SHA:  $HEAD_SHA"
+
+          # List .db files changed between base and head
+          DB_FILES=$(git diff --name-only "$BASE_SHA" "$HEAD_SHA" -- '*.db' || true)
+
+          echo "Changed .db files:"
+          echo "$DB_FILES"
+
+          # Expose as output (newline-safe)
+          DB_FILES_ESCAPED=$(printf '%s\n' "$DB_FILES" | paste -sd',' -)
+          echo "db_files=$DB_FILES_ESCAPED" >> "$GITHUB_OUTPUT"
+
+      - name: Unlock changed .db files (if any)
+        if: steps.find_db.outputs.db_files != ''
+        run: |
+          IFS=',' read -ra FILES <<< "${{ steps.find_db.outputs.db_files }}"
+          for f in "${FILES[@]}"; do
+            echo "Attempting to force-unlock: $f"
+            git lfs unlock --force "$f" || echo "Failed to unlock $f (see above)."
+          done
