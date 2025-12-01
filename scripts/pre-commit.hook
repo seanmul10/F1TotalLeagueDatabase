@@ -48,4 +48,24 @@ for FILE in $DB_FILES; do
     echo "    ✔ Locked $FILE for you."
 done
 
+if [ ! -f "tools/sqlite3.exe" ]; then
+  echo "[pre-commit] ERROR: tools/sqlite3.exe not found." >&2
+  exit 1
+fi
+
+if [ ! -f "F1TOTAL.db" ]; then
+  echo "[pre-commit] ERROR: F1TOTAL.db not found in repo root." >&2
+  exit 1
+fi
+
+# Generate dump
+./tools/sqlite3.exe F1TOTAL.db .dump > F1TOTAL_dump.sql
+if [ $? -ne 0 ]; then
+  echo "[pre-commit] ERROR: sqlite3 dump failed." >&2
+  exit 1
+fi
+
+# Stage the dump
+git add F1TOTAL_dump.sql
+
 exit 0
